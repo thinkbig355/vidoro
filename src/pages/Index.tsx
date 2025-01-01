@@ -45,11 +45,13 @@ const Index = () => {
               { name: "Our Work", path: "/work" },
               { name: "Process", path: "/process" }
             ].map((item) => (
-              <motion.div key={item.name}>
+              <motion.div 
+                key={item.name}
+                whileHover={{ scale: 1.1 }}
+              >
                 <Link
                   to={item.path}
                   className="text-white hover:text-blue-300 transition-colors"
-                  whileHover={{ scale: 1.1, color: "#93C5FD" }}
                 >
                   {item.name}
                 </Link>

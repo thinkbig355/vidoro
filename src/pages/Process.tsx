@@ -1,7 +1,7 @@
 import React from 'react';
 import ProcessStep from '@/components/process/ProcessStep';
 import { motion } from 'framer-motion';
-import { Upload, Translate, Video, MessageSquare, Clock, Check } from 'lucide-react';
+import { Upload, Languages, Video, MessageSquare, Check } from 'lucide-react';
 
 const Process = () => {
   const steps = [
@@ -12,7 +12,7 @@ const Process = () => {
       duration: "Takes 5 minutes"
     },
     {
-      icon: Translate,
+      icon: Languages,
       title: "Professional Translation",
       description: "Our expert translators adapt your content for the Indian audience, maintaining your message and style.",
       duration: "24-48 hours"
