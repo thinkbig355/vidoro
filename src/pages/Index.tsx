@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, useInView, useAnimation, animate } from "framer-motion";
 import { Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const countRef = useRef(null);
@@ -40,16 +41,19 @@ const Index = () => {
             Vidorro
           </motion.a>
           <nav className="hidden md:flex gap-8">
-            {["Services", "About", "Contact"].map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-white hover:text-blue-300 transition-colors"
-                whileHover={{ scale: 1.1, color: "#93C5FD" }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                {item}
-              </motion.a>
+            {[
+              { name: "Our Work", path: "/work" },
+              { name: "Process", path: "/process" }
+            ].map((item) => (
+              <motion.div key={item.name}>
+                <Link
+                  to={item.path}
+                  className="text-white hover:text-blue-300 transition-colors"
+                  whileHover={{ scale: 1.1, color: "#93C5FD" }}
+                >
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
           </nav>
         </div>
