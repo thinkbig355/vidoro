@@ -10,16 +10,20 @@ import { motion } from 'framer-motion';
 const FAQ = () => {
   const faqs = [
     {
+      question: "Why should you create a separate channel?",
+      answer: "• Attract new sponsors and monetization opportunities in a new market, without additional effort.\n• Access YouTube's largest user base to exponentially increase your reach and views.\n• A dedicated channel optimized for the Indian audience ensures a more engaged and loyal viewership."
+    },
+    {
       question: "How does cultural adaptation work?",
       answer: "We put extra effort to ensure your video feels natural to the Indian audience by adding cultural references, optimizing on-screen text, fine-tuning pacing, and making subtle visual adjustments to enhance engagement and appeal."
     },
     {
-      question: "How will you upload the video on youtube?",
-      answer: "you have to give go to the youtube studio and give us a role where we can upload the videos on your channel, then we will add a proper description, tags, titles, thumbnail optimized for indian audience."
+      question: "How will you upload the video on YouTube?",
+      answer: "To upload your optimized video to YouTube, we'll need you to grant us channel permissions as an editor or manager on your channel. This will allow us to upload your video and apply our SEO settings"
     },
     {
-      question: "What editing software file you support?",
-      answer: "We support every softwae like premier pro, final cut pro, davanci resolve, after effect, etc"
+      question: "Which editing software project files do you support?",
+      answer: "We support project files from all major video editing software, including Premiere Pro, Final Cut Pro, DaVinci Resolve, and After Effect"
     },
     {
       question: "What is your turnaround time?",
@@ -54,7 +58,7 @@ const FAQ = () => {
                 <AccordionTrigger className="text-lg font-medium text-gray-900 hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600">
+                <AccordionContent className="text-gray-600 whitespace-pre-line">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

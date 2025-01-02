@@ -8,7 +8,7 @@ const Navigation = () => {
   const navigate = useNavigate();
   
   const links = [
-    { name: "Our Work", path: "/work" },
+    { name: "Samples", path: "/work" },
     { name: "Process", path: "/process" },
     { name: "Pricing", path: "/pricing" }
   ];
