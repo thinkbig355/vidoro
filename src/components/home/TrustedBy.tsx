@@ -1,8 +1,32 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Globe } from 'lucide-react';
 
 const TrustedBy = () => {
+  const [count, setCount] = useState(100);
+  const countRef = useRef(null);
+  const isInView = useInView(countRef);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+      const duration = 5000; // 5 seconds
+      const increment = Math.floor((2000 - 100) / (duration / 50)); // Update every 50ms
+      const timer = setInterval(() => {
+        setCount(prev => {
+          const next = prev + increment;
+          if (next >= 2000) {
+            clearInterval(timer);
+            return 2000;
+          }
+          return next;
+        });
+      }, 50);
+      return () => clearInterval(timer);
+    }
+  }, [isInView, hasAnimated]);
+
   return (
     <section className="py-20 px-4 bg-white">
       <div className="container mx-auto text-center">
@@ -27,13 +51,14 @@ const TrustedBy = () => {
           ))}
         </div>
         <motion.div 
+          ref={countRef}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16"
         >
-          <motion.div className="text-5xl font-bold text-red-600 mb-4 counter">
-            2000+
+          <motion.div className="text-5xl font-bold text-red-600 mb-4">
+            {count}+
           </motion.div>
           <p className="text-xl text-gray-600">Translated Videos</p>
         </motion.div>

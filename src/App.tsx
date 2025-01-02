@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Work from "./pages/Work";
 import Process from "./pages/Process";
 import Pricing from "./pages/Pricing";
+import ContactUs from "./pages/ContactUs";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/work" element={<Work />} />
           <Route path="/process" element={<Process />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

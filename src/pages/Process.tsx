@@ -1,71 +1,64 @@
 import React from 'react';
-import ProcessStep from '@/components/process/ProcessStep';
 import { motion } from 'framer-motion';
-import { Upload, Languages, Video, MessageSquare, Check } from 'lucide-react';
+import { Upload, Languages, Palette, Upload as UploadIcon } from 'lucide-react';
 
 const Process = () => {
   const steps = [
     {
       icon: Upload,
-      title: "Upload Your Content",
-      description: "Simply share your YouTube video link or upload your content directly to our platform.",
-      duration: "Takes 5 minutes"
+      title: "Send Your Video File",
+      description: "Simply share your video editing software's project file through Google Drive"
     },
     {
       icon: Languages,
-      title: "Professional Translation",
-      description: "Our expert translators adapt your content for the Indian audience, maintaining your message and style.",
-      duration: "24-48 hours"
+      title: "Translate and Voice Over",
+      description: "Professional translation and Hindi voice over"
     },
     {
-      icon: Video,
-      title: "Voice Recording",
-      description: "Native Hindi voice artists record your content with perfect pronunciation and natural flow.",
-      duration: "24-48 hours"
+      icon: Palette,
+      title: "Cultural Adaptation",
+      description: "Video optimization and cultural adaptation to resonate with the Indian audience"
     },
     {
-      icon: MessageSquare,
-      title: "Review & Feedback",
-      description: "Review the translated content and provide feedback for any adjustments needed.",
-      duration: "24 hours"
-    },
-    {
-      icon: Check,
-      title: "Final Delivery",
-      description: "Receive your professionally translated video ready for your Indian audience.",
-      duration: "Within 72 hours total"
+      icon: UploadIcon,
+      title: "Optimized Upload for Reach",
+      description: "We upload and optimize your video for maximum reach"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-800 to-black pt-32 pb-20">
+    <div className="min-h-screen pt-32 pb-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold text-white mb-8 text-center"
+          className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 text-center"
         >
           Our Process
         </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-xl text-blue-100 text-center mb-16 max-w-3xl mx-auto"
-        >
-          A streamlined journey from English to Hindi, designed for efficiency and quality
-        </motion.p>
         
-        <div className="max-w-3xl mx-auto space-y-12">
+        <div className="flex flex-nowrap overflow-x-auto gap-8 pb-8 px-4 mt-16">
           {steps.map((step, index) => (
-            <ProcessStep
+            <motion.div
               key={index}
-              icon={step.icon}
-              title={step.title}
-              description={step.description}
-              duration={step.duration}
-              index={index}
-            />
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.2 }}
+              className="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg p-6 relative"
+            >
+              <div className="flex items-start gap-4">
+                <div className="bg-red-600 p-3 rounded-full">
+                  <step.icon className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+              </div>
+              {index < steps.length - 1 && (
+                <div className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-0.5 bg-red-200" />
+              )}
+            </motion.div>
           ))}
         </div>
       </div>
