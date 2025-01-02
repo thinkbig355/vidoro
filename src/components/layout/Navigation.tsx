@@ -13,13 +13,13 @@ const Navigation = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="flex-1"
         >
-          <Link to="/" className="text-2xl font-bold text-primary">
+          <Link to="/" className="text-2xl font-bold text-red-600">
             Vidorro
           </Link>
         </motion.div>
@@ -33,15 +33,15 @@ const Navigation = () => {
             >
               <Link
                 to={item.path}
-                className={`text-foreground/80 hover:text-foreground transition-colors ${
-                  location.pathname === item.path ? 'text-foreground font-semibold' : ''
+                className={`text-gray-600 hover:text-gray-900 transition-colors ${
+                  location.pathname === item.path ? 'text-gray-900 font-semibold' : ''
                 }`}
               >
                 {item.name}
                 {location.pathname === item.path && (
                   <motion.div
                     layoutId="underline"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-red-600"
                   />
                 )}
               </Link>
@@ -51,7 +51,7 @@ const Navigation = () => {
         
         <div className="flex-1 flex justify-end">
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Button variant="default" className="bg-primary hover:bg-primary/90">
+            <Button variant="default" className="bg-red-600 hover:bg-red-700">
               Get Started
             </Button>
           </motion.div>
