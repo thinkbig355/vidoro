@@ -12,17 +12,21 @@ const TrustedBy = () => {
     if (isInView && !hasAnimated) {
       setHasAnimated(true);
       const duration = 5000; // 5 seconds
-      const increment = Math.floor((2000 - 100) / (duration / 50)); // Update every 50ms
+      const startValue = 100;
+      const endValue = 2000;
+      const increment = Math.ceil((endValue - startValue) / (duration / 50)); // Update every 50ms
+      
       const timer = setInterval(() => {
         setCount(prev => {
           const next = prev + increment;
-          if (next >= 2000) {
+          if (next >= endValue) {
             clearInterval(timer);
-            return 2000;
+            return endValue;
           }
           return next;
         });
       }, 50);
+      
       return () => clearInterval(timer);
     }
   }, [isInView, hasAnimated]);

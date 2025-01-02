@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Upload, Languages, Palette, Upload as UploadIcon } from 'lucide-react';
+import FAQ from '@/components/process/FAQ';
 
 const Process = () => {
   const steps = [
@@ -27,41 +28,44 @@ const Process = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-20 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 text-center"
-        >
-          Our Process
-        </motion.h1>
-        
-        <div className="flex flex-nowrap overflow-x-auto gap-8 pb-8 px-4 mt-16">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg p-6 relative"
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-red-600 p-3 rounded-full">
-                  <step.icon className="w-6 h-6 text-white" />
+    <div className="min-h-screen bg-white">
+      <div className="pt-32 pb-20">
+        <div className="container mx-auto px-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 text-center"
+          >
+            Our Process
+          </motion.h1>
+          
+          <div className="flex flex-nowrap overflow-x-auto gap-8 pb-8 px-4 mt-16">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg p-6 relative"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-600 p-3 rounded-full">
+                    <step.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                    <p className="text-gray-600">{step.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
-                </div>
-              </div>
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-0.5 bg-red-200" />
-              )}
-            </motion.div>
-          ))}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-0.5 bg-red-200" />
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
+      <FAQ />
     </div>
   );
 };

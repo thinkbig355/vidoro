@@ -5,10 +5,9 @@ import { motion } from 'framer-motion';
 interface VideoComparisonProps {
   originalVideoId: string;
   translatedVideoId: string;
-  title: string;
 }
 
-const VideoComparison = ({ originalVideoId, translatedVideoId, title }: VideoComparisonProps) => {
+const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparisonProps) => {
   const [isHoveringOriginal, setIsHoveringOriginal] = useState(false);
   const [isHoveringTranslated, setIsHoveringTranslated] = useState(false);
 
@@ -27,16 +26,15 @@ const VideoComparison = ({ originalVideoId, translatedVideoId, title }: VideoCom
       viewport={{ once: true }}
       className="mb-12"
     >
-      <h3 className="text-2xl font-bold mb-4 text-white">{title}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <motion.div 
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300, damping: 10 }}
           onHoverStart={() => setIsHoveringOriginal(true)}
           onHoverEnd={() => setIsHoveringOriginal(false)}
-          className="relative rounded-lg overflow-hidden"
+          className="relative rounded-lg overflow-hidden shadow-lg"
         >
-          <h4 className="absolute top-4 left-4 z-10 bg-black/50 px-3 py-1 rounded-full text-white">Original</h4>
+          <h4 className="absolute top-4 left-4 z-10 bg-black/50 px-3 py-1 rounded-full text-white font-medium">Original</h4>
           <YouTube 
             videoId={originalVideoId} 
             opts={opts} 
@@ -50,9 +48,9 @@ const VideoComparison = ({ originalVideoId, translatedVideoId, title }: VideoCom
           transition={{ type: "spring", stiffness: 300, damping: 10 }}
           onHoverStart={() => setIsHoveringTranslated(true)}
           onHoverEnd={() => setIsHoveringTranslated(false)}
-          className="relative rounded-lg overflow-hidden"
+          className="relative rounded-lg overflow-hidden shadow-lg"
         >
-          <h4 className="absolute top-4 left-4 z-10 bg-black/50 px-3 py-1 rounded-full text-white">Hindi Version</h4>
+          <h4 className="absolute top-4 left-4 z-10 bg-black/50 px-3 py-1 rounded-full text-white font-medium">Hindi Version</h4>
           <YouTube 
             videoId={translatedVideoId} 
             opts={opts}
