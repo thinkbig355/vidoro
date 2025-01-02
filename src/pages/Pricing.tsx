@@ -58,6 +58,24 @@ const Pricing = () => {
           </div>
 
           <div className="space-y-8">
+            <div className="bg-secondary/50 rounded-lg p-4 mb-6">
+              <h3 className="font-bold text-lg mb-4">Base Features</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Translation & Sync With Video
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Best AI Voice
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Upload on YouTube with SEO
+                </li>
+              </ul>
+            </div>
+
             <div>
               <label className="block text-sm font-medium mb-2">
                 Video Duration: {duration} minutes
@@ -80,15 +98,18 @@ const Pricing = () => {
                   <h4 className="font-medium">Human Voice Over</h4>
                   <p className="text-sm text-muted-foreground">Upgrade from AI to human voice</p>
                 </div>
-                <Switch
-                  checked={humanVoice}
-                  onCheckedChange={setHumanVoice}
-                />
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-muted-foreground">(+$1/min)</span>
+                  <Switch
+                    checked={humanVoice}
+                    onCheckedChange={setHumanVoice}
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-between p-4 rounded-lg bg-secondary">
                 <div className="flex items-center gap-2">
-                  <h4 className="font-medium">Cultural Customization</h4>
+                  <h4 className="font-medium">Cultural Adaptation</h4>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
@@ -105,21 +126,27 @@ const Pricing = () => {
                     </Tooltip>
                   </TooltipProvider>
                 </div>
-                <Switch
-                  checked={culturalCustomization}
-                  onCheckedChange={setCulturalCustomization}
-                />
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-muted-foreground">(+$2/min)</span>
+                  <Switch
+                    checked={culturalCustomization}
+                    onCheckedChange={setCulturalCustomization}
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-between p-4 rounded-lg bg-secondary">
                 <div>
                   <h4 className="font-medium">Custom Thumbnail</h4>
-                  <p className="text-sm text-muted-foreground">Professional thumbnail design</p>
+                  <p className="text-sm text-muted-foreground">Tailored for Indian audience</p>
                 </div>
-                <Switch
-                  checked={thumbnail}
-                  onCheckedChange={setThumbnail}
-                />
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-muted-foreground">(+$5)</span>
+                  <Switch
+                    checked={thumbnail}
+                    onCheckedChange={setThumbnail}
+                  />
+                </div>
               </div>
             </div>
           </div>
