@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import YouTube from 'react-youtube';
 import { motion } from 'framer-motion';
 
 interface VideoComparisonProps {
-  originalVideoId: string;
-  translatedVideoId: string;
+    originalVideoId: string;
+    translatedVideoId: string;
 }
 
 const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparisonProps) => {
-  const [isHoveringOriginal, setIsHoveringOriginal] = useState(false);
-  const [isHoveringTranslated, setIsHoveringTranslated] = useState(false);
 
   const opts = {
     height: '300',
@@ -20,45 +18,42 @@ const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparison
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       className="mb-12"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <motion.div 
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300, damping: 10 }}
-          onHoverStart={() => setIsHoveringOriginal(true)}
-          onHoverEnd={() => setIsHoveringOriginal(false)}
-          className="relative rounded-lg overflow-hidden shadow-lg"
-        >
-          <h4 className="absolute top-4 left-4 z-10 bg-black/50 px-3 py-1 rounded-full text-white font-medium">Original</h4>
-          <YouTube 
-            videoId={originalVideoId} 
-            opts={opts} 
-            onPlay={() => setIsHoveringOriginal(true)}
-            onPause={() => setIsHoveringOriginal(false)}
-            className="w-full aspect-video"
-          />
-        </motion.div>
-        <motion.div 
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300, damping: 10 }}
-          onHoverStart={() => setIsHoveringTranslated(true)}
-          onHoverEnd={() => setIsHoveringTranslated(false)}
-          className="relative rounded-lg overflow-hidden shadow-lg"
-        >
-          <h4 className="absolute top-4 left-4 z-10 bg-black/50 px-3 py-1 rounded-full text-white font-medium">Hindi Version</h4>
-          <YouTube 
-            videoId={translatedVideoId} 
-            opts={opts}
-            onPlay={() => setIsHoveringTranslated(true)}
-            onPause={() => setIsHoveringTranslated(false)}
-            className="w-full aspect-video"
-          />
-        </motion.div>
+        <div>
+          <h4 className="text-center font-medium text-gray-700 mb-2">Original</h4>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              className="rounded-lg overflow-hidden shadow-lg"
+            >
+                <YouTube
+                videoId={originalVideoId}
+                opts={opts}
+                className="w-full aspect-video"
+                />
+            </motion.div>
+        </div>
+
+        <div>
+          <h4 className="text-center font-medium text-gray-700 mb-2">Hindi Version</h4>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              className="rounded-lg overflow-hidden shadow-lg"
+            >
+              <YouTube
+                  videoId={translatedVideoId}
+                  opts={opts}
+                  className="w-full aspect-video"
+              />
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   );

@@ -96,8 +96,8 @@ const ContactUs = () => {
 
           <div className="mt-12 text-center text-gray-600">
             <p className="mb-2">Or reach us directly at:</p>
-            <a href="mailto:contact@vidoro.com" className="text-red-600 hover:text-red-700">
-              contact@vidoro.com
+            <a href="mailto:contact@vidoro.agency" className="text-red-600 hover:text-red-700">
+              contact@vidoro.agency
             </a>
           </div>
         </motion.div>

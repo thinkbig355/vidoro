@@ -1,8 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Hero = () => {
+  const navigate = useNavigate(); // Use useNavigate hook
+
+  const handleGetStartedClick = () => {
+    navigate('/contact'); // Navigate to '/contact'
+  };
   return (
     <section className="pt-32 pb-20 px-4 bg-white">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -33,6 +39,7 @@ const Hero = () => {
           >
             <Button
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-xl rounded-full transition-all duration-300 relative group"
+              onClick={handleGetStartedClick} // Call handleGetStartedClick on button click
             >
               Get Started
               <motion.div

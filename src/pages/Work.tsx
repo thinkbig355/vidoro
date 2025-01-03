@@ -19,33 +19,31 @@ const Work = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-32 pb-20">
-      <div className="container mx-auto px-4">
-        <motion.h1 
+    <div className="min-h-screen bg-gray-50 px-8 py-16">
+      <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 text-center"
-        >
-          Some of Our Work
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto"
-        >
-          Watch how we transform English content into engaging Hindi videos that resonate with the Indian audience
-        </motion.p>
-        
-        <div className="space-y-16">
-          {videos.map((video, index) => (
-            <VideoComparison
-              key={index}
-              originalVideoId={video.originalId}
-              translatedVideoId={video.translatedId}
-            />
-          ))}
-        </div>
+          className="text-center mb-12"
+      >
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Some of Our Work
+          </h1>
+          <p 
+              className="text-lg text-gray-600 max-w-3xl mx-auto"
+              style={{transitionDelay: '0.2s'}}
+          >
+             Watch how we transform English content into engaging Hindi videos that resonate with the Indian audience
+          </p>
+      </motion.div>
+
+      <div className="space-y-16 mt-12">
+        {videos.map((video, index) => (
+          <VideoComparison
+            key={index}
+            originalVideoId={video.originalId}
+            translatedVideoId={video.translatedId}
+          />
+        ))}
       </div>
     </div>
   );

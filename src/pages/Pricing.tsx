@@ -2,45 +2,36 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Info } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const Pricing = () => {
   const [duration, setDuration] = useState(5);
   const [humanVoice, setHumanVoice] = useState(false);
-  const [culturalCustomization, setCulturalCustomization] = useState(false);
   const [thumbnail, setThumbnail] = useState(false);
 
   const basePrice = duration * 5;
-  const humanVoicePrice = humanVoice ? duration : 0;
-  const culturalPrice = culturalCustomization ? duration * 2 : 0;
+  const humanVoicePrice = humanVoice ? duration * 2 : 0;
   const thumbnailPrice = thumbnail ? 5 : 0;
-  const totalPrice = basePrice + humanVoicePrice + culturalPrice + thumbnailPrice;
+  const totalPrice = basePrice + humanVoicePrice + thumbnailPrice;
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
+    <div className="min-h-screen pt-16 pb-10 md:pt-20 md:pb-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-12"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-muted-foreground">Choose your plan and customize it to your needs</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-4">Simple, Transparent Pricing</h1>
+          <p className="text-lg md:text-xl text-muted-foreground">Choose your plan and customize it to your needs</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="max-w-3xl mx-auto bg-card rounded-xl shadow-lg p-8"
+          className="max-w-3xl mx-auto bg-card rounded-xl shadow-lg p-4 md:p-6"
         >
-          <div className="text-center mb-8">
+           <div className="text-center mb-4 md:mb-6">
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
@@ -49,35 +40,40 @@ const Pricing = () => {
                 stiffness: 260,
                 damping: 20 
               }}
-              className="text-5xl font-bold text-green-500 mb-2"
+              className="text-4xl md:text-5xl font-bold text-green-500 mb-1 md:mb-2"
             >
               ${totalPrice}
-              <span className="text-xl text-muted-foreground"> per video</span>
+              <span className="text-lg md:text-xl text-muted-foreground"> per video</span>
             </motion.div>
             <p className="text-sm text-muted-foreground">(Unlimited revisions included)</p>
           </div>
 
-          <div className="space-y-8">
-            <div className="bg-secondary/50 rounded-lg p-4 mb-6">
-              <h3 className="font-bold text-lg mb-4">Base Features</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
+           <div className="space-y-4 md:space-y-6">
+            <div className="bg-secondary/50 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
+              <h3 className="font-bold text-lg mb-2 md:mb-3">Base Features</h3>
+              <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
+                <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
                   Translation & Sync With Video
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
                   Best AI Voice
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
                   Upload on YouTube with SEO
+                </li>
+                 <li className="flex items-center gap-1 md:gap-2">
+                  <span className="text-green-500">✓</span>
+                  Fine-tuned for Indian
                 </li>
               </ul>
             </div>
 
+
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium mb-1 md:mb-2">
                 Video Duration: {duration} minutes
               </label>
               <Slider
@@ -90,16 +86,16 @@ const Pricing = () => {
               />
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-bold text-lg">Customize Your Plan</h3>
-              
-              <div className="flex items-center justify-between p-4 rounded-lg bg-secondary">
+            <div className="space-y-2 md:space-y-4">
+              <h3 className="font-bold text-lg">Additional Services</h3>
+
+              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-secondary">
                 <div>
-                  <h4 className="font-medium">Human Voice Over</h4>
-                  <p className="text-sm text-muted-foreground">Upgrade from AI to human voice</p>
+                  <h4 className="font-medium text-sm md:text-base">Human Voice Over</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground">Upgrade from AI to human voice</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm text-muted-foreground">(+$1/min)</span>
+                <div className="flex items-center gap-2 md:gap-3">
+                  <span className="text-xs md:text-sm text-muted-foreground">(+$2/min)</span>
                   <Switch
                     checked={humanVoice}
                     onCheckedChange={setHumanVoice}
@@ -107,41 +103,14 @@ const Pricing = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-4 rounded-lg bg-secondary">
-                <div className="flex items-center gap-2">
-                  <h4 className="font-medium">Cultural Adaptation</h4>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <Info className="w-4 h-4 text-muted-foreground" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <ul className="text-sm space-y-1">
-                          <li>• Localized on-screen text</li>
-                          <li>• Indian cultural references</li>
-                          <li>• Fine-tuned for Indian viewing</li>
-                          <li>• Style adjustments</li>
-                        </ul>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm text-muted-foreground">(+$2/min)</span>
-                  <Switch
-                    checked={culturalCustomization}
-                    onCheckedChange={setCulturalCustomization}
-                  />
-                </div>
-              </div>
 
-              <div className="flex items-center justify-between p-4 rounded-lg bg-secondary">
+              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-secondary">
                 <div>
-                  <h4 className="font-medium">Custom Thumbnail</h4>
-                  <p className="text-sm text-muted-foreground">Tailored for Indian audience</p>
+                  <h4 className="font-medium text-sm md:text-base">Custom Thumbnail</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground">Tailored for Indian audience</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm text-muted-foreground">(+$5)</span>
+                <div className="flex items-center gap-2 md:gap-3">
+                  <span className="text-xs md:text-sm text-muted-foreground">(+$5)</span>
                   <Switch
                     checked={thumbnail}
                     onCheckedChange={setThumbnail}
@@ -151,13 +120,6 @@ const Pricing = () => {
             </div>
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full mt-8 bg-primary text-primary-foreground py-4 rounded-lg font-medium"
-          >
-            Get Started Now
-          </motion.button>
         </motion.div>
       </div>
     </div>
