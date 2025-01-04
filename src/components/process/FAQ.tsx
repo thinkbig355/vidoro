@@ -1,13 +1,13 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import FAQItem from './FAQItem';
 
 const faqItems = [
   {
     question: "Why to create a separate channel for hindi only?",
     answer: [
-      "• Attract new sponsors and monetization opportunities in a new market, without additional effort.",
-      "• A dedicated channel optimized for the Indian audience ensures a more engaged and loyal viewership."
+      "Attract new sponsors and monetization opportunities in a new market, without additional effort.",
+      "A dedicated channel optimized for the Indian audience ensures a more engaged and loyal viewership."
     ]
   },
   {
@@ -30,7 +30,7 @@ const faqItems = [
 
 export default function FAQ() {
   return (
-    <div className="mt-24">
+    <div className="mt-16"> {/* Reduced margin from mt-24 to mt-16 */}
       <motion.h2 
         className="text-3xl font-bold text-center mb-12"
         initial={{ opacity: 0, y: 20 }}

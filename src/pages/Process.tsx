@@ -29,7 +29,7 @@ const Process = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="pt-32 pb-20">
+      <div className="pt-32 pb-10"> {/* Reduced padding bottom from pb-20 */}
         <div className="container mx-auto px-4">
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
@@ -38,7 +38,7 @@ const Process = () => {
           >
             Our Process
           </motion.h1>
-          
+
           <div className="flex flex-nowrap overflow-x-auto gap-8 pb-8 px-4 mt-16">
             {steps.map((step, index) => (
               <motion.div
@@ -65,7 +65,10 @@ const Process = () => {
           </div>
         </div>
       </div>
+        <div className="mb-10"> {/* added a bottom margin to create spacing before FAQ */}
       <FAQ />
+        </div>
+    <div className="h-20"></div> {/* Added a div for bottom gap */}
     </div>
   );
 };
