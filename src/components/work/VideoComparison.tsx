@@ -3,15 +3,15 @@ import YouTube from 'react-youtube';
 import { motion } from 'framer-motion';
 
 interface VideoComparisonProps {
-    originalVideoId: string;
-    translatedVideoId: string;
+  originalVideoId: string;
+  translatedVideoId: string;
 }
 
 const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparisonProps) => {
 
   const opts = {
-    height: '300',
-    width: '100%',
+    height: '100%',  // Change to 100% to fill the container
+    width: '100%',   // Change to 100% to fill the container
     playerVars: {
       autoplay: 0,
     },
@@ -26,32 +26,36 @@ const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparison
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h4 className="text-center font-medium text-gray-700 mb-2">Original</h4>
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="rounded-lg overflow-hidden shadow-lg"
-            >
-                <YouTube
-                videoId={originalVideoId}
-                opts={opts}
-                className="w-full aspect-video"
-                />
-            </motion.div>
-        </div>
-
-        <div>
-          <h4 className="text-center font-medium text-gray-700 mb-2">Hindi Version</h4>
+            <h4 className="text-center font-medium text-gray-700 mb-2">Original</h4>
           <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
               className="rounded-lg overflow-hidden shadow-lg"
-            >
+          >
+            <div className="relative aspect-video"> {/* Add a wrapper with aspect ratio */}
               <YouTube
-                  videoId={translatedVideoId}
-                  opts={opts}
-                  className="w-full aspect-video"
+                videoId={originalVideoId}
+                opts={opts}
+                className="absolute top-0 left-0 w-full h-full" // position it absolutely to take up the whole space
               />
+            </div>
+          </motion.div>
+        </div>
+
+        <div>
+            <h4 className="text-center font-medium text-gray-700 mb-2">Hindi Version</h4>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                className="rounded-lg overflow-hidden shadow-lg"
+            >
+              <div className="relative aspect-video">
+                <YouTube
+                    videoId={translatedVideoId}
+                    opts={opts}
+                    className="absolute top-0 left-0 w-full h-full"
+                />
+            </div>
           </motion.div>
         </div>
       </div>
