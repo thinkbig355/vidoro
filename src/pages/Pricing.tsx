@@ -8,7 +8,7 @@ const Pricing = () => {
   const [humanVoice, setHumanVoice] = useState(false);
   const [thumbnail, setThumbnail] = useState(false);
 
-  const basePrice = duration * 6;
+  const basePrice = duration * 5;
   const humanVoicePrice = humanVoice ? duration * 2 : 0;
   const thumbnailPrice = thumbnail ? 5 : 0;
   const totalPrice = basePrice + humanVoicePrice + thumbnailPrice;
@@ -56,17 +56,17 @@ const Pricing = () => {
                   <span className="text-green-500">✓</span>
                   Translation & Sync With Video
                 </li>
-                   <li className="flex items-center gap-1 md:gap-2">
+                <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
                   Best AI Voice
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
-                   Fine-tuned for Indian audience
-                </li>
-                <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
                   Upload on YouTube with SEO
+                </li>
+                 <li className="flex items-center gap-1 md:gap-2">
+                  <span className="text-green-500">✓</span>
+                  Fine-tuned for Indian
                 </li>
               </ul>
             </div>
