@@ -4,10 +4,10 @@ import FAQItem from './FAQItem';
 
 const faqItems = [
   {
-    question: "Why to create a separate channel for hindi only?",
+    question: "Why to create a separate channel?",
     answer: [
-      "Attract new sponsors and monetization opportunities in a new market, without additional effort.",
-      "A dedicated channel optimized for the Indian audience ensures a more engaged and loyal viewership."
+      "A dedicated channel optimized for the Indian audience ensures a more engaged and loyal viewership.",
+      "Attract new sponsors and monetization opportunities in a new market, without additional effort."
     ]
   },
   {

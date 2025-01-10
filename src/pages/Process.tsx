@@ -8,7 +8,7 @@ const Process = () => {
     {
       icon: Upload,
       title: "Send Your Video File",
-      description: "Simply share your video editing software's project file through Google Drive"
+      description: "Simply share your video editing software's project file through Cloud"
     },
     {
       icon: Languages,
