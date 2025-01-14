@@ -21,7 +21,7 @@ const Hero = () => {
           >
             Unlock the Massive Indian YouTube Audience of
             <span className="block text-5xl md:text-7xl text-red-600 mt-2">
-              1.4 Billion
+              500 Million+
             </span>
           </motion.h1>
           <motion.p
