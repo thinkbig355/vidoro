@@ -45,7 +45,7 @@ const TrustedBy = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="text-5xl font-bold text-red-600 mb-4">620M+</div>
+          <div className="text-5xl font-bold text-red-600 mb-4">420M+</div>
           <p className="text-xl text-gray-600">Views Generated</p>
         </motion.div>
       </div>
