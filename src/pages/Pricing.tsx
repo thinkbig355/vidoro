@@ -25,7 +25,7 @@ const Pricing = () => {
             Simple, Transparent Pricing
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground">
-            Choose your plan and customize it to your needs
+            Get the Perfect Video for You
           </p>
         </motion.div>
 
