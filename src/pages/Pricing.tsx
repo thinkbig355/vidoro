@@ -8,7 +8,7 @@ const Pricing = () => {
   const [humanVoice, setHumanVoice] = useState(false);
   const [thumbnail, setThumbnail] = useState(false);
 
-  const basePrice = duration * 6;
+  const basePrice = duration * 5; // Changed base price to 5 per min
   const humanVoicePrice = humanVoice ? duration * 2 : 0;
   const thumbnailPrice = thumbnail ? 15 : 0;
   const totalPrice = basePrice + humanVoicePrice + thumbnailPrice;
@@ -59,23 +59,23 @@ const Pricing = () => {
 
           <div className="space-y-4 md:space-y-6">
             <div className="bg-secondary/50 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
-              <h3 className="font-bold text-lg mb-2 md:mb-3">Base Features</h3>
+              <h3 className="font-bold text-lg mb-2 md:mb-3">Included Features</h3> {/* Changed 'Base Features' to 'Included Features' */}
               <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
-                  Translation & Sync With Video
+                  Professional Video Translation
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
-                  Best AI Voice
+                 Best-Quality AI Voice-Over
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
-                  Fine-tuned for Indian audience
+                  Expert Editing & Indian Market Adaptation
                 </li>
-                <li className="flex items-center gap-1 md:gap-2">
+                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
-                  Upload on YouTube with SEO
+                  Strategic YouTube Optimization & Upload
                 </li>
               </ul>
             </div>
