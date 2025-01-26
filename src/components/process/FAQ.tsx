@@ -30,18 +30,20 @@ const faqItems = [
 
 export default function FAQ() {
   return (
-    <div className="mt-16"> {/* Reduced margin from mt-24 to mt-16 */}
-      <motion.h2 
-        className="text-3xl font-bold text-center mb-12"
+    <div className="mt-16">
+      <motion.h2
+        className="text-3xl font-bold text-center mb-12 text-white"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        Frequently Asked Questions
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
+          Frequently Asked Questions
+        </span>
       </motion.h2>
       <div className="max-w-3xl mx-auto space-y-4">
         {faqItems.map((item, index) => (
-          <FAQItem 
+          <FAQItem
             key={index}
             question={item.question}
             answer={item.answer}

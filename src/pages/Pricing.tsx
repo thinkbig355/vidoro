@@ -10,10 +10,10 @@ const Pricing = () => {
 
   // Discount Calculation
   const calculateDiscount = (duration) => {
-      if (duration <= 5) return 0;
-      if (duration >= 30) return 0.2;
-      if (duration > 5 && duration < 30) return duration * 0.00667;
-        return 0.2;
+    if (duration <= 5) return 0;
+    if (duration >= 30) return 0.2;
+    if (duration > 5 && duration < 30) return duration * 0.00667;
+    return 0.2;
   };
 
   const discount = calculateDiscount(duration);
@@ -33,17 +33,19 @@ const Pricing = () => {
   ).toFixed(2);
 
   return (
-    <div className="min-h-screen pt-16 pb-10 md:pt-20 md:pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-16 pb-10 md:pt-20 md:pb-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8 md:mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-4">
-            Simple, Transparent Pricing
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-4 text-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
+              Simple, Transparent Pricing
+            </span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
+          <p className="text-lg md:text-xl text-white">
             Get the Perfect Video for You
           </p>
         </motion.div>
@@ -52,11 +54,9 @@ const Pricing = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="max-w-3xl mx-auto bg-card rounded-xl shadow-lg p-4 md:p-6"
+          className="max-w-3xl mx-auto bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-4 md:p-6"
         >
           <div className="text-center mb-4 md:mb-6 relative">
-            {/* Removed Moving Animation */}
-
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
@@ -68,7 +68,7 @@ const Pricing = () => {
               className="text-4xl md:text-5xl font-bold text-green-500 mb-1 md:mb-2 relative z-10"
             >
               ${totalPrice.toFixed(2)}
-              <span className="text-lg md:text-xl text-muted-foreground">
+              <span className="text-lg md:text-xl text-gray-400">
                 {" "}
                 per video
               </span>
@@ -76,7 +76,7 @@ const Pricing = () => {
             {/* Original Price and Savings Display */}
             {discount > 0 && (
               <div className="text-sm text-center flex items-center justify-center gap-3 relative z-10">
-                <span className="text-muted-foreground line-through">
+                <span className="text-gray-400 line-through">
                   ${originalPrice} {/* Original Price */}
                 </span>
                 <span className="text-red-500 font-bold">
@@ -87,30 +87,38 @@ const Pricing = () => {
           </div>
 
           <div className="space-y-4 md:space-y-6">
-            <div className="bg-secondary/50 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
-              <h3 className="font-bold text-lg mb-2 md:mb-3">
+            <div className="bg-gray-700/50 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
+              <h3 className="font-bold text-lg mb-2 md:mb-3 text-white">
                 Included Features
               </h3>
               <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
                 <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Professional Video Translation
+                  <span className="text-blue-500">✓</span>
+                  <span className="text-gray-300">
+                    Professional Video Translation
+                  </span>
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Best-Quality AI Voice-Over
+                  <span className="text-blue-500">✓</span>
+                  <span className="text-gray-300">
+                    Best-Quality AI Voice-Over
+                  </span>
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Expert Editing & Indian Market Adaptation
+                  <span className="text-blue-500">✓</span>
+                  <span className="text-gray-300">
+                    Expert Editing & Indian Market Adaptation
+                  </span>
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Strategic YouTube Optimization & Upload
+                  <span className="text-blue-500">✓</span>
+                  <span className="text-gray-300">
+                    Strategic YouTube Optimization & Upload
+                  </span>
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Unlimited Revisions
+                  <span className="text-blue-500">✓</span>
+                  <span className="text-gray-300">Unlimited Revisions</span>
                 </li>
               </ul>
             </div>
@@ -118,7 +126,7 @@ const Pricing = () => {
             {/* Slider Section */}
             <div className="flex items-center gap-4">
               <div className="flex-1">
-                <label className="block text-sm font-medium mb-1 md:mb-2">
+                <label className="block text-sm font-medium mb-1 md:mb-2 text-white">
                   Video Duration: {duration} minutes
                 </label>
                 <Slider
@@ -133,7 +141,7 @@ const Pricing = () => {
 
               {/* Discount Indicator */}
               {duration > 5 && (
-                <div className="text-xs px-2 py-1 rounded-md text-green-500 border border-green-500">
+                <div className="text-xs px-2 py-1 rounded-md text-red-500 border border-red-500">
                   <span className="font-bold">
                     {formattedDiscount}% Off
                   </span>
@@ -142,19 +150,21 @@ const Pricing = () => {
             </div>
 
             <div className="space-y-2 md:space-y-4">
-              <h3 className="font-bold text-lg">Additional Services</h3>
+              <h3 className="font-bold text-lg text-white">
+                Additional Services
+              </h3>
 
-              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-secondary">
+              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-gray-800">
                 <div>
-                  <h4 className="font-medium text-sm md:text-base">
+                  <h4 className="font-medium text-sm md:text-base text-gray-300">
                     Human Voice Over
                   </h4>
-                  <p className="text-xs md:text-sm text-muted-foreground">
+                  <p className="text-xs md:text-sm text-gray-400">
                     Upgrade from AI to human voice
                   </p>
                 </div>
                 <div className="flex items-center gap-2 md:gap-3">
-                  <span className="text-xs md:text-sm text-muted-foreground">
+                  <span className="text-xs md:text-sm text-gray-400">
                     (+$2/min)
                   </span>
                   <Switch
@@ -164,17 +174,17 @@ const Pricing = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-secondary">
+              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-gray-800">
                 <div>
-                  <h4 className="font-medium text-sm md:text-base">
+                  <h4 className="font-medium text-sm md:text-base text-gray-300">
                     Custom Thumbnail
                   </h4>
-                  <p className="text-xs md:text-sm text-muted-foreground">
+                  <p className="text-xs md:text-sm text-gray-400">
                     Tailored for Indian audience
                   </p>
                 </div>
                 <div className="flex items-center gap-2 md:gap-3">
-                  <span className="text-xs md:text-sm text-muted-foreground">
+                  <span className="text-xs md:text-sm text-gray-400">
                     (+$15)
                   </span>
                   <Switch checked={thumbnail} onCheckedChange={setThumbnail} />

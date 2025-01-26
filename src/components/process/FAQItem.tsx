@@ -2,28 +2,28 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 
-
 interface FAQItemProps {
-    question: string;
-    answer: string[];
+  question: string;
+  answer: string[];
 }
-
 
 const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.div
-      className="bg-gray-50 rounded-lg p-4 border border-gray-200 cursor-pointer"
+      className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-4 cursor-pointer"
       onClick={() => setIsOpen(!isOpen)}
       layout
     >
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-medium text-gray-900">{question}</h3>
-        <motion.span
-        animate={{ rotate: isOpen ? 180 : 0}}
-        >
-          {isOpen ? <ChevronUpIcon className="w-5 h-5 text-gray-700" /> : <ChevronDownIcon className="w-5 h-5 text-gray-700"/>}
+        <h3 className="text-lg font-medium text-white">{question}</h3>
+        <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>
+          {isOpen ? (
+            <ChevronUpIcon className="w-5 h-5 text-gray-300" />
+          ) : (
+            <ChevronDownIcon className="w-5 h-5 text-gray-300" />
+          )}
         </motion.span>
       </div>
       <AnimatePresence>
@@ -38,7 +38,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
             {answer.map((line, index) => (
               <motion.li
                 key={index}
-                className="text-gray-600 list-disc ml-4 mb-1"
+                className="text-gray-300 list-disc ml-4 mb-1"
               >
                 {line}
               </motion.li>
