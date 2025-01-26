@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const links = [
     { name: "Samples", path: "/work" },
     { name: "Process", path: "/process" },
@@ -18,7 +18,7 @@ const Navigation = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-sm"> {/* Changed background to dark and also set it as gray-900 so that it matches other dark section */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <motion.div
@@ -28,7 +28,7 @@ const Navigation = () => {
               Vidoro
             </Link>
           </motion.div>
-          
+
           <nav className="flex justify-center gap-8">
             {links.map((item) => (
               <motion.div
@@ -38,8 +38,8 @@ const Navigation = () => {
               >
                 <Link
                   to={item.path}
-                  className={`text-gray-600 hover:text-gray-900 transition-colors ${
-                    location.pathname === item.path ? 'text-gray-900 font-semibold' : ''
+                    className={`text-gray-300 hover:text-white transition-colors ${
+                    location.pathname === item.path ? 'text-white font-semibold' : ''
                   }`}
                 >
                   {item.name}
@@ -53,10 +53,10 @@ const Navigation = () => {
               </motion.div>
             ))}
           </nav>
-          
+
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Button 
-              variant="default" 
+            <Button
+              variant="default"
               className="bg-red-600 hover:bg-red-700"
               onClick={handleGetStarted}
             >

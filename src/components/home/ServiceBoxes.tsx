@@ -11,7 +11,7 @@ const ServiceBoxes = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gray-50">
+    <section className="py-20 px-4 bg-black text-white"> {/* Changed background to black */}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {services.map((service, index) => (
           <motion.div
@@ -26,10 +26,10 @@ const ServiceBoxes = () => {
               delay: index * 0.1 
             }}
           >
-            <Card className="bg-white shadow-lg border-gray-200">
+            <Card className="bg-gradient-to-br from-gray-800 to-gray-700 shadow-lg border-gray-700">
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-900">{service.title}</h3>
-                <p className="text-gray-600">{service.desc}</p>
+                <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
+                <p className="text-gray-300">{service.desc}</p>
               </CardContent>
             </Card>
           </motion.div>
