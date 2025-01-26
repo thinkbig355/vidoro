@@ -4,14 +4,33 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 
 const Pricing = () => {
-  const [duration, setDuration] = useState(8);
+  const [duration, setDuration] = useState(5);
   const [humanVoice, setHumanVoice] = useState(false);
   const [thumbnail, setThumbnail] = useState(false);
 
-  const basePrice = duration * 5; // Changed base price to 5 per min
+  // Discount Calculation
+  const calculateDiscount = (duration) => {
+      if (duration <= 5) return 0;
+      if (duration >= 30) return 0.2;
+      if (duration > 5 && duration < 30) return duration * 0.00667;
+        return 0.2;
+  };
+
+  const discount = calculateDiscount(duration);
+  const basePricePerMinute = 5;
+  const discountedBasePricePerMinute = basePricePerMinute * (1 - discount);
+  const basePrice = duration * discountedBasePricePerMinute;
   const humanVoicePrice = humanVoice ? duration * 2 : 0;
   const thumbnailPrice = thumbnail ? 15 : 0;
   const totalPrice = basePrice + humanVoicePrice + thumbnailPrice;
+
+  const formattedDiscount = (discount * 100).toFixed(2);
+  const amountSaved = (duration * basePricePerMinute - basePrice).toFixed(2);
+  const originalPrice = (
+    duration * basePricePerMinute +
+    humanVoicePrice +
+    thumbnailPrice
+  ).toFixed(2);
 
   return (
     <div className="min-h-screen pt-16 pb-10 md:pt-20 md:pb-16">
@@ -35,7 +54,9 @@ const Pricing = () => {
           transition={{ delay: 0.2 }}
           className="max-w-3xl mx-auto bg-card rounded-xl shadow-lg p-4 md:p-6"
         >
-          <div className="text-center mb-4 md:mb-6">
+          <div className="text-center mb-4 md:mb-6 relative">
+            {/* Removed Moving Animation */}
+
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
@@ -44,22 +65,32 @@ const Pricing = () => {
                 stiffness: 260,
                 damping: 20,
               }}
-              className="text-4xl md:text-5xl font-bold text-green-500 mb-1 md:mb-2"
+              className="text-4xl md:text-5xl font-bold text-green-500 mb-1 md:mb-2 relative z-10"
             >
-              ${totalPrice}
+              ${totalPrice.toFixed(2)}
               <span className="text-lg md:text-xl text-muted-foreground">
                 {" "}
                 per video
               </span>
             </motion.div>
-            <p className="text-sm text-muted-foreground">
-              (Unlimited revisions included)
-            </p>
+            {/* Original Price and Savings Display */}
+            {discount > 0 && (
+              <div className="text-sm text-center flex items-center justify-center gap-3 relative z-10">
+                <span className="text-muted-foreground line-through">
+                  ${originalPrice} {/* Original Price */}
+                </span>
+                <span className="text-red-500 font-bold">
+                  You save ${amountSaved}!
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="space-y-4 md:space-y-6">
             <div className="bg-secondary/50 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
-              <h3 className="font-bold text-lg mb-2 md:mb-3">Included Features</h3> {/* Changed 'Base Features' to 'Included Features' */}
+              <h3 className="font-bold text-lg mb-2 md:mb-3">
+                Included Features
+              </h3>
               <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
@@ -67,31 +98,47 @@ const Pricing = () => {
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
-                 Best-Quality AI Voice-Over
+                  Best-Quality AI Voice-Over
                 </li>
                 <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
                   Expert Editing & Indian Market Adaptation
                 </li>
-                 <li className="flex items-center gap-1 md:gap-2">
+                <li className="flex items-center gap-1 md:gap-2">
                   <span className="text-green-500">✓</span>
                   Strategic YouTube Optimization & Upload
+                </li>
+                <li className="flex items-center gap-1 md:gap-2">
+                  <span className="text-green-500">✓</span>
+                  Unlimited Revisions
                 </li>
               </ul>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-1 md:mb-2">
-                Video Duration: {duration} minutes
-              </label>
-              <Slider
-                value={[duration]}
-                onValueChange={(value) => setDuration(value[0])}
-                max={60}
-                min={1}
-                step={1}
-                className="w-full"
-              />
+            {/* Slider Section */}
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <label className="block text-sm font-medium mb-1 md:mb-2">
+                  Video Duration: {duration} minutes
+                </label>
+                <Slider
+                  value={[duration]}
+                  onValueChange={(value) => setDuration(value[0])}
+                  max={60}
+                  min={1}
+                  step={1}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Discount Indicator */}
+              {duration > 5 && (
+                <div className="text-xs px-2 py-1 rounded-md text-green-500 border border-green-500">
+                  <span className="font-bold">
+                    {formattedDiscount}% Off
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2 md:space-y-4">
