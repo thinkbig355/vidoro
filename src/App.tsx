@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Correct imports for routing
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Toaster } from '@/components/ui/sonner';
@@ -14,6 +14,7 @@ import PrivacyPage from './static-pages/privacy';
 import FeedbackPage from './static-pages/feedback';
 import DocsPage from './static-pages/docs';
 import './index.css';
+import ScrollToTop from './components/layout/ScrollToTop'; // Import ScrollToTop
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <BrowserRouter>
+          <ScrollToTop /> {/* Add ScrollToTop component here */}
           <Layout>
             <Toaster position="bottom-right" />
             <Routes>
