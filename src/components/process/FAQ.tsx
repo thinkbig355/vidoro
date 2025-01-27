@@ -24,7 +24,7 @@ const faqItems = [
   },
   {
     question: "What is your turnaround time?",
-    answer: ["Typically, translations are completed within 24-72 hours."]
+    answer: ["Typically, translations are completed within 12-72 hours."]
   }
 ];
 
