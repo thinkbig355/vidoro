@@ -41,12 +41,10 @@ const TrustedBy = () => {
           display: flex;
           gap: 2rem;
           width: fit-content;
-          animation: scroll 30s linear infinite;
+          animation: scroll 50s linear infinite;
           will-change: transform;
-        }
-
-        .scroll-wrapper:hover {
-          animation-play-state: paused;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
 
         .logo-item {
@@ -62,7 +60,6 @@ const TrustedBy = () => {
         <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
           Our Creator Partners
         </h2>
-
         <div className="scroll-container">
           <div className="scroll-wrapper">
             {[...logos, ...logos].map((logo, index) => (
