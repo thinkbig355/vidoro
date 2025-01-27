@@ -75,7 +75,7 @@ const testimonials = [
   },
   {
     name: "Nitish Rajput",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRucysRvlhqGb7DzZDBiK01ODPEDX7auKbRmQ&s",
+    image: "https://yt3.googleusercontent.com/Q5wDZkznd7zSD2RWT3HU9sqbwNkkkJtXgTxulaJoLAEl-U9-gbcIm6Of1rASj9RBotOedTih=s900-c-k-c0x00ffffff-no-rj",
     content:
       "The Vidoro team is amazing! They're responsive, professional, and they truly understand the Indian audience. Highly recommend!",
   },
