@@ -46,62 +46,64 @@ function CounterAnimation({ end, duration = 3 }: { end: number; duration?: numbe
 const testimonials = [
   // Top row
   {
-    name: "Sarah Chen",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Sarah Miller",
+    image: "https://www.economicliberties.us/wp-content/uploads/2022/11/SM-Headshot-2.png",
     content:
-      "This platform has revolutionized my creative process. The intuitive interface and powerful features make it a joy to use every day.",
+      "Vidoro's translation service is a lifesaver! They made it so easy to reach a whole new audience in India. I'm seeing a real boost in views.",
   },
   {
-    name: "Marcus Rodriguez",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Mark Johnson",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtKHjo4Wk95DU-DoHyQzD7C5EyNekM1T6tYg&s",
     content:
-      "The speed and efficiency are incredible. It's like having a creative partner that understands exactly what I need.",
+      "Honestly, I was skeptical at first. But Vidoro's team really delivered. My Hindi channel is growing faster than I expected.",
   },
   {
-    name: "Emma Thompson",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Emily Davis",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1VC4CyE0Z2vHmP5kaq00CSk-Vy61oX4AsDA&s",
     content:
-      "I've tried many tools, but this one stands out. The attention to detail and user experience is unmatched.",
+      "I've tried translating videos myself, but it was a headache. Vidoro takes care of everything, and the quality is top-notch.",
   },
   {
-    name: "Alex Kumar",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Chris Wilson",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSor30vW4SqoTpWEHKCGuF7Suvm7-TVWlb-Nw&s",
     content:
-      "Game-changing platform that has transformed how I approach my creative projects. Couldn't imagine working without it now.",
+      "This service is a game-changer for any YouTuber serious about growing globally. India's a huge market, and Vidoro makes it accessible.",
   },
   {
-    name: "Lisa Wang",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Jessica Brown",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhyQXfJ8OkTsF28EhTqviMN-js_RlRY1ZZeg&s",
     content:
-      "Absolutely brilliant! The features are exactly what I needed, and the support team is incredibly responsive.",
+      "The Vidoro team is amazing! They're responsive, professional, and they truly understand the Indian audience. Highly recommend!",
   },
   // Bottom row
   {
-    name: "James Mitchell",
-    image: "/placeholder.svg?height=80&width=80",
-    content: "This tool has become an essential part of my daily workflow. The AI capabilities are truly next level.",
+    name: "David Thompson",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_790iFGstZRyTV_G4w5Nqz-884DPh3tj39g&s",
+    content: "I'm so glad I found Vidoro. They've helped me connect with my Indian audience in a way I never thought possible. And it is very easy",
   },
   {
-    name: "Nina Patel",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Ashley Rodriguez",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1gcVUdjkIWCZgxLPdgCvaxGhVuzvAY7QREQ&s",
     content:
-      "Outstanding platform that consistently delivers beyond expectations. The regular updates keep making it better.",
+      "Vidoro's translations are spot on. They capture the nuances of my content perfectly, which is crucial for engaging a new audience.",
   },
   {
-    name: "David Kim",
-    image: "/placeholder.svg?height=80&width=80",
-    content: "The seamless integration with my existing tools makes this platform indispensable. Highly recommended!",
-  },
-  {
-    name: "Rachel Foster",
-    image: "/placeholder.svg?height=80&width=80",
-    content: "Incredible attention to detail in every feature. It's clear the team really understands creators' needs.",
-  },
-  {
-    name: "Michael Torres",
-    image: "/placeholder.svg?height=80&width=80",
+    name: "Michael Anderson",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1jJm8I1Y7ScxGsjHIje8S14dzWLU18hC7bA&s",
     content:
-      "This platform has streamlined my entire creative process. The time savings alone make it worth every penny.",
+      "I was worried about the cost, but it's been worth it. The increase in views and engagement on my Hindi channel is clear.",
+  },
+  {
+    name: "Amanda Martinez",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTovH25CYLeDFwlkH_qF4_FNvhus8RcxJq0rg&s",
+    content:
+      "What I love about Vidoro is how easy they make the whole process. It's like having an extension of my own team.",
+  },
+  {
+    name: "Jason Smith",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1P8RPg3H6sbj40agtWZfkYlTars7z9Is4sQ&s",
+    content:
+      "My translated videos are performing really well. Vidoro's service has opened up a whole new world of opportunities for my channel.",
   },
 ]
 
@@ -114,7 +116,7 @@ const TestimonialCard = ({
   image: string
   content: string
 }) => (
-  <Card className="min-w-[400px] bg-zinc-900/50 border-zinc-800 mx-4">
+  <Card className="min-w-[400px] bg-zinc-1700/50 border-zinc-800 mx-4">
     <CardContent className="p-6">
       <div className="flex items-center gap-4 mb-4">
         <Avatar className="w-12 h-12">
@@ -197,7 +199,7 @@ export default function TestimonialSection() {
         </div>
       </div>
       <div className="container mx-auto mt-32">
-        <CounterAnimation end={900} duration={2.5} />
+        <CounterAnimation end={1700} duration={2.5} />
       </div>
     </section>
   )

@@ -23,7 +23,7 @@ const Navigation = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black  "> {/* Changed the background color to black and removed the shadow*/}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <motion.div whileHover={{ scale: 1.05 }}>
