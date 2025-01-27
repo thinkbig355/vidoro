@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { useInView } from "framer-motion"
@@ -58,8 +57,9 @@ const testimonials = [
       "Honestly, I was skeptical at first. But Vidoro's team really delivered. My Hindi channel is growing faster than I expected.",
   },
   {
-    name: "Emily Davis",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1VC4CyE0Z2vHmP5kaq00CSk-Vy61oX4AsDA&s",
+    name: "Sabin Mathew", // Changed name
+    image:
+      "https://yt3.googleusercontent.com/uI3J9rcN5QvBD5rPMj5SaDUp41PIvTergbOWIKam39L7xxpzBT99zqcMiLrJ0qXalORqg0hKjA=s800-c-k-c0x00ffffff-no-rj", // Changed image URL
     content:
       "I've tried translating videos myself, but it was a headache. Vidoro takes care of everything, and the quality is top-notch.",
   },
@@ -136,6 +136,34 @@ export default function TestimonialSection() {
 
   return (
     <section className="py-24 bg-black overflow-hidden">
+      <style jsx>{`
+        @keyframes scrollLeft {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollRight {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+
+        .scroll-row {
+          display: flex;
+          width: fit-content;
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .scroll-left {
+          animation: scrollLeft 60s linear infinite;
+        }
+
+        .scroll-right {
+          animation: scrollRight 60s linear infinite;
+        }
+      `}</style>
+
       <div className="container mx-auto mb-20 text-center">
         <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
           Loved by Creators
@@ -143,23 +171,14 @@ export default function TestimonialSection() {
         <p className="text-xl text-zinc-400">Vidoro is popular among creators worldwide.</p>
       </div>
 
-      <div className="relative">
+      <div className="relative scroll-container">
         {/* Gradient Overlays */}
         <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
 
         {/* Top Row */}
-        <div className="overflow-hidden">
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-50%" }}
-            transition={{
-              duration: 30,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-            className="flex"
-          >
+        <div className="overflow-hidden mb-8">
+          <div className="scroll-row scroll-left">
             <div className="flex">
               {firstHalf.map((item, i) => (
                 <TestimonialCard key={i} {...item} />
@@ -170,21 +189,12 @@ export default function TestimonialSection() {
                 <TestimonialCard key={`clone-${i}`} {...item} />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom Row */}
         <div className="overflow-hidden">
-          <motion.div
-            initial={{ x: "-50%" }}
-            animate={{ x: 0 }}
-            transition={{
-              duration: 30,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-            className="flex"
-          >
+          <div className="scroll-row scroll-right">
             <div className="flex">
               {secondHalf.map((item, i) => (
                 <TestimonialCard key={i} {...item} />
@@ -195,9 +205,10 @@ export default function TestimonialSection() {
                 <TestimonialCard key={`clone-${i}`} {...item} />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
+
       <div className="container mx-auto mt-32">
         <CounterAnimation end={1700} duration={2.5} />
       </div>

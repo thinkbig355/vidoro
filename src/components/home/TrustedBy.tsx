@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 const TrustedBy = () => {
   const logos = [
@@ -22,47 +21,64 @@ const TrustedBy = () => {
 
   return (
     <section className="py-20 px-4 bg-black">
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .scroll-container {
+          overflow: hidden;
+          width: 100%;
+          position: relative;
+        }
+
+        .scroll-wrapper {
+          display: flex;
+          gap: 2rem;
+          width: fit-content;
+          animation: scroll 30s linear infinite;
+          will-change: transform;
+        }
+
+        .scroll-wrapper:hover {
+          animation-play-state: paused;
+        }
+
+        .logo-item {
+          transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover {
+          transform: scale(1.1);
+        }
+      `}</style>
+
       <div className="container mx-auto text-center">
-        <div className="w-full overflow-hidden">
-          <motion.div
-            className="flex gap-8"
-            animate={{
-              x: ["0%", `-${100 * (logos.length / (logos.length * 2))}%`],
-            }}
-            transition={{
-              duration: 30,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
-            {logos.map((logo, index) => (
-              <motion.div
+        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
+          Our Creator Partners
+        </h2>
+
+        <div className="scroll-container">
+          <div className="scroll-wrapper">
+            {[...logos, ...logos].map((logo, index) => (
+              <div
                 key={index}
-                whileHover={{ scale: 1.1 }}
-                className="bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
+                className="logo-item bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
               >
                 <img
                   src={logo}
                   alt={`Logo ${index + 1}`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
-              </motion.div>
+              </div>
             ))}
-             {/* Duplicate logos for seamless looping */}
-             {logos.map((logo, index) => (
-              <motion.div
-                key={`duplicate-${index}`}
-                whileHover={{ scale: 1.1 }}
-                className="bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
-              >
-                <img
-                  src={logo}
-                  alt={`Logo ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
