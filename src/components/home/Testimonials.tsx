@@ -51,15 +51,19 @@ const testimonials = [
       "Vidoro's translation service is a lifesaver! They made it so easy to reach a whole new audience in India. I'm seeing a real boost in views.",
   },
   {
-    name: "Mark Johnson",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtKHjo4Wk95DU-DoHyQzD7C5EyNekM1T6tYg&s",
+    name: (
+      <a href="https://www.instagram.com/thevarunmayya/" target="_blank" rel="noopener noreferrer" className="text-white hover:underline">
+        Varun Mayya
+      </a>
+    ),
+    image: "https://yt3.ggpht.com/ytc/AIdro_nrZfnUxi_DwFSlJyuQvZN-JWkiZHkgwUaZJPhiIu-ZNLI=s800-c-k-c0x00ffffff-no-rj",
     content:
       "Honestly, I was skeptical at first. But Vidoro's team really delivered. My Hindi channel is growing faster than I expected.",
   },
   {
-    name: "Sabin Mathew", // Changed name
+    name: "Sabin Mathew",
     image:
-      "https://yt3.googleusercontent.com/uI3J9rcN5QvBD5rPMj5SaDUp41PIvTergbOWIKam39L7xxpzBT99zqcMiLrJ0qXalORqg0hKjA=s800-c-k-c0x00ffffff-no-rj", // Changed image URL
+      "https://yt3.googleusercontent.com/uI3J9rcN5QvBD5rPMj5SaDUp41PIvTergbOWIKam39L7xxpzBT99zqcMiLrJ0qXalORqg0hKjA=s800-c-k-c0x00ffffff-no-rj",
     content:
       "I've tried translating videos myself, but it was a headache. Vidoro takes care of everything, and the quality is top-notch.",
   },
@@ -70,8 +74,8 @@ const testimonials = [
       "This service is a game-changer for any YouTuber serious about growing globally. India's a huge market, and Vidoro makes it accessible.",
   },
   {
-    name: "Jessica Brown",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhyQXfJ8OkTsF28EhTqviMN-js_RlRY1ZZeg&s",
+    name: "Nitish Rajput",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRucysRvlhqGb7DzZDBiK01ODPEDX7auKbRmQ&s",
     content:
       "The Vidoro team is amazing! They're responsive, professional, and they truly understand the Indian audience. Highly recommend!",
   },
@@ -82,8 +86,9 @@ const testimonials = [
     content: "I'm so glad I found Vidoro. They've helped me connect with my Indian audience in a way I never thought possible. And it is very easy",
   },
   {
-    name: "Ashley Rodriguez",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1gcVUdjkIWCZgxLPdgCvaxGhVuzvAY7QREQ&s",
+    name: "Gaurav Thakur",
+    image:
+      "https://yt3.googleusercontent.com/ytc/AIdro_nN4JNqHsIvck_6leJoMUWw3PQzNSRXL97ugjAn6_TU7mA=s800-c-k-c0x00ffffff-no-rj",
     content:
       "Vidoro's translations are spot on. They capture the nuances of my content perfectly, which is crucial for engaging a new audience.",
   },
@@ -112,7 +117,7 @@ const TestimonialCard = ({
   image,
   content,
 }: {
-  name: string
+  name: string | JSX.Element
   image: string
   content: string
 }) => (
@@ -120,8 +125,10 @@ const TestimonialCard = ({
     <CardContent className="p-6">
       <div className="flex items-center gap-4 mb-4">
         <Avatar className="w-12 h-12">
-          <AvatarImage src={image} alt={name} />
-          <AvatarFallback>{name[0]}</AvatarFallback>
+          <AvatarImage src={image} alt={typeof name === 'string' ? name : 'Creator'} />
+          <AvatarFallback>
+            {typeof name === 'string' ? name[0] : 'C'}
+          </AvatarFallback>
         </Avatar>
         <h3 className="font-semibold text-lg text-white">{name}</h3>
       </div>
@@ -141,12 +148,12 @@ export default function TestimonialSection() {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-
+        
         @keyframes scrollRight {
           0% { transform: translateX(-50%); }
           100% { transform: translateX(0); }
         }
-
+        
         .scroll-row {
           display: flex;
           width: fit-content;
@@ -154,11 +161,11 @@ export default function TestimonialSection() {
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
         }
-
+        
         .scroll-left {
           animation: scrollLeft 60s linear infinite;
         }
-
+        
         .scroll-right {
           animation: scrollRight 60s linear infinite;
         }
