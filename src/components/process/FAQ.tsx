@@ -30,26 +30,23 @@ const faqItems = [
 
 export default function FAQ() {
   return (
-    <div className="mt-16">
-      <motion.h2
-        className="text-3xl font-bold text-center mb-12 text-white"
+    <div className="container mx-auto px-4">
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-3xl mx-auto bg-[#151520] rounded-2xl shadow-2xl p-8 border border-[#2A2A35]"
       >
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
-          Frequently Asked Questions
-        </span>
-      </motion.h2>
-      <div className="max-w-3xl mx-auto space-y-4">
-        {faqItems.map((item, index) => (
-          <FAQItem
-            key={index}
-            question={item.question}
-            answer={item.answer}
-          />
-        ))}
-      </div>
+        <h2 className="text-3xl font-bold mb-8 text-center">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+            Frequently Asked Questions
+          </span>
+        </h2>
+        <div className="space-y-6">
+          {faqItems.map((item, index) => (
+            <FAQItem key={index} question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }

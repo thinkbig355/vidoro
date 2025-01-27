@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface FAQItemProps {
   question: string;
@@ -12,38 +12,36 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 
   return (
     <motion.div
-      className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-lg p-4 cursor-pointer"
       onClick={() => setIsOpen(!isOpen)}
       layout
+      className="border border-[#2A2A35] rounded-lg p-4 cursor-pointer"
     >
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-medium text-white">{question}</h3>
-        <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>
+        <motion.h3 layout className="text-lg font-medium text-gray-200">
+          {question}
+        </motion.h3>
+        <div className="flex-shrink-0">
           {isOpen ? (
-            <ChevronUpIcon className="w-5 h-5 text-gray-300" />
+            <ChevronUp className="w-5 h-5 text-indigo-400" />
           ) : (
-            <ChevronDownIcon className="w-5 h-5 text-gray-300" />
+            <ChevronDown className="w-5 h-5 text-gray-400" />
           )}
-        </motion.span>
+        </div>
       </div>
       <AnimatePresence>
         {isOpen && (
-          <motion.ul
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="mt-2 pl-4"
+            className="mt-4 space-y-2"
           >
             {answer.map((line, index) => (
-              <motion.li
-                key={index}
-                className="text-gray-300 list-disc ml-4 mb-1"
-              >
+              <p key={index} className="text-gray-400">
                 {line}
-              </motion.li>
+              </p>
             ))}
-          </motion.ul>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
