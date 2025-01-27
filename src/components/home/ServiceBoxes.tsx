@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 const ServiceBoxes = () => {
   const services = [
     { title: "Expert Translators", desc: "Native Hindi speakers with a deep understanding of both cultures" },
-    { title: "Fast Turnaround", desc: "Get your translated videos within 24-72 hours" },
+    { title: "Fast Turnaround", desc: "Get your translated videos within 12-72 hours" },
     { title: "Cultural Adaptation", desc: "Content localized for Indian audience preferences" },
     { title: "Growth Focused", desc: "Strategic translation to maximize engagement" }
   ];
