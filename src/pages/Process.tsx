@@ -28,47 +28,46 @@ const Process = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="pt-32 pb-10"> {/* Reduced padding bottom from pb-20 */}
-        <div className="container mx-auto px-4">
-          <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 text-center"
-          >
-            Our Process
-          </motion.h1>
-
-          <div className="flex flex-nowrap overflow-x-auto gap-8 pb-8 px-4 mt-16">
+    <div className="min-h-screen pt-32 pb-20 bg-[#0A0A0F] text-white">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-5xl mx-auto"
+        >
+          <h1 className="text-4xl font-bold mb-8 text-center">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              Our Process
+            </span>
+          </h1>
+          <div className="flex gap-6 overflow-x-auto">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.2 }}
-                className="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg p-6 relative"
+                className="flex-none w-64 p-6 bg-[#151520] rounded-2xl shadow-2xl border border-[#2A2A35]"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-600 p-3 rounded-full">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center mr-4">
                     <step.icon className="w-6 h-6 text-white" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
-                  </div>
+                  <h2 className="text-xl font-bold text-gray-200">{step.title}</h2>
                 </div>
+                <p className="text-gray-400">{step.description}</p>
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-0.5 bg-red-200" />
+                  <hr className="w-full border-dashed border-[#2A2A35] my-6" />
                 )}
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-        <div className="mb-10"> {/* added a bottom margin to create spacing before FAQ */}
-      <FAQ />
-        </div>
-    <div className="h-20"></div> {/* Added a div for bottom gap */}
+
+      <div className="mt-20">
+        <FAQ />
+      </div>
     </div>
   );
 };

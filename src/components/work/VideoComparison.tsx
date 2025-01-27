@@ -25,11 +25,11 @@ const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparison
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h4 className="text-center font-medium text-gray-700 mb-2">Original</h4>
+          <h4 className="text-center font-medium text-gray-300 mb-2">Original</h4>
           <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
-            className="rounded-lg overflow-hidden shadow-lg"
+            className="rounded-lg overflow-hidden shadow-lg bg-gray-800"
           >
             <div className="relative aspect-video">
               <YouTube
@@ -42,11 +42,11 @@ const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparison
         </div>
 
         <div>
-          <h4 className="text-center font-medium text-gray-700 mb-2">Hindi Version</h4>
+          <h4 className="text-center font-medium text-gray-300 mb-2">Hindi Version</h4>
           <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="rounded-lg overflow-hidden shadow-lg"
+              className="rounded-lg overflow-hidden shadow-lg bg-gray-800"
             >
             <div className="relative aspect-video">
               <YouTube

@@ -16,22 +16,22 @@ const YoutubeVideo = ({ videoId }: YoutubeVideoProps) => {
   };
 
   return (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-             transition={{ type: "spring", stiffness: 300, damping: 15 }}
-             className="w-[300px] min-w-[300px] shadow-lg rounded-lg overflow-hidden"
-        >
-            <div className="relative aspect-video">
-                 <YouTube
-                    videoId={videoId}
-                    opts={opts}
-                    className="absolute top-0 left-0 w-full h-full"
-                />
-           </div>
-      </motion.div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      className="w-[300px] min-w-[300px] shadow-lg rounded-lg overflow-hidden bg-gray-800"
+    >
+      <div className="relative aspect-video">
+        <YouTube
+          videoId={videoId}
+          opts={opts}
+          className="absolute top-0 left-0 w-full h-full"
+        />
+      </div>
+    </motion.div>
   );
 };
 

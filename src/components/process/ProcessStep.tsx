@@ -1,3 +1,4 @@
+// You can remove this file if it's not used elsewhere
 import React from 'react';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
@@ -14,28 +15,24 @@ const ProcessStep = ({ icon: Icon, title, description, duration, index }: Proces
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.2 }}
-      className="relative"
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.2 }}
+      className="flex items-center space-x-6"
     >
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 rounded-lg p-6 backdrop-blur-sm border border-blue-700/30"
-      >
-        <div className="flex items-start gap-4">
-          <div className="bg-blue-600 p-3 rounded-full">
-            <Icon className="w-6 h-6 text-white" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-            <p className="text-blue-100 mb-2">{description}</p>
-            <p className="text-sm text-blue-300">{duration}</p>
-          </div>
-        </div>
-      </motion.div>
+      <div className="flex-shrink-0">
+        <Icon className="w-10 h-10 text-indigo-400" />
+      </div>
+      <div>
+        <h2 className="text-xl font-bold text-gray-200 mb-2">{title}</h2>
+        <p className="text-gray-400">{description}</p>
+        <p className="text-sm text-gray-500 mt-1">{duration}</p>
+      </div>
       {index < 4 && (
-        <div className="absolute left-8 top-full h-12 w-px bg-gradient-to-b from-blue-600 to-transparent" />
+        <div className="flex-shrink-0 self-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-500">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
       )}
     </motion.div>
   );

@@ -8,12 +8,11 @@ const Pricing = () => {
   const [humanVoice, setHumanVoice] = useState(false);
   const [thumbnail, setThumbnail] = useState(false);
 
-  // Discount Calculation
   const calculateDiscount = (duration) => {
-      if (duration <= 5) return 0;
-      if (duration >= 30) return 0.2;
-      if (duration > 5 && duration < 30) return duration * 0.00667;
-        return 0.2;
+    if (duration <= 5) return 0;
+    if (duration >= 30) return 0.2;
+    if (duration > 5 && duration < 30) return duration * 0.00667;
+    return 0.2;
   };
 
   const discount = calculateDiscount(duration);
@@ -33,7 +32,7 @@ const Pricing = () => {
   ).toFixed(2);
 
   return (
-    <div className="min-h-screen pt-16 pb-10 md:pt-20 md:pb-16">
+    <div className="min-h-screen bg-[#0A0A0F] pt-16 pb-10 md:pt-20 md:pb-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,9 +40,11 @@ const Pricing = () => {
           className="text-center mb-8 md:mb-12"
         >
           <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-4">
-            Simple, Transparent Pricing
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              Simple, Transparent Pricing
+            </span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
+          <p className="text-lg md:text-xl text-gray-300">
             Get the Perfect Video for You
           </p>
         </motion.div>
@@ -52,11 +53,9 @@ const Pricing = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="max-w-3xl mx-auto bg-card rounded-xl shadow-lg p-4 md:p-6"
+          className="max-w-3xl mx-auto bg-[#151520] rounded-2xl shadow-2xl p-6 md:p-8 border border-[#2A2A35]"
         >
-          <div className="text-center mb-4 md:mb-6 relative">
-            {/* Removed Moving Animation */}
-
+          <div className="text-center mb-6 md:mb-8 relative">
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
@@ -65,122 +64,142 @@ const Pricing = () => {
                 stiffness: 260,
                 damping: 20,
               }}
-              className="text-4xl md:text-5xl font-bold text-green-500 mb-1 md:mb-2 relative z-10"
+              className="text-4xl md:text-5xl font-bold text-green-400 mb-2 relative z-10"
             >
               ${totalPrice.toFixed(2)}
-              <span className="text-lg md:text-xl text-muted-foreground">
-                {" "}
-                per video
-              </span>
+              <span className="text-lg md:text-xl text-gray-400"> per video</span>
             </motion.div>
-            {/* Original Price and Savings Display */}
+
             {discount > 0 && (
-              <div className="text-sm text-center flex items-center justify-center gap-3 relative z-10">
-                <span className="text-muted-foreground line-through">
-                  ${originalPrice} {/* Original Price */}
+              <div className="text-sm flex items-center justify-center gap-3">
+                <span className="text-gray-500 line-through">
+                  ${originalPrice}
                 </span>
-                <span className="text-red-500 font-bold">
+                <span className="text-emerald-400 font-semibold">
                   You save ${amountSaved}!
                 </span>
               </div>
             )}
           </div>
 
-          <div className="space-y-4 md:space-y-6">
-            <div className="bg-secondary/50 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
-              <h3 className="font-bold text-lg mb-2 md:mb-3">
+          <div className="space-y-6 md:space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-[#1C1C28] rounded-xl p-4 md:p-6"
+            >
+              <h3 className="font-bold text-lg mb-4 text-gray-200">
                 Included Features
               </h3>
-              <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
-                <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Professional Video Translation
-                </li>
-                <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Best-Quality AI Voice-Over
-                </li>
-                <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Expert Editing & Indian Market Adaptation
-                </li>
-                <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Strategic YouTube Optimization & Upload
-                </li>
-                <li className="flex items-center gap-1 md:gap-2">
-                  <span className="text-green-500">✓</span>
-                  Unlimited Revisions
-                </li>
+              <ul className="space-y-3">
+                {[
+                  "Professional Video Translation",
+                  "Best-Quality AI Voice-Over",
+                  "Expert Editing & Indian Market Adaptation",
+                  "Strategic YouTube Optimization & Upload",
+                  "Unlimited Revisions"
+                ].map((feature, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + index * 0.1 }}
+                    className="flex items-center gap-3 text-gray-300"
+                  >
+                    <span className="text-indigo-400 text-lg">✓</span>
+                    {feature}
+                  </motion.li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
 
-            {/* Slider Section */}
-            <div className="flex items-center gap-4">
-              <div className="flex-1">
-                <label className="block text-sm font-medium mb-1 md:mb-2">
-                  Video Duration: {duration} minutes
-                </label>
-                <Slider
-                  value={[duration]}
-                  onValueChange={(value) => setDuration(value[0])}
-                  max={60}
-                  min={1}
-                  step={1}
-                  className="w-full"
-                />
-              </div>
-
-              {/* Discount Indicator */}
-              {duration > 5 && (
-                <div className="text-xs px-2 py-1 rounded-md text-green-500 border border-green-500">
-                  <span className="font-bold">
-                    {formattedDiscount}% Off
-                  </span>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-2 md:space-y-4">
-              <h3 className="font-bold text-lg">Additional Services</h3>
-
-              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-secondary">
-                <div>
-                  <h4 className="font-medium text-sm md:text-base">
-                    Human Voice Over
-                  </h4>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    Upgrade from AI to human voice
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 md:gap-3">
-                  <span className="text-xs md:text-sm text-muted-foreground">
-                    (+$2/min)
-                  </span>
-                  <Switch
-                    checked={humanVoice}
-                    onCheckedChange={setHumanVoice}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="space-y-3"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex-1">
+                  <label className="block text-sm font-medium mb-2 text-gray-200">
+                    Video Duration: {duration} minutes
+                  </label>
+                  <Slider
+                    value={[duration]}
+                    onValueChange={(value) => setDuration(value[0])}
+                    max={60}
+                    min={1}
+                    step={1}
+                    className="w-full"
                   />
                 </div>
+
+                {duration > 5 && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                  >
+                    <span className="text-emerald-400 text-sm font-semibold">
+                      {formattedDiscount}% Off
+                    </span>
+                  </motion.div>
+                )}
               </div>
 
-              <div className="flex items-center justify-between p-2 md:p-3 rounded-lg bg-secondary">
-                <div>
-                  <h4 className="font-medium text-sm md:text-base">
-                    Custom Thumbnail
-                  </h4>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    Tailored for Indian audience
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 md:gap-3">
-                  <span className="text-xs md:text-sm text-muted-foreground">
-                    (+$15)
-                  </span>
-                  <Switch checked={thumbnail} onCheckedChange={setThumbnail} />
-                </div>
+              <div className="space-y-4">
+                <h3 className="font-bold text-lg text-gray-200">
+                  Additional Services
+                </h3>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="flex items-center justify-between p-4 rounded-xl bg-[#1C1C28]"
+                >
+                  <div>
+                    <h4 className="font-medium text-gray-200">
+                      Human Voice Over
+                    </h4>
+                    <p className="text-sm text-gray-400">
+                      Upgrade from AI to human voice
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-400">(+$2/min)</span>
+                    <Switch
+                      checked={humanVoice}
+                      onCheckedChange={setHumanVoice}
+                    />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex items-center justify-between p-4 rounded-xl bg-[#1C1C28]"
+                >
+                  <div>
+                    <h4 className="font-medium text-gray-200">
+                      Custom Thumbnail
+                    </h4>
+                    <p className="text-sm text-gray-400">
+                      Tailored for Indian audience
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-400">(+$15)</span>
+                    <Switch 
+                      checked={thumbnail} 
+                      onCheckedChange={setThumbnail} 
+                    />
+                  </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
