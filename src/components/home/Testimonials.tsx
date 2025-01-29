@@ -48,7 +48,7 @@ const testimonials = [
     name: "Sarah Miller",
     image: "https://www.economicliberties.us/wp-content/uploads/2022/11/SM-Headshot-2.png",
     content:
-      "Vidoro's translation service is a lifesaver! They made it so easy to reach a whole new audience in India. I'm seeing a real boost in views.",
+      "Our Hindi channel's bringing in new viewers and even sponsors, which is great. Vidoro's been a solid help.",
   },
   {
     name: (
@@ -58,57 +58,57 @@ const testimonials = [
     ),
     image: "https://yt3.ggpht.com/ytc/AIdro_nrZfnUxi_DwFSlJyuQvZN-JWkiZHkgwUaZJPhiIu-ZNLI=s800-c-k-c0x00ffffff-no-rj",
     content:
-      "Honestly, I was skeptical at first. But Vidoro's team really delivered. My Hindi channel is growing faster than I expected.",
+      "Wasn't sure at first, but Vidoro is legit. Hindi channel's growing fast now. 👍",
   },
   {
     name: "Sabin Mathew",
     image:
       "https://yt3.googleusercontent.com/uI3J9rcN5QvBD5rPMj5SaDUp41PIvTergbOWIKam39L7xxpzBT99zqcMiLrJ0qXalORqg0hKjA=s800-c-k-c0x00ffffff-no-rj",
     content:
-      "I've tried translating videos myself, but it was a headache. Vidoro takes care of everything, and the quality is top-notch.",
+      "Translations used to be a headache for me. Vidoro just takes care of it, and the quality is good.",
   },
   {
     name: "Chris Wilson",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSor30vW4SqoTpWEHKCGuF7Suvm7-TVWlb-Nw&s",
     content:
-      "This service is a game-changer for any YouTuber serious about growing globally. India's a huge market, and Vidoro makes it accessible.",
+      "India's a big audience we wanted to tap into. Vidoro helped us do that, made it much easier.",
   },
   {
     name: "Nitish Rajput",
     image: "https://yt3.googleusercontent.com/Q5wDZkznd7zSD2RWT3HU9sqbwNkkkJtXgTxulaJoLAEl-U9-gbcIm6Of1rASj9RBotOedTih=s900-c-k-c0x00ffffff-no-rj",
     content:
-      "The Vidoro team is amazing! They're responsive, professional, and they truly understand the Indian audience. Highly recommend!",
+      "Vidoro is awesome. They get it.",
   },
   // Bottom row
   {
     name: "David Thompson",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_790iFGstZRyTV_G4w5Nqz-884DPh3tj39g&s",
-    content: "I'm so glad I found Vidoro. They've helped me connect with my Indian audience in a way I never thought possible. And it is very easy",
+    content: "Glad we found Vidoro. Reaching Indian viewers is way easier now for us.",
   },
   {
     name: "Gaurav Thakur",
     image:
       "https://yt3.googleusercontent.com/ytc/AIdro_nN4JNqHsIvck_6leJoMUWw3PQzNSRXL97ugjAn6_TU7mA=s800-c-k-c0x00ffffff-no-rj",
     content:
-      "Vidoro's translations are spot on. They capture the nuances of my content perfectly, which is crucial for engaging a new audience.",
+      "Vidoro's translations are on point. They really get my content's vibe, which is key.",
   },
   {
     name: "Michael Anderson",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1jJm8I1Y7ScxGsjHIje8S14dzWLU18hC7bA&s",
     content:
-      "I was worried about the cost, but it's been worth it. The increase in views and engagement on my Hindi channel is clear.",
+      "Cost was a concern, but it's been worth it for us. Hindi views are up. 🙂",
   },
   {
     name: "Amanda Martinez",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTovH25CYLeDFwlkH_qF4_FNvhus8RcxJq0rg&s",
     content:
-      "What I love about Vidoro is how easy they make the whole process. It's like having an extension of my own team.",
+      "Vidoro makes the whole thing simple. Big time-saver, which I appreciate.",
   },
   {
     name: "Jason Smith",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1P8RPg3H6sbj40agtWZfkYlTars7z9Is4sQ&s",
     content:
-      "My translated videos are performing really well. Vidoro's service has opened up a whole new world of opportunities for my channel.",
+      "Translations good. Views up. Worth it yeh.",
   },
 ]
 
@@ -148,12 +148,12 @@ export default function TestimonialSection() {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        
+
         @keyframes scrollRight {
           0% { transform: translateX(-50%); }
           100% { transform: translateX(0); }
         }
-        
+
         .scroll-row {
           display: flex;
           width: fit-content;
@@ -161,11 +161,11 @@ export default function TestimonialSection() {
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
         }
-        
+
         .scroll-left {
           animation: scrollLeft 60s linear infinite;
         }
-        
+
         .scroll-right {
           animation: scrollRight 60s linear infinite;
         }
