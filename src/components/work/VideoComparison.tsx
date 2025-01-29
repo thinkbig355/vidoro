@@ -1,65 +1,65 @@
-import React from 'react';
-import YouTube from 'react-youtube';
-import { motion } from 'framer-motion';
+"use client"
 
-interface VideoComparisonProps {
-  originalVideoId: string;
-  translatedVideoId: string;
-}
+import React from "react"
+import { motion } from "framer-motion"
 
-const VideoComparison = ({ originalVideoId, translatedVideoId }: VideoComparisonProps) => {
-  const opts = {
-    height: '100%',
-    width: '100%',
-    playerVars: {
-      autoplay: 0,
-    },
-  };
-
+const VideoComparison = ({ originalVideoId, translatedVideoId, className = "", inView }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="mb-12"
+      className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${className}`}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h4 className="text-center font-medium text-gray-300 mb-2">Original</h4>
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300, damping: 10 }}
-            className="rounded-lg overflow-hidden shadow-lg bg-gray-800"
-          >
-            <div className="relative aspect-video">
-              <YouTube
-                videoId={originalVideoId}
-                opts={opts}
-                className="absolute top-0 left-0 w-full h-full"
-              />
-            </div>
-          </motion.div>
+      <div className="space-y-2">
+        <motion.div
+          className="bg-gradient-to-r from-blue-600 to-blue-400 text-white text-center py-2 rounded-t-lg font-semibold"
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 3,
+            ease: "linear",
+            repeat: Number.POSITIVE_INFINITY,
+          }}
+        >
+          Original
+        </motion.div>
+        <div className="aspect-video">
+          <iframe
+            src={`https://www.youtube.com/embed/${originalVideoId}`}
+            title="Original Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full rounded-b-lg"
+          />
         </div>
-
-        <div>
-          <h4 className="text-center font-medium text-gray-300 mb-2">Hindi Version</h4>
-          <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="rounded-lg overflow-hidden shadow-lg bg-gray-800"
-            >
-            <div className="relative aspect-video">
-              <YouTube
-                videoId={translatedVideoId}
-                opts={opts}
-                className="absolute top-0 left-0 w-full h-full"
-              />
-            </div>
-          </motion.div>
+      </div>
+      <div className="space-y-2">
+        <motion.div
+          className="bg-gradient-to-r from-red-600 to-red-400 text-white text-center py-2 rounded-t-lg font-semibold"
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 3,
+            ease: "linear",
+            repeat: Number.POSITIVE_INFINITY,
+          }}
+        >
+          Translated
+        </motion.div>
+        <div className="aspect-video">
+          <iframe
+            src={`https://www.youtube.com/embed/${translatedVideoId}`}
+            title="Translated Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full rounded-b-lg"
+          />
         </div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default VideoComparison;
+export default VideoComparison

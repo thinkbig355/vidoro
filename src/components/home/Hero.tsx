@@ -8,7 +8,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="pt-32 pb-20 px-4 bg-[#0A0A0F] text-white">
+    <section className="pt-32 pb-20 px-4 bg-black text-white">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="text-left">
           <motion.h1
@@ -17,13 +17,13 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500">
               Unlock the Massive
             </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 block mt-2">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500 block mt-2">
               Indian YouTube Audience
             </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 block mt-2">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500 block mt-2">
               of
             </span>
             <span className="block text-5xl md:text-7xl text-red-500 mt-4 font-extrabold">
@@ -40,8 +40,9 @@ const Hero = () => {
             We Translate Your Videos into Hindi, Expanding Your Reach & Impact
           </motion.p>
 
+          {/* Updated button text and navigation */}
           <motion.button
-            onClick={() => navigate('/contact')}
+            onClick={() => navigate('/pricing')} // Navigate to /pricing
             className="relative overflow-hidden px-8 py-4 rounded-full text-white font-bold text-xl shadow-lg"
             style={{
               background: "linear-gradient(45deg, #4f46e5, #9333ea, #ec4899, #4f46e5)",
@@ -67,7 +68,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">Get Started</span>
+            <span className="relative z-10">Pricing</span> {/* Button text changed to Pricing */}
             <motion.div
               className="absolute inset-0 bg-white opacity-25"
               animate={{
