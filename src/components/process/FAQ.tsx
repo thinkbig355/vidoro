@@ -12,7 +12,7 @@ const faqItems = [
   },
   {
     question: "What is your turnaround time?",
-    answer: ["Usually 12-72 hours for translations and voice-overs."]
+    answer: ["12-72 hours"]
   },
   {
     question: "How will you upload the video on YouTube?",
