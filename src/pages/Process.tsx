@@ -14,11 +14,11 @@ const Process = () => {
     {
       icon: Languages,
       title: "Translate and Voice Over",
-      description: "We will do Professional translation and Hindi voice over",
+      description: "We will do Accurate translation and HQ voice over",
     },
     {
       icon: Palette,
-      title: "Cultural Adaptation",
+      title: "Adaptation",
       description: "Video Adaptation to resonate with the Indian audience through Editing",
     },
     {

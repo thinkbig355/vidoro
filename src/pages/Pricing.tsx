@@ -5,7 +5,6 @@ import { Check } from "lucide-react";
 const Pricing = () => {
   const [selectedPack, setSelectedPack] = useState<number | string>(1);
   const [duration, setDuration] = useState(5);
-  const [humanVoice, setHumanVoice] = useState(false);
   const [thumbnail, setThumbnail] = useState(false);
 
   const packs = [
@@ -32,12 +31,11 @@ const Pricing = () => {
   // Apply total discount
   const discountedPrice = basePriceForDuration * (1 - totalDiscount);
   // Add additional services
-  const humanVoicePrice = humanVoice ? duration * 2 : 0;
   const thumbnailPrice = thumbnail ? 15 : 0;
-  const finalPricePerVideo = discountedPrice + humanVoicePrice + thumbnailPrice;
+  const finalPricePerVideo = discountedPrice + thumbnailPrice;
 
   // for showing original price on discount
-  const originalPrice = basePriceForDuration + humanVoicePrice + thumbnailPrice;
+  const originalPrice = basePriceForDuration + thumbnailPrice;
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white pt-16 pb-10 md:pt-20 md:pb-16">
@@ -52,7 +50,6 @@ const Pricing = () => {
               Transparent Price Calculator
             </span>
           </h1>
-          {/* Removed: <p className="text-lg md:text-xl text-gray-300">Get the Perfect Video for You</p> */}
         </motion.div>
 
         <motion.div
@@ -91,27 +88,40 @@ const Pricing = () => {
           </div>
 
           <div className="p-6 space-y-6">
-            {/* Included Features - Compact Version */}
+            {/* Included Features - 2x2 Grid */}
             <div className="bg-[#242433] rounded-xl p-4">
-              <h3 className="text-sm font-medium text-gray-300 mb-3">
-                Included in Every Video:
-              </h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                {[
-                  "Professional Video Translation",
-                  "Best-Quality AI Voice-Over",
-                  "Expert Editing & Market Adaptation",
-                  "Strategic YouTube Optimization",
-                  "Unlimited Revisions",
-                ].map((feature, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 text-gray-400"
-                  >
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                {/* Left Column */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-gray-400">
                     <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
-                    <span className="text-xs">{feature}</span>
+                    <span className="text-xs font-medium">
+                      Accurate Translation
+                    </span>
                   </div>
-                ))}
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
+                    <span className="text-xs font-medium">
+                      Pro Editing & Adaptation
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
+                    <span className="text-xs font-medium">
+                      HQ Voice-Overs
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
+                    <span className="text-xs font-medium">
+                      We Handle YouTube Upload
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -149,7 +159,8 @@ const Pricing = () => {
             <div className="space-y-2">
               <div className="flex justify-between items-center">
                 <label className="text-sm font-medium text-gray-300">
-                  Video Duration: {duration} minutes
+                  Video Duration:{" "}
+                  <span className="text-white">{duration} minutes</span>
                 </label>
                 {durationDiscount > 0 && (
                   <span className="text-green-400 text-sm">
@@ -164,7 +175,13 @@ const Pricing = () => {
                 value={duration}
                 onChange={(e) => setDuration(Number.parseInt(e.target.value))}
                 className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                style={{
+                  background: `linear-gradient(to right, #5046e5 ${
+                    (duration / 60) * 100
+                  }%, #3f3f46 ${(duration / 60) * 100}%)`,
+                }}
               />
+
               <div className="flex justify-between text-xs text-gray-500">
                 <span>1 min</span>
                 <span>60 min</span>
@@ -173,27 +190,6 @@ const Pricing = () => {
 
             {/* Add-ons */}
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#242433] hover:bg-[#2A2A3A] transition-colors">
-                <div>
-                  <h4 className="font-medium text-sm">Human Voice Over</h4>
-                  <p className="text-xs text-gray-400">
-                    Upgrade from AI voice
-                  </p>
-                </div>
-                <div className="flex items-center justify-end gap-3">
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={humanVoice}
-                      onChange={(e) => setHumanVoice(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-11 h-6 bg-gray-700 peer-focus:ring-2 peer-focus:ring-indigo-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500"></div>
-                  </label>
-                  <span className="text-sm text-gray-400 w-16">+$2/min</span>
-                </div>
-              </div>
-
               <div className="flex items-center justify-between p-3 rounded-xl bg-[#242433] hover:bg-[#2A2A3A] transition-colors">
                 <div>
                   <h4 className="font-medium text-sm">Custom Thumbnail</h4>

@@ -4,27 +4,31 @@ import FAQItem from './FAQItem';
 
 const faqItems = [
   {
-    question: "Why to create a separate channel?",
+    question: "How do I send you my video files?",
     answer: [
-      "A dedicated channel optimized for the Indian audience ensures a more engaged and loyal viewership.",
-      "Attract new sponsors and monetization opportunities in a new market, without additional effort."
+      "Send us your editing project file if possible. This lets us fine-tune everything for the best results.",
+      "If not, a single exported video file (like .mp4, .mov) works too."
     ]
   },
   {
-    question: "How does cultural adaptation work?",
-    answer: ["We put extra effort to ensure your video feels natural to the Indian audience by adding cultural references, optimizing on-screen text, fine-tuning pacing, and making subtle visual adjustments to enhance engagement and appeal."]
-  },
-  {
-    question: "Which editing software project files do you support?",
-    answer: ["We support project files from all major video editing software, including Final Cut Pro, After Effect, Premiere Pro, and DaVinci Resolve."]
+    question: "What is your turnaround time?",
+    answer: ["Usually 12-72 hours for translations and voice-overs."]
   },
   {
     question: "How will you upload the video on YouTube?",
-    answer: ["To upload your optimized video to YouTube, we'll need you to grant us channel permissions as an editor or manager on your channel. This will allow us to upload your video and apply our SEO settings"]
+    answer: ["We'll need uploader role access to your channel to upload the video."]
   },
   {
-    question: "What is your turnaround time?",
-    answer: ["Typically, translations are completed within 12-72 hours."]
+    question: "Why create a separate channel for India?",
+    answer: ["It allows for tailored content, leading to more reach, revenue, and sponsors."]
+  },
+  {
+    question: "Which editing software do you support?",
+    answer: ["All major ones: Final Cut Pro, After Effects, Premiere Pro, and DaVinci Resolve."]
+  },
+  {
+    question: "How does adaptation work?",
+    answer: ["We add, optimize on-screen text, and tweak visuals to resonate with Indian viewers."]
   }
 ];
 

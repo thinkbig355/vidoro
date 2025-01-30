@@ -37,9 +37,16 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
             className="mt-4 space-y-2"
           >
             {answer.map((line, index) => (
-              <p key={index} className="text-gray-400">
-                {line}
-              </p>
+              <div key={index} className="flex items-start text-gray-400">
+                <div className="mr-2 mt-1"> {/* Adjust margin as needed */}
+                  {/* You can replace this with any icon you prefer */}
+                  <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="6" cy="6" r="5" fill="#2A2A35" />
+                    <circle cx="6" cy="6" r="3" fill="currentColor" />
+                  </svg>
+                </div>
+                <p className="flex-1">{line}</p>
+              </div>
             ))}
           </motion.div>
         )}
