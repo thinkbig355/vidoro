@@ -1,30 +1,36 @@
-import { useState } from "react"
+
+"use client"
+import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
-
+import Particles from "react-tsparticles"
+import { loadSlim } from "tsparticles-slim"
+import type { Container, Engine } from "tsparticles-engine"
 const Pricing = () => {
   const [selectedPack, setSelectedPack] = useState<number | string>(1)
   const [duration, setDuration] = useState(5)
   const [thumbnail, setThumbnail] = useState(false)
-
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadSlim(engine)
+  }, [])
+  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+    console.log(container)
+  }, [])
   const packs = [
     { quantity: 1, discount: 0 },
     { quantity: 5, discount: 0.15 },
     { quantity: "15+ Videos", discount: 0.3 },
   ]
-
   const getDurationDiscount = (minutes: number) => {
     if (minutes <= 5) return 0
     if (minutes >= 30) return 0.2
     return ((minutes - 5) / 25) * 0.2
   }
-
   const basePricePerMinute = 5
   const selectedPackInfo = packs.find((p) => p.quantity === selectedPack) || packs[0]
   const durationDiscount = getDurationDiscount(duration)
   const packDiscount = selectedPackInfo.discount
   const totalDiscount = durationDiscount + packDiscount
-
   // Calculate base price for the duration
   const basePriceForDuration = duration * basePricePerMinute
   // Apply total discount
@@ -32,25 +38,75 @@ const Pricing = () => {
   // Add additional services
   const thumbnailPrice = thumbnail ? 15 : 0
   const finalPricePerVideo = discountedPrice + thumbnailPrice
-
   // for showing original price on discount
   const originalPrice = basePriceForDuration + thumbnailPrice
-
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white pt-16 pb-10 md:pt-20 md:pb-16">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-[#0A0A0F] text-white overflow-hidden">
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={{
+          background: {
+            color: {
+              value: "transparent",
+            },
+          },
+          fpsLimit: 120,
+          particles: {
+            color: {
+              value: ["#ff0000", "#0000ff"],
+            },
+            links: {
+              color: "#ffffff",
+              distance: 150,
+              enable: true,
+              opacity: 0.2,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              outModes: {
+                default: "bounce",
+              },
+              random: false,
+              speed: 1,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                area: 800,
+              },
+              value: 80,
+            },
+            opacity: {
+              value: 0.3,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              value: { min: 1, max: 3 },
+            },
+          },
+          detectRetina: true,
+        }}
+        className="absolute inset-0"
+      />
+      
+      <div className="relative container mx-auto px-4 pt-16 pb-10 md:pt-20 md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8 md:mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-300 to-blue-400">
               Transparent Price Calculator
             </span>
           </h1>
         </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,7 +135,6 @@ const Pricing = () => {
               </motion.div>
             )}
           </div>
-
           <div className="p-6 space-y-6">
             {/* Included Features - 2x2 Grid */}
             <div className="bg-[#242433] rounded-xl p-4">
@@ -95,7 +150,6 @@ const Pricing = () => {
                     <span className="text-xs font-medium">Pro Editing & Adaptation</span>
                   </div>
                 </div>
-
                 {/* Right Column */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-gray-400">
@@ -109,7 +163,6 @@ const Pricing = () => {
                 </div>
               </div>
             </div>
-
             {/* Pack Selection */}
             <div className="grid grid-cols-3 gap-0.5 bg-gray-800/20 p-1 rounded-xl">
               {packs.map((pack) => (
@@ -140,7 +193,6 @@ const Pricing = () => {
                 </motion.button>
               ))}
             </div>
-
             {/* Duration Slider */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
@@ -172,7 +224,6 @@ const Pricing = () => {
                 <span>60 min</span>
               </div>
             </div>
-
             {/* Add-ons */}
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 rounded-xl bg-[#242433] hover:bg-[#2A2A3A] transition-colors">
@@ -200,5 +251,4 @@ const Pricing = () => {
     </div>
   )
 }
-
 export default Pricing

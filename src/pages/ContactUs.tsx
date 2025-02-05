@@ -12,10 +12,17 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const ContactUs = () => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+interface FormData {
+  name: string;
+  email: string;
+  channelLink: string;
+  message: string;
+}
 
-    const onSubmit = async (data) => {
+const ContactUs = () => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
+
+    const onSubmit = async (data: FormData) => {
         try {
             const { error } = await supabase
                 .from('contacts')

@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQItemProps {
   question: string;
@@ -12,45 +13,54 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 
   return (
     <motion.div
-      onClick={() => setIsOpen(!isOpen)}
       layout
-      className="border border-[#2A2A35] rounded-lg p-4 cursor-pointer"
+      onClick={() => setIsOpen(!isOpen)}
+      className="group cursor-pointer"
     >
-      <div className="flex justify-between items-center">
-        <motion.h3 layout className="text-lg font-medium text-gray-200">
-          {question}
-        </motion.h3>
-        <div className="flex-shrink-0">
-          {isOpen ? (
-            <ChevronUp className="w-5 h-5 text-indigo-400" />
-          ) : (
-            <ChevronDown className="w-5 h-5 text-gray-400" />
-          )}
-        </div>
-      </div>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="mt-4 space-y-2"
+      <motion.div 
+        layout 
+        className="p-4 rounded-xl bg-gradient-to-r hover:from-red-500/5 hover:to-blue-500/5 transition-colors duration-300"
+      >
+        <div className="flex justify-between items-center">
+          <motion.h3 
+            layout 
+            className="text-lg font-medium text-gray-200 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-400 group-hover:to-blue-400 transition-colors duration-300"
           >
-            {answer.map((line, index) => (
-              <div key={index} className="flex items-start text-gray-400">
-                <div className="mr-2 mt-1"> {/* Adjust margin as needed */}
-                  {/* You can replace this with any icon you prefer */}
-                  <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="6" cy="6" r="5" fill="#2A2A35" />
-                    <circle cx="6" cy="6" r="3" fill="currentColor" />
-                  </svg>
-                </div>
-                <p className="flex-1">{line}</p>
-              </div>
-            ))}
+            {question}
+          </motion.h3>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex-shrink-0 w-5 h-5"
+          >
+            <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4 space-y-3"
+            >
+              {answer.map((line, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-start gap-3 text-gray-400"
+                >
+                  <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-red-400 to-blue-400 mt-2" />
+                  <p className="text-sm leading-relaxed">{line}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </motion.div>
   );
 };

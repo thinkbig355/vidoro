@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './TrustedBy.module.css';
 
 const TrustedBy = () => {
   const logos = [
@@ -21,53 +22,8 @@ const TrustedBy = () => {
 
   return (
     <section className="py-20 px-4 bg-black">
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        .scroll-container {
-          overflow: hidden;
-          width: 100%;
-          position: relative;
-        }
-
-        .scroll-wrapper {
-          display: flex;
-          gap: 2rem;
-          width: fit-content;
-          animation: scroll 60s linear infinite;
-          will-change: transform;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-        }
-
-        .logo-item {
-          transition: transform 0.3s ease, filter 0.3s ease;
-          filter: grayscale(1);
-        }
-
-        .logo-item:hover {
-          transform: scale(1.1);
-          filter: grayscale(0);
-        }
-      `}</style>
-
-      <div className="container mx-auto text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
-          Trusted by Leading Brands
-        </h2>
-        <p className="text-lg text-gray-300">
-          Our partners span across the globe, leveraging localized growth.
-        </p>
-      </div>
-      <div className="scroll-container">
-        <div className="scroll-wrapper">
+      <div className={styles.scrollContainer}>
+        <div className={styles.scrollWrapper}>
           {[...logos, ...logos].map((logo, index) => (
             <div
               key={index}
