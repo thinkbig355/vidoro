@@ -34,10 +34,10 @@ function CounterAnimation({ end, duration = 3 }: { end: number; duration?: numbe
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-7xl font-bold mb-2 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
+      <div className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-[#FF3B3B] to-[#FF0000] text-transparent bg-clip-text">
         {count}M+
       </div>
-      <div className="text-xl text-zinc-400">Views Generated</div>
+      <div className="text-xl text-gray-400">Views Generated</div>
     </div>
   )
 }
@@ -121,7 +121,7 @@ const TestimonialCard = ({
   image: string
   content: string
 }) => (
-  <Card className="min-w-[400px] bg-zinc-1700/50 border-zinc-800 mx-4">
+  <Card className="min-w-[320px] bg-gray-800/60 border border-gray-700 mx-4 rounded-lg shadow-lg">
     <CardContent className="p-6">
       <div className="flex items-center gap-4 mb-4">
         <Avatar className="w-12 h-12">
@@ -132,7 +132,7 @@ const TestimonialCard = ({
         </Avatar>
         <h3 className="font-semibold text-lg text-white">{name}</h3>
       </div>
-      <p className="text-zinc-400 leading-relaxed">{content}</p>
+      <p className="text-gray-300 leading-relaxed">{content}</p>
     </CardContent>
   </Card>
 )
@@ -159,7 +159,6 @@ export default function TestimonialSection() {
           width: fit-content;
           will-change: transform;
           backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
         }
 
         .scroll-left {
@@ -172,10 +171,12 @@ export default function TestimonialSection() {
       `}</style>
 
       <div className="container mx-auto mb-20 text-center">
-        <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
-          Loved by Creators
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
+          What Creators Are Saying
         </h2>
-        <p className="text-xl text-zinc-400">Vidoro is popular among creators worldwide.</p>
+        <p className="text-lg md:text-xl text-gray-400">
+          Hear from our community of creators leveraging our services to grow their reach.
+        </p>
       </div>
 
       <div className="relative scroll-container">

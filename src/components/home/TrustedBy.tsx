@@ -5,7 +5,7 @@ const TrustedBy = () => {
     "https://yt3.googleusercontent.com/ytc/AIdro_mVZ4AHe826kUXrFWybMD8xewxe0jxek1j2RABjppew-A=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.googleusercontent.com/ytc/AIdro_nN4JNqHsIvck_6leJoMUWw3PQzNSRXL97ugjAn6_TU7mA=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.googleusercontent.com/ytc/AIdro_mDEsuYNLn6bo4gIiJEUwyu7BS6pxbyludi-60YjuCxMhY=s800-c-k-c0x00ffffff-no-rj",
-    "https://yt3.ggpht.com/ytc/AIdro_kKGaEKaafkVObI-xJQPOipJ-B-W2vdD8fuv4oNEW7d894=s800-c-k-c0x00ffffff-no-rj",
+    "https://yt3.googleusercontent.com/ytc/AIdro_kKGaEKaafkVObI-xJQPOipJ-B-W2vdD8fuv4oNEW7d894=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.ggpht.com/jnNqrt1hvGxQYm91BO937kiUYw-UP68Lvmuo78vguXPCE8y7Xzp0DzBd0JSmaenOQ9t6brPNVA=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.ggpht.com/ytc/AIdro_nrZfnUxi_DwFSlJyuQvZN-JWkiZHkgwUaZJPhiIu-ZNLI=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.ggpht.com/nTK6AFZrpjDHKNIHq0zqjkWCs3jm9ttQBAGOfIui0zlz_gQzeqAIOtQKfzbSUIA0Mu15HBDfCg=s800-c-k-c0x00ffffff-no-rj",
@@ -41,41 +41,46 @@ const TrustedBy = () => {
           display: flex;
           gap: 2rem;
           width: fit-content;
-          animation: scroll 50s linear infinite;
+          animation: scroll 60s linear infinite;
           will-change: transform;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
         }
 
         .logo-item {
-          transition: transform 0.3s ease;
+          transition: transform 0.3s ease, filter 0.3s ease;
+          filter: grayscale(1);
         }
 
         .logo-item:hover {
           transform: scale(1.1);
+          filter: grayscale(0);
         }
       `}</style>
 
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
-          Our Creator Partners
+      <div className="container mx-auto text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
+          Trusted by Leading Brands
         </h2>
-        <div className="scroll-container">
-          <div className="scroll-wrapper">
-            {[...logos, ...logos].map((logo, index) => (
-              <div
-                key={index}
-                className="logo-item bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
-              >
-                <img
-                  src={logo}
-                  alt={`Logo ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+        <p className="text-lg text-gray-300">
+          Our partners span across the globe, leveraging localized growth.
+        </p>
+      </div>
+      <div className="scroll-container">
+        <div className="scroll-wrapper">
+          {[...logos, ...logos].map((logo, index) => (
+            <div
+              key={index}
+              className="logo-item bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
+            >
+              <img
+                src={logo}
+                alt={`Logo ${index + 1}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

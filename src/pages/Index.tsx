@@ -3,16 +3,42 @@ import Hero from "@/components/home/Hero";
 import ServiceBoxes from "@/components/home/ServiceBoxes";
 import TrustedBy from "@/components/home/TrustedBy";
 import Testimonials from "@/components/home/Testimonials";
-import { Footer } from "@/components/layout/Footer"; // Import Footer
+import TeamAndScenes from "@/components/home/TeamAndScenes";
+import ParticleBackground from '@/components/common/ParticleBackground';
+import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="relative">
+      {/* Hero Section with default particles */}
+      <ParticleBackground variant="default" />
       <Hero />
-      <ServiceBoxes />
-      <Testimonials />
-      <TrustedBy />
-      <Footer /> {/* Add Footer here */}
+
+      {/* Service Boxes with connecting particles */}
+      <div className="relative">
+        <ParticleBackground variant="connect" />
+        <ServiceBoxes />
+      </div>
+
+      {/* Testimonials with star particles */}
+      <div className="relative">
+        <ParticleBackground variant="stars" />
+        <Testimonials />
+      </div>
+
+      {/* Team and Scenes with bubble particles */}
+      <div className="relative">
+        <ParticleBackground variant="bubbles" />
+        <TeamAndScenes />
+      </div>
+
+      {/* Trusted By with default particles */}
+      <div className="relative">
+        <ParticleBackground variant="default" />
+        <TrustedBy />
+      </div>
+
+      <Footer />
     </div>
   );
 };

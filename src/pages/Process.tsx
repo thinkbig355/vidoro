@@ -28,6 +28,8 @@ const Process = () => {
     },
   ]
 
+  const taglineText = "You get more reach, revenue, and sponsors without lifting your finger!"
+
   return (
     <div className="min-h-screen pt-32 pb-20 bg-black text-white">
       <div className="container mx-auto px-4">
@@ -78,6 +80,21 @@ const Process = () => {
                 <p className="text-gray-400 mt-2">{step.description}</p>
               </motion.div>
             ))}
+          </div>
+
+          {/* Animated Tagline */}
+          <div className="mt-12 text-center">
+            <h2
+              className="inline-block px-6 py-3 text-base md:text-lg font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-600"
+              style={{
+                textShadow: `
+                  0 0 20px rgba(239, 68, 68, 0.7),
+                  0 0 40px rgba(239, 68, 68, 0.5)
+                `,
+              }}
+            >
+              {taglineText}
+            </h2>
           </div>
         </motion.div>
       </div>

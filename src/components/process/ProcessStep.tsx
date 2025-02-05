@@ -3,8 +3,7 @@
 import { motion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Upload, Languages, Settings, Share2 } from "lucide-react"
-
+import { Upload, Languages, Palette, UploadIcon } from "lucide-react"
 
 interface ProcessStepProps {
   icon: LucideIcon
@@ -19,11 +18,12 @@ const ProcessStep = ({ icon: Icon, title, description, duration, index, isLast }
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
+      whileHover={{ scale: 1.02 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
       className={cn(
         "flex md:flex-col items-start gap-6 md:gap-4 min-w-[280px] md:w-[280px]",
-        "p-6 rounded-xl bg-zinc-900/50 backdrop-blur-sm",
+        "p-6 rounded-xl bg-zinc-900/50 backdrop-blur-sm relative"
       )}
     >
       <div className="flex-shrink-0 p-3 rounded-xl bg-violet-500/10">
@@ -58,40 +58,38 @@ const ProcessStep = ({ icon: Icon, title, description, duration, index, isLast }
   )
 }
 
-
-
 const steps = [
   {
     icon: Upload,
-    title: "Send Your Video File",
-    description: "Simply share your video editing software's project file through Cloud",
-    duration: "1-2 hours",
+    title: "Upload Your Video",
+    description: "Easily send us your video file through our secure file transfer.",
+    duration: "Secure & Fast",
   },
   {
     icon: Languages,
-    title: "Translate and Voice Over",
-    description: "Professional translation and Hindi voice over",
-    duration: "24-48 hours",
+    title: "Translate & Narrate",
+    description: "Our experts convert your content into captivating Hindi narration.",
+    duration: "Expertly Handled",
   },
   {
-    icon: Settings,
-    title: "Cultural Adaptation",
-    description: "Video optimization and cultural adaptation to resonate with the Indian audience",
-    duration: "24 hours",
+    icon: Palette,
+    title: "Tailored Editing",
+    description: "We refine your video to engage your target audience effortlessly.",
+    duration: "Refined to Perfection",
   },
   {
-    icon: Share2,
-    title: "Optimized Upload",
-    description: "We upload and optimize your video for maximum reach",
-    duration: "2-3 hours",
+    icon: UploadIcon,
+    title: "Upload & Amplify",
+    description: "We manage the complete YouTube upload, so you enjoy effortless growth.",
+    duration: "Watch It Go Live!",
   },
 ]
 
 export default function ProcessSteps() {
   return (
-    <div className="w-full py-12 px-4">
-      <h1 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-violet-400 to-violet-600 text-transparent bg-clip-text">
-        Our Process
+    <div className="w-full py-12 px-4 bg-gradient-to-br from-gray-900 to-black">
+      <h1 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-indigo-400 to-pink-400 text-transparent bg-clip-text">
+        Process
       </h1>
       <div className="relative max-w-7xl mx-auto">
         <div className="overflow-x-auto pb-8 md:pb-0 -mx-4 px-4 scrollbar-hide">
