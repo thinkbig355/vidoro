@@ -66,50 +66,22 @@ const btsImages = [
 
 export default function TeamAndScenes() {
   return (
-    <div className="bg-black py-24">
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes scrollLeft {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-
-        @keyframes scrollRight {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-
-        .scroll-row {
-          display: flex;
-          width: fit-content;
-          gap: 2rem;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-
-        .scroll-left {
-          animation: scrollLeft 60s linear infinite;
-        }
-
-        .scroll-right {
-          animation: scrollRight 60s linear infinite;
-        }
-      `}} />
-
+    <section className="py-24">
       {/* Team Section */}
-      <section className="mb-20">
+      <section>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#E879F9]">
-              Meet Our Team
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
+              Our Team
             </h2>
             <p className="text-lg text-gray-400">
-              The experts behind your content's global success
+              Meet the experts behind your content transformation
             </p>
           </div>
           <div className="relative overflow-hidden">
             {/* Gradient Overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
             
             <div className="overflow-hidden">
               <div className="scroll-row scroll-left">
@@ -172,7 +144,7 @@ export default function TeamAndScenes() {
 
       {/* Behind the Scenes Section */}
       <section>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-32">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
               Behind the Scenes
@@ -183,8 +155,8 @@ export default function TeamAndScenes() {
           </div>
           <div className="relative overflow-hidden">
             {/* Gradient Overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
             
             <div className="overflow-hidden">
               <div className="scroll-row scroll-right">
@@ -231,6 +203,6 @@ export default function TeamAndScenes() {
           </div>
         </div>
       </section>
-    </div>
+    </section>
   );
 } 

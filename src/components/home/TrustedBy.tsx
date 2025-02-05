@@ -21,22 +21,39 @@ const TrustedBy = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-black">
-      <div className={styles.scrollContainer}>
-        <div className={styles.scrollWrapper}>
-          {[...logos, ...logos].map((logo, index) => (
-            <div
-              key={index}
-              className="logo-item bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
-            >
-              <img
-                src={logo}
-                alt={`Logo ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+    <section className="py-20 px-4">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
+            Trusted By
+          </h2>
+          <p className="text-lg text-gray-400">
+            Join these amazing content creators
+          </p>
+        </div>
+        
+        <div className="relative">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
+          
+          <div className={styles.scrollContainer}>
+            <div className={styles.scrollWrapper}>
+              {[...logos, ...logos].map((logo, index) => (
+                <div
+                  key={index}
+                  className="logo-item bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
+                >
+                  <img
+                    src={logo}
+                    alt={`Logo ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

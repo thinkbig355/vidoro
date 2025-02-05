@@ -121,7 +121,7 @@ const TestimonialCard = ({
   image: string
   content: string
 }) => (
-  <Card className="min-w-[320px] bg-gray-800/60 border border-gray-700 mx-4 rounded-lg shadow-lg">
+  <Card className="min-w-[320px] bg-[#12121A]/50 backdrop-blur-md border border-gray-700/50 mx-4 rounded-lg shadow-lg">
     <CardContent className="p-6">
       <div className="flex items-center gap-4 mb-4">
         <Avatar className="w-12 h-12">
@@ -137,89 +137,56 @@ const TestimonialCard = ({
   </Card>
 )
 
-export default function TestimonialSection() {
+export default function Testimonials() {
   const firstHalf = testimonials.slice(0, 5)
   const secondHalf = testimonials.slice(5)
 
   return (
-    <section className="py-24 bg-black overflow-hidden">
-      <style jsx>{`
-        @keyframes scrollLeft {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
+    <section className="py-24 overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
+            What Creators Are Saying
+          </h2>
+          <p className="text-lg text-gray-400">
+            Hear from content creators who've transformed their reach
+          </p>
+        </div>
 
-        @keyframes scrollRight {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-
-        .scroll-row {
-          display: flex;
-          width: fit-content;
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-
-        .scroll-left {
-          animation: scrollLeft 60s linear infinite;
-        }
-
-        .scroll-right {
-          animation: scrollRight 60s linear infinite;
-        }
-      `}</style>
-
-      <div className="container mx-auto mb-20 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text">
-          What Creators Are Saying
-        </h2>
-        <p className="text-lg md:text-xl text-gray-400">
-          Hear from our community of creators leveraging our services to grow their reach.
-        </p>
-      </div>
-
-      <div className="relative scroll-container">
-        {/* Gradient Overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
-
-        {/* Top Row */}
-        <div className="overflow-hidden mb-8">
-          <div className="scroll-row scroll-left">
-            <div className="flex">
-              {firstHalf.map((item, i) => (
-                <TestimonialCard key={i} {...item} />
-              ))}
+        <div className="mb-16">
+          <CounterAnimation end={500} />
+        </div>
+        
+        <div className="relative">
+          {/* First Row */}
+          <div className="mb-8 overflow-hidden">
+            <div className="flex animate-scroll-left">
+              <div className="flex gap-6 animate-scroll">
+                {firstHalf.map((testimonial, index) => (
+                  <TestimonialCard key={index} {...testimonial} />
+                ))}
+                {firstHalf.map((testimonial, index) => (
+                  <TestimonialCard key={`clone-${index}`} {...testimonial} />
+                ))}
+              </div>
             </div>
-            <div className="flex">
-              {firstHalf.map((item, i) => (
-                <TestimonialCard key={`clone-${i}`} {...item} />
-              ))}
+          </div>
+
+          {/* Second Row */}
+          <div className="overflow-hidden">
+            <div className="flex animate-scroll-right">
+              <div className="flex gap-6 animate-scroll">
+                {secondHalf.map((testimonial, index) => (
+                  <TestimonialCard key={index} {...testimonial} />
+                ))}
+                {secondHalf.map((testimonial, index) => (
+                  <TestimonialCard key={`clone-${index}`} {...testimonial} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Bottom Row */}
-        <div className="overflow-hidden">
-          <div className="scroll-row scroll-right">
-            <div className="flex">
-              {secondHalf.map((item, i) => (
-                <TestimonialCard key={i} {...item} />
-              ))}
-            </div>
-            <div className="flex">
-              {secondHalf.map((item, i) => (
-                <TestimonialCard key={`clone-${i}`} {...item} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto mt-32">
-        <CounterAnimation end={1700} duration={2.5} />
       </div>
     </section>
-  )
+  );
 }

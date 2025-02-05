@@ -17,7 +17,7 @@ const ServiceBoxes = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-black text-white" ref={ref}>
+    <section className="py-20 px-4" ref={ref}>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
           <motion.div
@@ -30,7 +30,7 @@ const ServiceBoxes = () => {
               ease: [0.4, 0, 0.2, 1]
             }}
           >
-            <Card className="bg-white/10 backdrop-blur-md shadow-xl border border-gray-700 rounded-lg hover:bg-white/15 transition-all duration-300">
+            <Card className="bg-[#12121A]/50 backdrop-blur-md shadow-xl border border-gray-700/50 rounded-lg hover:bg-[#12121A]/70 transition-all duration-300">
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-3 text-white">{service.title}</h3>
                 <p className="text-gray-300">{service.desc}</p>

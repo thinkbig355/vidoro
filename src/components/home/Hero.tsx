@@ -3,17 +3,13 @@
 import React from 'react';
 import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import ParticleBackground from '../common/ParticleBackground';
 
 const Hero = () => {
   const navigate = useNavigate();
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="relative pt-32 pb-20 px-4 bg-black text-white overflow-hidden min-h-screen">
-        <div className="absolute inset-0 w-full h-full">
-          <ParticleBackground />
-        </div>
+      <section className="relative pt-32 pb-20 px-4 text-white overflow-hidden min-h-screen">
         <div className="relative z-10 container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="text-left space-y-6">
             <motion.h1
