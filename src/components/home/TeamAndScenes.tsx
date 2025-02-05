@@ -67,7 +67,7 @@ const btsImages = [
 export default function TeamAndScenes() {
   return (
     <div className="bg-black py-24">
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @keyframes scrollLeft {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -93,7 +93,7 @@ export default function TeamAndScenes() {
         .scroll-right {
           animation: scrollRight 60s linear infinite;
         }
-      `}</style>
+      `}} />
 
       {/* Team Section */}
       <section className="mb-20">
