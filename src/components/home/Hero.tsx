@@ -10,12 +10,11 @@ const Hero = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="relative pt-32 pb-20 px-4 bg-gray-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/90">
-          <ParticleBackground variant="minimal" />
+      <section className="relative pt-32 pb-20 px-4 bg-black text-white overflow-hidden min-h-screen">
+        <div className="absolute inset-0 w-full h-full">
+          <ParticleBackground />
         </div>
-
-        <div className="relative container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="relative z-10 container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="text-left space-y-6">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
