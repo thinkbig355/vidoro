@@ -72,8 +72,10 @@ export default function TeamAndScenes() {
       <section>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
-              Our Team
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-300 to-blue-400">
+                Our Team
+              </span>
             </h2>
             <p className="text-lg text-gray-400">
               Meet the experts behind your content transformation
@@ -146,7 +148,6 @@ export default function TeamAndScenes() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-32">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
-              Behind the Scenes
             </h2>
             <p className="text-lg text-gray-400">
               Get a glimpse into our creative process

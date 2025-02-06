@@ -24,7 +24,7 @@ const Hero = () => {
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500 block mt-2">
                 Indian YouTube Audience
               </span>
-              <span className="block text-5xl md:text-7xl text-red-500 mt-4 font-extrabold">
+              <span className="block text-5xl md:text-7xl text-red-600 mt-4 font-extrabold">
                 500 Million+
               </span>
             </motion.h1>
@@ -37,7 +37,6 @@ const Hero = () => {
             >
               We Translate Your Videos into Hindi, Expanding Your Reach & Impact
             </motion.p>
-
             <motion.button
               onClick={() => navigate('/pricing')}
               className="relative inline-flex items-center overflow-hidden px-8 py-4 rounded-full text-white font-bold text-xl shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

@@ -10,7 +10,7 @@ const Navigation = () => {
 
     const links = [
         { name: 'Samples', path: '/work' },
-        { name: 'Process', path: '/process' },
+        { name: 'How it works', path: '/process' },
         { name: 'Pricing', path: '/pricing' },
     ];
 

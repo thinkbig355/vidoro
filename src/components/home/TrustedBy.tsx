@@ -42,12 +42,12 @@ const TrustedBy = () => {
               {[...logos, ...logos].map((logo, index) => (
                 <div
                   key={index}
-                  className="logo-item bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0"
+                  className={`${styles.logoItem} bg-gray-800 rounded-full flex items-center justify-center shadow-md overflow-hidden w-[70px] h-[70px] shrink-0`}
                 >
                   <img
                     src={logo}
                     alt={`Logo ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    className={`${styles.logoImage} w-full h-full object-cover`}
                     loading="lazy"
                   />
                 </div>

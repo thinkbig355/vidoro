@@ -27,7 +27,7 @@ const CounterAnimation = ({ end }: { end: number }) => {
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-red-500 to-red-700 text-transparent bg-clip-text">
+      <div className="text-6xl md:text-7xl font-bold text-red-600">
         {count}M+
       </div>
       <div className="text-2xl md:text-3xl text-gray-400 mt-2">Views Generated</div>
@@ -138,8 +138,10 @@ export default function Testimonials() {
     <section className="py-24 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
-            What Our Clients Say
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-300 to-blue-400">
+              What Our Clients Say
+            </span>
           </h2>
           <p className="text-lg text-gray-400">
             Hear from content creators who've transformed their reach
