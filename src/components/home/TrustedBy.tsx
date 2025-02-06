@@ -25,10 +25,10 @@ const TrustedBy = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
-            Trusted By
+            
           </h2>
           <p className="text-lg text-gray-400">
-            Join these amazing content creators
+          Vidoro is popular among creators worldwide.
           </p>
         </div>
         

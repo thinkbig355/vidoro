@@ -17,9 +17,9 @@
 }
 
 .scrollLeft {
-  animation: scrollLeft 60s linear infinite;
+  animation: scrollLeft 90s linear infinite;
 }
 
 .scrollRight {
-  animation: scrollRight 60s linear infinite;
+  animation: scrollRight 90s linear infinite;
 } 

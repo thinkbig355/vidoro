@@ -111,22 +111,13 @@ const Process = () => {
           className="max-w-7xl mx-auto"
         >
           <div className="flex flex-col items-center mb-16">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-sm font-medium px-4 py-1.5 rounded-full bg-gradient-to-r from-red-500/10 to-blue-500/10 border border-red-500/20 text-red-400 mb-6"
-            >
-              Our Process
-            </motion.span>
-            
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-300 to-blue-400"
             >
-              How It Works
+              Quick & Easy
             </motion.h1>
             
             <motion.p
@@ -135,23 +126,23 @@ const Process = () => {
               transition={{ delay: 0.4 }}
               className="text-gray-400 text-center max-w-2xl mb-8"
             >
-              Transform your content for the Indian market with our streamlined process
+              Smart steps to boost your reach.
             </motion.p>
           </div>
 
           {/* Horizontal Scrollable Steps */}
-          <div className="relative overflow-x-auto pb-8 -mx-4 px-4">
+          <div className="relative overflow-visible pb-8 -mx-4 px-4">
             <div className="flex gap-6 w-max">
               {steps.map((step, index) => (
                 <motion.div
                   key={index}
-                  className="group relative flex-none w-[300px]"
+                  className="group relative flex-none w-[300px] transform-gpu"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:opacity-100 opacity-0 transition-opacity duration-500" />
-                  <div className="relative p-8 h-full bg-[#12121A] rounded-2xl border border-gray-800/50 backdrop-blur-xl transition-all duration-500 group-hover:border-gray-700/50 group-hover:translate-y-[-2px]">
+                  <div className="relative p-8 h-full bg-[#12121A] rounded-2xl border border-gray-800/50 backdrop-blur-xl transition-all duration-500 group-hover:border-gray-700/50 group-hover:translate-y-[-2px] will-change-transform">
                     <div className="mb-6">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/10 to-blue-500/10 flex items-center justify-center border border-gray-800">
                         <step.icon className="w-7 h-7 text-red-400 group-hover:text-blue-400 transition-colors duration-500" />
