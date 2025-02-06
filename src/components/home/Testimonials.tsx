@@ -5,39 +5,32 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
-function CounterAnimation({ end, duration = 3 }: { end: number; duration?: number }) {
+const CounterAnimation = ({ end }: { end: number }) => {
   const [count, setCount] = useState(0)
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const isInView = useInView(ref)
 
   useEffect(() => {
     if (isInView) {
-      let startTime: number
-      let animationFrame: number
-
-      const animate = (timestamp: number) => {
-        if (!startTime) startTime = timestamp
-        const progress = (timestamp - startTime) / (duration * 1000)
-
+      let startTimestamp: number
+      const step = (timestamp: number) => {
+        if (!startTimestamp) startTimestamp = timestamp
+        const progress = Math.min((timestamp - startTimestamp) / 2000, 1)
+        setCount(Math.floor(progress * end))
         if (progress < 1) {
-          setCount(Math.floor(end * progress))
-          animationFrame = requestAnimationFrame(animate)
-        } else {
-          setCount(end)
+          window.requestAnimationFrame(step)
         }
       }
-
-      animationFrame = requestAnimationFrame(animate)
-      return () => cancelAnimationFrame(animationFrame)
+      window.requestAnimationFrame(step)
     }
-  }, [isInView, end, duration])
+  }, [isInView, end])
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-[#FF3B3B] to-[#FF0000] text-transparent bg-clip-text">
+      <div className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-red-500 to-red-700 text-transparent bg-clip-text">
         {count}M+
       </div>
-      <div className="text-xl text-gray-400">Views Generated</div>
+      <div className="text-2xl md:text-3xl text-gray-400 mt-2">Views Generated</div>
     </div>
   )
 }
@@ -146,18 +139,19 @@ export default function Testimonials() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
-            What Creators Are Saying
+            What Our Clients Say
           </h2>
           <p className="text-lg text-gray-400">
             Hear from content creators who've transformed their reach
           </p>
         </div>
-
-        <div className="mb-16">
-          <CounterAnimation end={500} />
-        </div>
         
-        <div className="relative">
+        <div className="relative scroll-container mb-24">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
+          
+          {/* Your testimonials content */}
           {/* First Row */}
           <div className="mb-8 overflow-hidden">
             <div className="flex animate-scroll-left">
@@ -185,6 +179,11 @@ export default function Testimonials() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Counter moved below testimonials */}
+        <div className="mt-16">
+          <CounterAnimation end={1700} />
         </div>
       </div>
     </section>

@@ -12,7 +12,6 @@ const Home = () => {
     <HomeLayout>
       <Hero />
       <ServiceBoxes />
-      <HowItWorks />
       <TeamAndScenes />
       <Testimonials />
       <TrustedBy />

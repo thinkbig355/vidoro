@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import styles from './TeamAndScenes.module.css';
 
 interface TeamMember {
   name: string;
@@ -84,8 +85,8 @@ export default function TeamAndScenes() {
             <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
             
             <div className="overflow-hidden">
-              <div className="scroll-row scroll-left">
-                <div className="flex gap-8">
+              <div className={styles.scrollRow}>
+                <div className={`flex gap-8 ${styles.scrollLeft}`}>
                   {ourTeam.map((member, i) => (
                     <div key={i} className="flex-none w-96">
                       <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
@@ -109,11 +110,9 @@ export default function TeamAndScenes() {
                       </div>
                     </div>
                   ))}
-                </div>
-                <div className="flex gap-8">
+                  {/* Duplicate for seamless scrolling */}
                   {ourTeam.map((member, i) => (
                     <div key={`clone-${i}`} className="flex-none w-96">
-                      {/* Same card content as above */}
                       <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
                         <div className="h-72 w-full overflow-hidden">
                           <img
@@ -159,11 +158,11 @@ export default function TeamAndScenes() {
             <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
             
             <div className="overflow-hidden">
-              <div className="scroll-row scroll-right">
-                <div className="flex" style={{ gap: '2rem' }}>
+              <div className={styles.scrollRow}>
+                <div className={`flex gap-8 ${styles.scrollRight}`}>
                   {btsImages.map((scene, i) => (
                     <div key={i} className="flex-none w-[400px]">
-                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800 mx-4">
+                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
                         <div className="relative">
                           <img
                             src={scene.image}
@@ -178,11 +177,10 @@ export default function TeamAndScenes() {
                       </div>
                     </div>
                   ))}
-                </div>
-                <div className="flex" style={{ gap: '2rem' }}>
+                  {/* Duplicate for seamless scrolling */}
                   {btsImages.map((scene, i) => (
                     <div key={`clone-${i}`} className="flex-none w-[400px]">
-                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800 mx-4">
+                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
                         <div className="relative">
                           <img
                             src={scene.image}
