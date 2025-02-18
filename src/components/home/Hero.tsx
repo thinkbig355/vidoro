@@ -72,12 +72,12 @@ const Hero = () => {
             <div className="w-full max-w-[1300px]">
               <motion.div
                 className="relative rounded-lg overflow-hidden shadow-2xl"
-                style={{ aspectRatio: '1300/1080' }}
+                style={{ aspectRatio: '1080/1080' }}
                 animate={{ scale: [1, 1.02, 1], rotate: [0, 2, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               >
                 <video
-                  src="/india-map-animation3.mov"
+                  src="/india-map-animation.mp4"
                   autoPlay
                   loop
                   muted
