@@ -17,7 +17,7 @@ const faqItems = [
   },
   {
     question: "How will you upload the video on YouTube?",
-    answer: ["We'll need uploader role access to your channel to upload the video."]
+    answer: ["We'll need uploader role access to your new channel to upload the video."]
   },
   {
     question: "Why create a separate channel for India?",

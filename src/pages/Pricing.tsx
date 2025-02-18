@@ -1,4 +1,3 @@
-
 "use client"
 import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
@@ -7,8 +6,8 @@ import Particles from "react-tsparticles"
 import { loadSlim } from "tsparticles-slim"
 import type { Container, Engine } from "tsparticles-engine"
 const Pricing = () => {
-  const [selectedPack, setSelectedPack] = useState<number | string>(1)
-  const [duration, setDuration] = useState(5)
+  const [selectedPack, setSelectedPack] = useState<number | string>(5)
+  const [duration, setDuration] = useState(8)
   const [thumbnail, setThumbnail] = useState(false)
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine)
@@ -16,17 +15,22 @@ const Pricing = () => {
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
     console.log(container)
   }, [])
+  
+  // Updated pack details
   const packs = [
     { quantity: 1, discount: 0 },
-    { quantity: 5, discount: 0.15 },
-    { quantity: "15+ Videos", discount: 0.3 },
+    { quantity: 5, discount: 0.20 },
+    { quantity: "10+ Videos", discount: 0.25 },
   ]
+
   const getDurationDiscount = (minutes: number) => {
     if (minutes <= 5) return 0
     if (minutes >= 30) return 0.2
     return ((minutes - 5) / 25) * 0.2
   }
-  const basePricePerMinute = 5
+
+  // Base price reduced from 5 to 4
+  const basePricePerMinute = 4
   const selectedPackInfo = packs.find((p) => p.quantity === selectedPack) || packs[0]
   const durationDiscount = getDurationDiscount(duration)
   const packDiscount = selectedPackInfo.discount
@@ -36,10 +40,11 @@ const Pricing = () => {
   // Apply total discount
   const discountedPrice = basePriceForDuration * (1 - totalDiscount)
   // Add additional services
-  const thumbnailPrice = thumbnail ? 15 : 0
+  const thumbnailPrice = thumbnail ? 10 : 0
   const finalPricePerVideo = discountedPrice + thumbnailPrice
-  // for showing original price on discount
+  // for showing original price on pack discounts only
   const originalPrice = basePriceForDuration + thumbnailPrice
+
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white overflow-hidden">
       <Particles
@@ -121,19 +126,17 @@ const Pricing = () => {
               animate={{ scale: 1, opacity: 1 }}
               className="relative inline-block"
             >
-              {totalDiscount > 0 && (
+              {(packDiscount > 0) && (
                 <div className="absolute -left-16 top-1/2 -translate-y-1/2 text-lg text-gray-400 line-through">
                   ${originalPrice.toFixed(0)}
                 </div>
               )}
-              <div className="text-5xl font-bold text-white mb-2">${finalPricePerVideo.toFixed(0)}</div>
+              <div className="text-5xl font-bold text-white mb-2">
+                ${finalPricePerVideo.toFixed(0)}
+              </div>
             </motion.div>
             <div className="text-gray-400">per video</div>
-            {selectedPack !== 1 && totalDiscount > 0 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-green-400 text-sm mt-2">
-                Total Discount: {Math.round(totalDiscount * 100)}%
-              </motion.div>
-            )}
+            {/* Removed the "Total Discount:" display */}
           </div>
           <div className="p-6 space-y-6">
             {/* Included Features - 2x2 Grid */}
@@ -147,7 +150,7 @@ const Pricing = () => {
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
-                    <span className="text-xs font-medium">Pro Editing & Adaptation</span>
+                    <span className="text-xs font-medium">Pro Adaptation</span>
                   </div>
                 </div>
                 {/* Right Column */}
@@ -158,7 +161,7 @@ const Pricing = () => {
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
-                    <span className="text-xs font-medium">We Handle YouTube Upload</span>
+                    <span className="text-xs font-medium">We Upload On YT</span>
                   </div>
                 </div>
               </div>
@@ -180,14 +183,13 @@ const Pricing = () => {
                       ? pack.quantity
                       : `${pack.quantity} ${pack.quantity === 1 ? "Video" : "Videos"}`}
                   </span>
-                  {/* Add "+" back for pack discounts */}
                   {pack.discount > 0 && (
                     <span
                       className={`absolute -top-2 -right-2 bg-red-500/90 text-white text-xs px-2 py-0.5 rounded-full ${
-                        pack.quantity === 5 || pack.quantity === "15+ Videos" ? "animate-pulse" : ""
+                        pack.quantity === 5 || pack.quantity === "10+ Videos" ? "animate-pulse" : ""
                       }`}
                     >
-                      +{Math.round(pack.discount * 100)}% OFF
+                      {Math.round(pack.discount * 100)}% OFF
                     </span>
                   )}
                 </motion.button>
@@ -196,11 +198,10 @@ const Pricing = () => {
             {/* Duration Slider */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-gray-300">Video Duration: {duration} minutes</label>
-                {/* Remove only the "+" from duration discount */}
-                {durationDiscount > 0 && (
-                  <span className="text-green-400 text-sm">{Math.round(durationDiscount * 100)}% OFF</span>
-                )}
+                <label className="text-sm font-medium text-gray-300">
+                  Video Duration: {duration} minutes
+                </label>
+                {/* Duration discount display removed */}
               </div>
               <p className="text-center text-sm text-indigo-400 animate-pulse mb-2">
                 Slide to adjust duration and see price change!
@@ -241,7 +242,7 @@ const Pricing = () => {
                     />
                     <div className="w-11 h-6 bg-gray-700 peer-focus:ring-2 peer-focus:ring-indigo-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500"></div>
                   </label>
-                  <span className="text-sm text-gray-400 w-16">+$15</span>
+                  <span className="text-sm text-gray-400 w-16">+$10</span>
                 </div>
               </div>
             </div>
