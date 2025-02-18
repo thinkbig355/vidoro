@@ -79,7 +79,7 @@ const testimonials = [
   {
     name: "Nitish Rajput",
     image:
-      "https://yt3.googleusercontent.com/Q5wDZkznd7zSD2RWT3HU9sqbwNkkkJtXgTxulaJoLAEl-U9-gbcIm6Of1rASj9RBotOedTih=s900-c-k-c0x00ffffff-no-rj",
+      "https://yt3.googleusercontent.com/i4-MMwgecNSAYn2a_7uHH3HnNsl4xOQlM9tRt47CSfYtfV5fqYD1nl49rnuR29jmLNlSUoaCqA=s900-c-k-c0x00ffffff-no-rj",
     content: "Vidoro is awesome. They get it.",
   },
   {
