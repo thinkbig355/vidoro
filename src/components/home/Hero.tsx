@@ -69,16 +69,22 @@ const Hero = () => {
           </div>
 
           <div className="flex justify-center md:justify-end">
-            <div className="w-[90%] lg:w-[85%]">
+            <div className="w-full max-w-[1300px]">
               <motion.div
-                className="relative aspect-square rounded-lg overflow-hidden shadow-2xl"
+                className="relative rounded-lg overflow-hidden shadow-2xl"
+                style={{ aspectRatio: '1300/1080' }}
                 animate={{ scale: [1, 1.02, 1], rotate: [0, 2, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               >
-                <img
-                  src="https://cdn.leonardo.ai/users/2098a0d6-9a93-480a-b952-0840092314da/generations/07884269-3038-4231-9ad0-35ae4b6a9c4a/Leonardo_Phoenix_10_A_intricate_and_detailed_map_of_India_comp_2.jpg"
-                  alt="Indian Map Visualization"
+                <video
+                  src="/india-map-animation3.mov"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-full object-cover"
+                  width="1300"
+                  height="1080"
                 />
               </motion.div>
             </div>

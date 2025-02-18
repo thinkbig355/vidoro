@@ -1,5 +1,8 @@
-import React from 'react';
-import styles from './TeamAndScenes.module.css';
+"use client";
+
+import React, { useRef, useEffect } from "react";
+import gsap from "gsap";
+// Remove the import styles from "./TeamAndScenes.module.css";
 
 interface TeamMember {
   name: string;
@@ -12,25 +15,39 @@ interface TeamMember {
 const ourTeam: TeamMember[] = [
   {
     name: "Priya Sharma",
-    role: "Lead Content Strategist",
-    bio: "With over 8 years in content localization, Priya drives our strategic direction—ensuring every translation captures essential cultural nuances.",
-    funFact: "Can recite dialogues from over 100 Bollywood movies.",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=500"
+    role: "Senior Translation Specialist",
+    bio: "Priya is a linguistic expert, meticulously ensuring accurate and culturally resonant Hindi translations, capturing the nuances of the original English content.",
+    funFact: "Has translated scripts for several award-winning documentaries.",
+    image: "https://www.vidzy.in/assets/images/about/founders/nisha.webp",
   },
   {
     name: "Rahul Verma",
-    role: "Senior Translation Specialist",
-    bio: "Specializing in Hindi-English conversions, Rahul brings an expert eye for cultural subtleties and YouTube content optimization.",
-    funFact: "Started a trending Hindi meme page.",
-    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=500"
+    role: "YouTube Growth Strategist",
+    bio: "Rahul specializes in optimizing translated content for the Hindi-speaking YouTube audience, focusing on discoverability, engagement, and channel growth.",
+    funFact: "Grew a personal YouTube channel from 0 to 100K subscribers in six months.",
+    image: "https://www.vidzy.in/assets/images/about/founders/washib.webp",
   },
   {
-    name: "Sarah Chen",
+    name: "Aditi Gupta",
     role: "Client Success Manager",
-    bio: "Serving as the bridge between creators and our team, Sarah ensures smooth execution and top-notch client satisfaction.",
-    funFact: "Fluent in 5 languages.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=500"
-  }
+    bio: "Aditi is the dedicated point of contact for our creators, ensuring a seamless experience and maximizing the impact of their translated content.",
+    funFact: "Has lived in both the US and India, providing a unique cross-cultural perspective.",
+    image: "https://shutterstock.com/shutterstock/videos/3505725819/thumb/1.jpg?ip=x480",
+  },
+  {
+    name: "Dhruv Patel",
+    role: "Head of Video Editing",
+    bio: "Dhruv leads our editing team, ensuring translated videos maintain the highest production quality, pacing, and visual appeal for the Hindi audience.",
+    funFact: "An avid gamer, Dhruv often incorporates subtle gaming references into his editing work.",
+    image: "https://www.vidzy.in/assets/images/about/founders/ravi.webp",
+  },
+  {
+    name: "Ishan Reddy",
+    role: "CEO & Founder",
+    bio: "Ishan drives the vision and strategy of the company, combining his passion for content creation with a deep understanding of the Indian market.",
+    funFact: "Started his career as a video creator, giving him firsthand insight into the needs of YouTubers.",
+    image: "https://heliumedits.com/wp-content/uploads/2025/01/jhgg.png",
+  },
 ];
 
 interface BehindScene {
@@ -38,34 +55,66 @@ interface BehindScene {
   caption: string;
 }
 
-const btsImages = [
+// Updated Behind the Scenes data
+const btsImages: BehindScene[] = [
   {
-    image: "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&q=80&w=500",
-    caption: "Weekly content strategy session"
+    image: "/Images/1.jpg",
+    caption: "Collaborative brainstorming session: Refining translation strategies.",
   },
   {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=500",
-    caption: "Cross-cultural adaptation workshop"
+    image: "/Images/3.webp",
+    caption: "Fine-tuning the visuals: Our editing team at work.",
   },
   {
-    image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=500",
-    caption: "Celebrating 1M subscribers milestone"
+    image: "/Images/4.webp",
+    caption: "Capturing the perfect Hindi voice-over: Quality audio is key.",
   },
   {
-    image: "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&q=80&w=500",
-    caption: "Monthly team sync meeting"
+    image: "/Images/2.jpg",
+    caption: "Team sync: Aligning on project goals and client feedback.",
   },
-  {
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=500",
-    caption: "Content localization workshop"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=500",
-    caption: "Team building event"
-  }
 ];
 
 export default function TeamAndScenes() {
+  const teamRowRef = useRef<HTMLDivElement>(null);
+  const btsRowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Animation for Our Team
+    if (teamRowRef.current) {
+      const teamEl = teamRowRef.current;
+      const teamWidth = teamEl.scrollWidth / 2;
+      const speed = 50; // pixels per second - adjust as needed
+      const duration = teamWidth / speed;
+
+      gsap.to(teamEl, {
+        x: -teamWidth,
+        duration: duration,
+        ease: "none",
+        repeat: -1,
+      });
+    }
+
+    // Animation for Behind the Scenes
+    if (btsRowRef.current) {
+      const btsEl = btsRowRef.current;
+      const btsWidth = btsEl.scrollWidth / 2;
+      const speed = 50; // pixels per second - adjust as needed
+      const duration = btsWidth / speed;
+
+      gsap.fromTo(
+        btsEl,
+        { x: -btsWidth },
+        {
+          x: 0,
+          duration: duration,
+          ease: "none",
+          repeat: -1,
+        }
+      );
+    }
+  }, []);
+
   return (
     <section className="py-24">
       {/* Team Section */}
@@ -85,58 +134,58 @@ export default function TeamAndScenes() {
             {/* Gradient Overlays */}
             <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10" />
             <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
-            
+
             <div className="overflow-hidden">
-              <div className={styles.scrollRow}>
-                <div className={`flex gap-8 ${styles.scrollLeft}`}>
-                  {ourTeam.map((member, i) => (
-                    <div key={i} className="flex-none w-96">
-                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
-                        <div className="h-72 w-full overflow-hidden">
-                          <img
-                            src={member.image}
-                            alt={member.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-8">
-                          <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
-                          <p className="text-sm text-[#FF3B3B] font-medium mb-4">{member.role}</p>
-                          <p className="text-gray-400 mb-6 leading-relaxed">{member.bio}</p>
-                          <div className="border-t border-gray-800 pt-4">
-                            <p className="text-sm text-gray-400">
-                              <span className="font-medium text-[#3B82F6]">Fun fact:</span> {member.funFact}
-                            </p>
-                          </div>
+              <div ref={teamRowRef} className="flex gap-8">
+                {ourTeam.map((member, i) => (
+                  <div key={i} className="flex-none w-96">
+                    {/* Team card content */}
+                    <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
+                      <div className="h-72 w-full overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-8">
+                        <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
+                        <p className="text-sm text-[#FF3B3B] font-medium mb-4">{member.role}</p>
+                        <p className="text-gray-400 mb-6 leading-relaxed">{member.bio}</p>
+                        <div className="border-t border-gray-800 pt-4">
+                          <p className="text-sm text-gray-400">
+                            <span className="font-medium text-[#3B82F6]">Fun fact:</span> {member.funFact}
+                          </p>
                         </div>
                       </div>
                     </div>
-                  ))}
-                  {/* Duplicate for seamless scrolling */}
-                  {ourTeam.map((member, i) => (
-                    <div key={`clone-${i}`} className="flex-none w-96">
-                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
-                        <div className="h-72 w-full overflow-hidden">
-                          <img
-                            src={member.image}
-                            alt={member.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-8">
-                          <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
-                          <p className="text-sm text-[#FF3B3B] font-medium mb-4">{member.role}</p>
-                          <p className="text-gray-400 mb-6 leading-relaxed">{member.bio}</p>
-                          <div className="border-t border-gray-800 pt-4">
-                            <p className="text-sm text-gray-400">
-                              <span className="font-medium text-[#3B82F6]">Fun fact:</span> {member.funFact}
-                            </p>
-                          </div>
+                  </div>
+                ))}
+                {/* Duplicate team members for seamless loop */}
+                {ourTeam.map((member, i) => (
+                  <div key={`clone-${i}`} className="flex-none w-96">
+                    {/* Duplicate team card content */}
+                    <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
+                      <div className="h-72 w-full overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-8">
+                        <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
+                        <p className="text-sm text-[#FF3B3B] font-medium mb-4">{member.role}</p>
+                        <p className="text-gray-400 mb-6 leading-relaxed">{member.bio}</p>
+                        <div className="border-t border-gray-800 pt-4">
+                          <p className="text-sm text-gray-400">
+                            <span className="font-medium text-[#3B82F6]">Fun fact:</span> {member.funFact}
+                          </p>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -147,56 +196,57 @@ export default function TeamAndScenes() {
       <section>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-32">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              {/* New Title and Styling */}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-300 to-blue-400">
+                Behind the Scenes
+              </span>
             </h2>
             <p className="text-lg text-gray-400">
-              Get a glimpse into our creative process
+              Get a glimpse into our creative process {/* Subtitle remains, but is different */}
             </p>
           </div>
           <div className="relative overflow-hidden">
             {/* Gradient Overlays */}
             <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A0A0F] to-transparent z-10" />
             <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A0A0F] to-transparent z-10" />
-            
             <div className="overflow-hidden">
-              <div className={styles.scrollRow}>
-                <div className={`flex gap-8 ${styles.scrollRight}`}>
-                  {btsImages.map((scene, i) => (
-                    <div key={i} className="flex-none w-[400px]">
-                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
-                        <div className="relative">
-                          <img
-                            src={scene.image}
-                            alt={scene.caption}
-                            className="w-full h-72 object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="p-6">
-                          <p className="text-gray-300 font-medium text-center">{scene.caption}</p>
-                        </div>
+              <div ref={btsRowRef} className="flex gap-8">
+                {btsImages.map((scene, i) => (
+                  <div key={i} className="flex-none w-[400px]">
+                    <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
+                      <div className="relative">
+                        <img
+                          src={scene.image}
+                          alt={scene.caption}
+                          className="w-full h-72 object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <p className="text-gray-300 font-medium text-center">{scene.caption}</p>
                       </div>
                     </div>
-                  ))}
-                  {/* Duplicate for seamless scrolling */}
-                  {btsImages.map((scene, i) => (
-                    <div key={`clone-${i}`} className="flex-none w-[400px]">
-                      <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
-                        <div className="relative">
-                          <img
-                            src={scene.image}
-                            alt={scene.caption}
-                            className="w-full h-72 object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="p-6">
-                          <p className="text-gray-300 font-medium text-center">{scene.caption}</p>
-                        </div>
+                  </div>
+                ))}
+                {/* Duplicate for seamless scrolling */}
+                {btsImages.map((scene, i) => (
+                  <div key={`clone-${i}`} className="flex-none w-[400px]">
+                    <div className="bg-[#111111] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-800">
+                      <div className="relative">
+                        <img
+                          src={scene.image}
+                          alt={scene.caption}
+                          className="w-full h-72 object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <p className="text-gray-300 font-medium text-center">{scene.caption}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -204,4 +254,4 @@ export default function TeamAndScenes() {
       </section>
     </section>
   );
-} 
+}

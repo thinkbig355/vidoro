@@ -49,60 +49,31 @@ const ServiceBoxes = () => {
     <section className="py-20 px-4" ref={ref}>
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          {/* Removed the title and subtitle */}
-          {/* <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold mb-6 text-[#E879F9]"
-          >
-            Why Choose Us
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-gray-400"
-          >
-            Unlock the power of professional Hindi translation
-          </motion.p> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
+              className="group relative flex-none transform-gpu"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ 
-                duration: 0.5,
-                delay: index * 0.1,
-                ease: [0.4, 0, 0.2, 1]
-              }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <Card className="relative h-full bg-[#12121A]/50 backdrop-blur-md shadow-xl border border-gray-700/50 rounded-lg overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                <CardContent className="p-6 relative z-10">
-                  {/* Gradient Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-300 ease-in-out" />
-                  
-                  {/* Icon Container */}
-                  <div className={`w-12 h-12 mb-6 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.gradient}`}>
-                    <service.icon className="w-6 h-6 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:opacity-100 opacity-0 transition-opacity duration-500" />
+              <div className="relative p-8 h-full bg-[#12121A] rounded-2xl border border-gray-800/50 backdrop-blur-xl transition-all duration-500 group-hover:border-gray-700/50 group-hover:translate-y-[-2px] will-change-transform">
+                <div className="mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/10 to-blue-500/10 flex items-center justify-center border border-gray-800">
+                    <service.icon className="w-7 h-7 text-red-400 group-hover:text-blue-400 transition-colors duration-500" />
                   </div>
-
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#E879F9] transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                    {service.desc}
-                  </p>
-
-                  {/* Hover Effect */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E879F9] to-[#8B5CF6] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"
-                  />
-                </CardContent>
-              </Card>
+                </div>
+                <h2 className="text-xl font-semibold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-400 group-hover:to-blue-400 transition-all duration-500">
+                  {service.title}
+                </h2>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {service.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
