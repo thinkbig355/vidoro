@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/posthog/api/:match*",
-      "destination": "https://app.posthog.com/api/:match*"
+      "source": "/ingest/static/:path(.*)",
+      "destination": "https://app.posthog.com/static/:path*"
+    },
+    {
+      "source": "/ingest/:path(.*)",
+      "destination": "https://app.posthog.com/:path*"
     },
     {
       "source": "/(.*)",
