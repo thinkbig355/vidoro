@@ -19,4 +19,9 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: './', // Ensure relative paths for assets
+  build: {
+    outDir: 'dist', // Output directory for built files
+    assetsDir: 'assets', // Directory for static assets
+  },
 }));
