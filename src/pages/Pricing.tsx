@@ -161,7 +161,7 @@ const Pricing = () => {
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
-                    <span className="text-xs font-medium">We Upload On YT</span>
+                    <span className="text-xs font-medium">We'll Upload On YT</span>
                   </div>
                 </div>
               </div>
