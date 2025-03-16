@@ -1,232 +1,211 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
-    // Hover box logic for desktop navigation
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const [hoverStyle, setHoverStyle] = useState<{ left: string; width: string }>({
-        left: "0px",
-        width: "0px",
-    });
-    const linkRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const links = [
+    { name: 'Home', path: '/', icon: '🏠' },
+    { name: 'Work Samples', path: '/work', icon: '🎬' },
+    { name: 'How it works', path: '/process', icon: '⚙️' },
+    { name: 'Pricing', path: '/pricing', icon: '💰' },
+  ];
 
-    useEffect(() => {
-        if (hoveredIndex !== null) {
-            const hoveredElement = linkRefs.current[hoveredIndex];
-            if (hoveredElement) {
-                const { offsetLeft, offsetWidth } = hoveredElement;
-                // Make the box 8px larger on both sides
-                setHoverStyle({
-                    left: `${offsetLeft - 8}px`,
-                    width: `${offsetWidth + 16}px`,
-                });
-            }
-        }
-    }, [hoveredIndex]);
+  const handleGetStarted = () => {
+    navigate('/contact');
+    setIsMobileMenuOpen(false);
+  };
 
-    const links = [
-        { name: 'Work Samples', path: '/work' },
-        { name: 'How it works', path: '/process' },
-        { name: 'Pricing', path: '/pricing' },
-    ];
-
-    const handleGetStarted = () => {
-        navigate('/contact');
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false);
+      }
     };
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-    useEffect(() => {
-        setIsMobileMenuOpen(false);
-    }, [location]);
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setIsMobileMenuOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    // GradientButton Component logic
-    const GradientButton = () => {
-        return (
-            <div className="relative group">
-                {/* 3D shadow effect */}
-                <motion.div
-                    className="absolute inset-0 bg-red-700 rounded-md"
-                    style={{ filter: "blur(10px)" }}
-                    animate={{
-                        scale: [1, 1.05, 1],
-                        opacity: [0.7, 0.9, 0.7],
-                    }}
-                    transition={{
-                        duration: 3,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "easeInOut",
-                    }}
-                />
-
-                <motion.button
-                    className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
-                    style={{
-                        background: "linear-gradient(135deg, #FF0000, #8B0000)",
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <span className="relative z-10 block text-sm">
-                        Get Started
-                    </span>
-                    {/* Pulsing gradient overlay */}
-                    <motion.div
-                        className="absolute inset-0 bg-red-500/30"
-                        style={{
-                            mixBlendMode: "overlay",
-                        }}
-                    />
-                </motion.button>
-            </div>
-        );
-    };
-
+  const GradientButton = () => {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black">
-            <div className="container mx-auto px-4 py-4">
-                <div className="flex items-center justify-between">
-                    <motion.div whileHover={{ scale: 1.05 }}>
-                        <Link
-                            to="/"
-                            className="text-2xl font-bold text-red-600"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Vidoro
-                        </Link>
-                    </motion.div>
-
-                    <div className="md:hidden">
-                        <button onClick={toggleMobileMenu} className="text-white">
-                            {isMobileMenuOpen ? (
-                                <svg
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            ) : (
-                                <svg
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16m-7 6h7"
-                                    />
-                                </svg>
-                            )}
-                        </button>
-                    </div>
-
-                    <div
-                        className={`md:flex ${isMobileMenuOpen ? 'flex' : 'hidden'} items-center gap-8`}
-                        ref={menuRef}
-                    >
-                        {/* Desktop Navigation with Hover Box */}
-                        <nav className="hidden md:block">
-                            <div className="relative">
-                                {/* Hover Highlight */}
-                                <div
-                                    className="absolute h-full transition-all duration-300 ease-out bg-blue-600/30 rounded"
-                                    style={{
-                                        ...hoverStyle,
-                                        opacity: hoveredIndex !== null ? 1 : 0,
-                                    }}
-                                />
-                                <div className="flex gap-8 items-center">
-                                    {links.map((item, index) => (
-                                        <motion.div
-                                            key={item.name}
-                                            whileHover={{ scale: 1.05 }}
-                                            className="relative"
-                                            ref={(el) => (linkRefs.current[index] = el)}
-                                            onMouseEnter={() => setHoveredIndex(index)}
-                                            onMouseLeave={() => setHoveredIndex(null)}
-                                        >
-                                            <Link
-                                                to={item.path}
-                                                className={`text-gray-300 hover:text-white transition-colors ${
-                                                    location.pathname === item.path
-                                                        ? 'text-white font-semibold'
-                                                        : ''
-                                                }`}
-                                            >
-                                                {item.name}
-                                            </Link>
-                                            {location.pathname === item.path && (
-                                                <motion.div
-                                                    layoutId="underline"
-                                                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white"
-                                                />
-                                            )}
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </nav>
-
-                        {isMobileMenuOpen && (
-                            <nav className="flex flex-col gap-4 mt-4">
-                                {links.map((item) => (
-                                    <Link
-                                        key={item.name}
-                                        to={item.path}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className={`text-gray-300 hover:text-white transition-colors ${
-                                            location.pathname === item.path
-                                                ? 'text-white font-semibold'
-                                                : ''
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                ))}
-                            </nav>
-                        )}
-
-                        {/* Replaced Button with GradientButton */}
-                        <div onClick={handleGetStarted}>
-                            <GradientButton />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+      <div className="relative group">
+        <motion.div
+          className="absolute inset-0 bg-red-700 rounded-md"
+          style={{ filter: "blur(10px)" }}
+          animate={{
+            scale: [1, 1.05, 1],
+            opacity: [0.7, 0.9, 0.7],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.button
+          className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #FF0000, #8B0000)",
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="relative z-10 block text-sm">
+            Get Started
+          </span>
+          <motion.div
+            className="absolute inset-0 bg-red-500/30"
+            style={{
+              mixBlendMode: "overlay",
+            }}
+          />
+        </motion.button>
+      </div>
     );
+  };
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <Link to="/" className="flex items-center">
+              <img src="/public/favicon.ico" alt="Vidoro" className="w-8 h-8" />
+            </Link>
+          </motion.div>
+
+          <motion.button 
+            className="md:hidden p-2 rounded-full bg-gray-800/50 text-white"
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            )}
+          </motion.button>
+
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <nav className="flex items-center">
+              <ul className="flex gap-6">
+                {links.map((item) => (
+                  <motion.li 
+                    key={item.name}
+                    onHoverStart={() => setHoveredItem(item.name)}
+                    onHoverEnd={() => setHoveredItem(null)}
+                    className="relative"
+                  >
+                    <Link 
+                      to={item.path} 
+                      className={`py-2 px-3 rounded-lg relative flex items-center gap-2 transition-all ${
+                        location.pathname === item.path 
+                          ? 'text-white' 
+                          : 'text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      {hoveredItem === item.name && (
+                        <motion.div
+                          layoutId="navHover"
+                          className="absolute inset-0 bg-gray-800/80 rounded-lg -z-10"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                      )}
+
+                      {location.pathname === item.path && (
+                        <motion.div
+                          layoutId="activeNav"
+                          className="absolute inset-0 bg-gray-700/50 rounded-lg -z-10"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
+
+                      <span className="hidden sm:inline">{item.icon}</span>
+                      <span className={location.pathname === item.path ? 'font-medium' : ''}>{item.name}</span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Get Started button on the right */}
+          <div className="hidden md:flex items-center">
+            <div onClick={handleGetStarted}>
+              <GradientButton />
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div 
+                ref={menuRef}
+                className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-t border-gray-800 p-6 rounded-b-2xl shadow-2xl md:hidden"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2 }}
+              >
+                <nav className="flex flex-col gap-4 mb-8">
+                  {links.map((item) => (
+                    <motion.div
+                      key={item.name}
+                      whileHover={{ x: 10 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <Link
+                        to={item.path}
+                        className={`flex items-center gap-3 text-lg py-2 ${
+                          location.pathname === item.path
+                            ? 'text-white font-medium'
+                            : 'text-gray-400'
+                        }`}
+                      >
+                        <span>{item.icon}</span>
+                        <span>{item.name}</span>
+
+                        {location.pathname === item.path && (
+                          <motion.div
+                            layoutId="mobileActive"
+                            className="w-1 h-6 bg-red-500 rounded-full ml-auto"
+                          />
+                        )}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+                <div onClick={handleGetStarted}>
+                  <GradientButton />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Navigation;
