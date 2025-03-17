@@ -1,3 +1,4 @@
+// pricing.tsx
 "use client"
 import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
@@ -5,6 +6,7 @@ import { Check } from "lucide-react"
 import Particles from "react-tsparticles"
 import { loadSlim } from "tsparticles-slim"
 import type { Container, Engine } from "tsparticles-engine"
+
 const Pricing = () => {
   const [selectedPack, setSelectedPack] = useState<number | string>(5)
   const [duration, setDuration] = useState(8)
@@ -15,8 +17,7 @@ const Pricing = () => {
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
     console.log(container)
   }, [])
-  
-  // Updated pack details
+
   const packs = [
     { quantity: 1, discount: 0 },
     { quantity: 5, discount: 0.20 },
@@ -29,20 +30,15 @@ const Pricing = () => {
     return ((minutes - 5) / 25) * 0.2
   }
 
-  // Base price reduced from 5 to 4
   const basePricePerMinute = 4
   const selectedPackInfo = packs.find((p) => p.quantity === selectedPack) || packs[0]
   const durationDiscount = getDurationDiscount(duration)
   const packDiscount = selectedPackInfo.discount
   const totalDiscount = durationDiscount + packDiscount
-  // Calculate base price for the duration
   const basePriceForDuration = duration * basePricePerMinute
-  // Apply total discount
   const discountedPrice = basePriceForDuration * (1 - totalDiscount)
-  // Add additional services
   const thumbnailPrice = thumbnail ? 10 : 0
   const finalPricePerVideo = discountedPrice + thumbnailPrice
-  // for showing original price on pack discounts only
   const originalPrice = basePriceForDuration + thumbnailPrice
 
   return (
@@ -99,7 +95,7 @@ const Pricing = () => {
         }}
         className="absolute inset-0"
       />
-      
+
       <div className="relative container mx-auto px-4 pt-16 pb-10 md:pt-20 md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -118,7 +114,6 @@ const Pricing = () => {
           transition={{ delay: 0.2 }}
           className="max-w-4xl mx-auto bg-[#1C1C28] rounded-2xl shadow-xl border border-gray-800 overflow-hidden"
         >
-          {/* Base Price Display */}
           <div className="text-center py-6 bg-gradient-to-br from-[#2B1F4B] via-[#241B3B] to-[#1F1B2E]">
             <motion.div
               key={finalPricePerVideo}
@@ -136,13 +131,10 @@ const Pricing = () => {
               </div>
             </motion.div>
             <div className="text-gray-400">per video</div>
-            {/* Removed the "Total Discount:" display */}
           </div>
           <div className="p-6 space-y-6">
-            {/* Included Features - 2x2 Grid */}
             <div className="bg-[#242433] rounded-xl p-4">
               <div className="grid grid-cols-2 gap-4 text-sm">
-                {/* Left Column */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-gray-400">
                     <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
@@ -153,7 +145,6 @@ const Pricing = () => {
                     <span className="text-xs font-medium">Pro Adaptation</span>
                   </div>
                 </div>
-                {/* Right Column */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-gray-400">
                     <Check className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
@@ -166,7 +157,6 @@ const Pricing = () => {
                 </div>
               </div>
             </div>
-            {/* Pack Selection */}
             <div className="grid grid-cols-3 gap-0.5 bg-gray-800/20 p-1 rounded-xl">
               {packs.map((pack) => (
                 <motion.button
@@ -180,8 +170,8 @@ const Pricing = () => {
                 >
                   <span className="font-medium">
                     {typeof pack.quantity === "string"
-                      ? pack.quantity
-                      : `${pack.quantity} ${pack.quantity === 1 ? "Video" : "Videos"}`}
+                      ? `${pack.quantity} Pack`
+                      : `${pack.quantity} Video${pack.quantity === 1 ? " Pack" : "s Pack"}`}
                   </span>
                   {pack.discount > 0 && (
                     <span
@@ -195,28 +185,28 @@ const Pricing = () => {
                 </motion.button>
               ))}
             </div>
-            {/* Duration Slider */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <label className="text-sm font-medium text-gray-300">
                   Video Duration: {duration} minutes
                 </label>
-                {/* Duration discount display removed */}
               </div>
               <p className="text-center text-sm text-indigo-400 animate-pulse mb-2">
                 Slide to adjust duration and see price change!
               </p>
-              <div className="relative pt-1 pb-4">
+              <div className="relative pt-3 pb-5">
+                <div className="absolute inset-x-0 -top-6 -bottom-6" style={{ pointerEvents: 'none' }}></div>
                 <input
                   type="range"
                   min="1"
                   max="60"
                   value={duration}
                   onChange={(e) => setDuration(Number.parseInt(e.target.value))}
-                  className="w-full h-1 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-6 rounded-lg appearance-none cursor-pointer touch-manipulation"
                   style={{
                     background: `linear-gradient(to right, #FF416C 0%, #FF416C ${((duration - 1) / 59) * 100}%, rgb(55, 65, 81) ${((duration - 1) / 59) * 100}%, rgb(55, 65, 81) 100%)`,
                     WebkitAppearance: "none",
+                    position: "relative", // Add this
                   }}
                 />
               </div>
@@ -225,7 +215,6 @@ const Pricing = () => {
                 <span>60 min</span>
               </div>
             </div>
-            {/* Add-ons */}
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 rounded-xl bg-[#242433] hover:bg-[#2A2A3A] transition-colors">
                 <div>
@@ -252,4 +241,5 @@ const Pricing = () => {
     </div>
   )
 }
+
 export default Pricing

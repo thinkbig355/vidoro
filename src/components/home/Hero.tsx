@@ -189,7 +189,7 @@ export default function Hero() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">Get Started</span>
+            <span className="relative z-10">Pricing</span>
             <motion.div
               className="absolute inset-0 bg-white opacity-20 rounded-full"
               animate={{ scale: [1, 1.15, 1] }}

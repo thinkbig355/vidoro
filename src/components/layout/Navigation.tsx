@@ -36,43 +36,30 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  const GradientButton = () => {
-    return (
-      <div className="relative group">
+const GradientButton = () => {
+  return (
+    <div className="relative group">
+      <motion.button
+        className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #60A5FA, #F87171)",
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span className="relative z-10 block text-sm">
+          Contact Us
+        </span>
         <motion.div
-          className="absolute inset-0 bg-red-700 rounded-md"
-          style={{ filter: "blur(10px)" }}
-          animate={{
-            scale: [1, 1.05, 1],
-            opacity: [0.7, 0.9, 0.7],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
+          className="absolute inset-0 bg-blue-500/30"
+          style={{
+            mixBlendMode: "overlay",
           }}
         />
-        <motion.button
-          className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, #FF0000, #8B0000)",
-          }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="relative z-10 block text-sm">
-            Get Started
-          </span>
-          <motion.div
-            className="absolute inset-0 bg-red-500/30"
-            style={{
-              mixBlendMode: "overlay",
-            }}
-          />
-        </motion.button>
-      </div>
-    );
-  };
+      </motion.button>
+    </div>
+  );
+};
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80">
@@ -150,7 +137,7 @@ const Navigation = () => {
             </nav>
           </div>
 
-          {/* Get Started button on the right */}
+          {/* Contact Us button on the right */}
           <div className="hidden md:flex items-center">
             <div onClick={handleGetStarted}>
               <GradientButton />

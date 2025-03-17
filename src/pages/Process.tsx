@@ -130,9 +130,9 @@ const Process = () => {
             </motion.p>
           </div>
 
-          {/* Horizontal Scrollable Steps */}
-          <div className="relative overflow-visible pb-8 -mx-4 px-4">
-            <div className="flex gap-6 w-max">
+          {/* Horizontal Scrollable Steps - Simple solution that works */}
+          <div className="relative pb-8 -mx-4 px-4 overflow-x-auto no-scrollbar">
+            <div className="flex gap-6 min-w-max">
               {steps.map((step, index) => (
                 <motion.div
                   key={index}

@@ -20,7 +20,7 @@ interface FormData {
 }
 
 const ContactUs = () => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
+    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormData>();
 
     const onSubmit = async (data: FormData) => {
         try {
@@ -36,14 +36,43 @@ const ContactUs = () => {
 
             if (error) {
                 console.error("Error inserting data to supabase", error);
-                toast.error("Failed to send message");
+                toast.error("Failed to send message", {
+                    position: "bottom-left",
+                    duration: 4000,
+                    style: {
+                        backgroundColor: "#2A2A35",
+                        border: "1px solid #3A3A45",
+                        color: "white",
+                        fontSize: "14px"
+                    },
+                });
             } else {
-                toast.success("Message sent successfully!");
+                toast.success("Message sent successfully!", {
+                    position: "bottom-left",
+                    duration: 4000,
+                    style: {
+                        backgroundColor: "#2A2A35",
+                        border: "1px solid #3A3A45",
+                        color: "white",
+                        fontSize: "14px",
+                        background: "linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1))"
+                    },
+                    icon: "✓",
+                });
                 reset();
             }
         } catch (error) {
             console.error("Error sending data to Supabase", error);
-            toast.error("Something went wrong");
+            toast.error("Something went wrong", {
+                position: "bottom-left",
+                duration: 4000,
+                style: {
+                    backgroundColor: "#2A2A35",
+                    border: "1px solid #3A3A45",
+                    color: "white",
+                    fontSize: "14px"
+                },
+            });
         }
     };
 
@@ -114,9 +143,10 @@ const ContactUs = () => {
 
                         <Button
                             type="submit"
+                            disabled={isSubmitting}
                             className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white py-3 rounded-lg transition-all duration-300"
                         >
-                            Submit
+                            {isSubmitting ? "Submitting..." : "Submit"}
                         </Button>
                     </form>
 

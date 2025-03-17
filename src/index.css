@@ -81,9 +81,112 @@
   }
 }
 
-.animate-scroll-left,
-.animate-scroll-right {
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .wave-bg {
+    background: linear-gradient(90deg, rgba(31, 41, 55, 0.2), rgba(59, 130, 246, 0.3), rgba(239, 68, 68, 0.3), rgba(31, 41, 55, 0.2));
+    background-size: 400% 100%;
+    animation: wave 8s linear infinite;
+  }
+
+  @keyframes wave {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 400% 0;
+    }
+  }
+
+  .animate-scroll-left,
+  .animate-scroll-right {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Custom range slider styles for better mobile experience */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  margin-top: -10px; /* offset for the track height */
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+input[type=range]::-ms-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+/* Add this to improve touch handling on mobile */
+@media (pointer: coarse) {
+  input[type=range]::-webkit-slider-thumb {
+    height: 28px;
+    width: 28px;
+  }
+
+  input[type=range] {
+    height: 28px;
+  }
+}
+
+/* Fix for double border issue - Add these lines below */
+input:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: rgb(239, 68, 68) !important; /* red-500 - ensure this matches your red color */
+  --tw-ring-offset-shadow: 0 0 #0000 !important; /* Remove ring offset */
+  --tw-ring-shadow: 0 0 #0000 !important;        /* Remove ring shadow */
+  border-width: 2px !important;                   /* Optional: Adjust border width if needed */
+}
+
+/* If you are using shadcn/ui or similar libraries that might add focus rings */
+.ring-offset-background,
+[data-focus-visible]:focus-visible {
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-width: 0px !important;
 }
