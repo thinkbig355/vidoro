@@ -30,7 +30,7 @@ const Pricing = () => {
     return ((minutes - 5) / 25) * 0.2
   }
 
-  const basePricePerMinute = 4
+  const basePricePerMinute = 3.5; // Changed base price to 3.5
   const selectedPackInfo = packs.find((p) => p.quantity === selectedPack) || packs[0]
   const durationDiscount = getDurationDiscount(duration)
   const packDiscount = selectedPackInfo.discount
@@ -123,11 +123,11 @@ const Pricing = () => {
             >
               {(packDiscount > 0) && (
                 <div className="absolute -left-16 top-1/2 -translate-y-1/2 text-lg text-gray-400 line-through">
-                  ${originalPrice.toFixed(0)}
+                  ${originalPrice.toFixed(1)}
                 </div>
               )}
               <div className="text-5xl font-bold text-white mb-2">
-                ${finalPricePerVideo.toFixed(0)}
+                ${finalPricePerVideo.toFixed(1)}
               </div>
             </motion.div>
             <div className="text-gray-400">per video</div>
@@ -171,7 +171,7 @@ const Pricing = () => {
                   <span className="font-medium">
                     {typeof pack.quantity === "string"
                       ? `${pack.quantity} Pack`
-                      : `${pack.quantity} Video${pack.quantity === 1 ? " Pack" : "s Pack"}`}
+                      : `${pack.quantity} ${pack.quantity === 1 ? "Video Simple" : "Videos Pack"}`} {/* Changed Line */}
                   </span>
                   {pack.discount > 0 && (
                     <span
@@ -219,7 +219,7 @@ const Pricing = () => {
               <div className="flex items-center justify-between p-3 rounded-xl bg-[#242433] hover:bg-[#2A2A3A] transition-colors">
                 <div>
                   <h4 className="font-medium text-sm">Custom Thumbnail</h4>
-                  <p className="text-xs text-gray-400">Optimized for your audience</p>
+                  <p className="text-xs text-gray-400">Optimized for indian viewers</p>
                 </div>
                 <div className="flex items-center justify-end gap-3">
                   <label className="relative inline-flex items-center cursor-pointer">

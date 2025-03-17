@@ -184,28 +184,58 @@ const VideoComparisonWrapper = ({ originalVideoId, translatedVideoId, inView }) 
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-900 border border-gray-800 rounded-lg shadow-2xl">
-      <motion.div className="relative aspect-video" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-        <iframe
-          src={`https://www.youtube.com/embed/${originalVideoId}`}
-          title="Original Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          onLoad={() => setIsOriginalLoading(false)}
-          className="absolute top-0 left-0 w-full h-full rounded-lg"
-        />
-        {isOriginalLoading && skeletonLoader}
-      </motion.div>
-      <motion.div className="relative aspect-video" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-        <iframe
-          src={`https://www.youtube.com/embed/${translatedVideoId}`}
-          title="Translated Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          onLoad={() => setIsTranslatedLoading(false)}
-          className="absolute top-0 left-0 w-full h-full rounded-lg"
-        />
-        {isTranslatedLoading && skeletonLoader}
-      </motion.div>
+      <div className="space-y-2 relative">
+        <motion.div
+          className="bg-gradient-to-r from-blue-600 to-blue-400 text-white text-center py-2 rounded-t-lg font-semibold"
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 3,
+            ease: "linear",
+            repeat: Number.POSITIVE_INFINITY,
+          }}
+        >
+          Original
+        </motion.div>
+        <motion.div className="relative aspect-video" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+          <iframe
+            src={`https://www.youtube.com/embed/${originalVideoId}`}
+            title="Original Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            onLoad={() => setIsOriginalLoading(false)}
+            className="absolute top-0 left-0 w-full h-full rounded-b-lg"
+          />
+          {isOriginalLoading && skeletonLoader}
+        </motion.div>
+      </div>
+      <div className="space-y-2 relative">
+        <motion.div
+          className="bg-gradient-to-r from-red-600 to-red-400 text-white text-center py-2 rounded-t-lg font-semibold"
+          animate={{
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+          }}
+          transition={{
+            duration: 3,
+            ease: "linear",
+            repeat: Number.POSITIVE_INFINITY,
+          }}
+        >
+          Translated
+        </motion.div>
+        <motion.div className="relative aspect-video" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+          <iframe
+            src={`https://www.youtube.com/embed/${translatedVideoId}`}
+            title="Translated Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            onLoad={() => setIsTranslatedLoading(false)}
+            className="absolute top-0 left-0 w-full h-full rounded-b-lg"
+          />
+          {isTranslatedLoading && skeletonLoader}
+        </motion.div>
+      </div>
     </div>
   );
 };
