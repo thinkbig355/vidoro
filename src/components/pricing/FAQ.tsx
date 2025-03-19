@@ -4,35 +4,61 @@ import FAQItem from '@/components/process/FAQItem';
 
 const faqItems = [
   {
-    question: "What is \"Indian Viewers Adaptation\"?",
-    answer: [
-      "Indian Viewers Adaptation means we make very minor and rare changes to the content if something isn’t relevant to an Indian audience, adjusting it slightly to fit their context. Most of the time, no changes are needed as the content is already broadly suitable."
-    ]
-  },
-  {
     question: "What exactly are \"minutes\" in these packages, and how do they work?",
     answer: [
-      "\"Minutes\" refer to the total duration of video content you can have translated and adapted. For example, if you buy a package with 60 minutes, you can process up to 60 minutes of video content. There’s no time limit like a month or a specific period to use these minutes—they stay available until you’ve used them all. You can also increase your minutes anytime by purchasing another package."
-    ]
+      { content: "\"Minutes\" refer to the total duration of video content we can translate and upload for you. For example, if you have a 60-minute package, we’ll process and upload videos as long as their combined duration doesn’t exceed 60 minutes. You can use these minutes anytime, and we’ll continue translating and uploading until they’re used up.", hasDot: false }
+    ],
+  },
+  {
+    question: "Can I purchase more minutes anytime?",
+    answer: [
+      { content: "Yes, you can buy more minutes whenever you want, whether you’ve used all your current minutes or still have plenty left. Minutes are like a credit—you can top them up by purchasing any package, and the new minutes will be added to your existing balance. They never expire. Right now, we don’t have a website system to track your minutes, but we’re planning to add a feature later to show your usage and remaining minutes.", hasDot: false }
+    ],
+  },
+  {
+    question: "What is \"Automatic Upload on YouTube\"?",
+    answer: [
+      { content: "Automatic Upload on YouTube means we upload your translated videos directly to your new Hindi channel. You’ll need to create a dedicated Hindi YouTube channel and give us the \"uploader\" role, allowing us to upload without accessing other parts of your account.", hasDot: false }
+    ],
+  },
+  {
+    question: "How do you get my videos to translate?",
+    answer: [
+      { content: <strong>You have two options:</strong>, hasDot: false },
+      { content: <span><strong>Upload directly:</strong> You can upload your video to us yourself, preserving the original quality with no loss.</span>, hasDot: true },
+      { content: <span><strong>Automatic detection:</strong> We can detect new videos you upload to your original channel, then translate and upload them to your Hindi channel within 8-24 hours. This option requires zero effort from you—just upload as usual, and we handle the rest. Note: Downloading from YouTube slightly reduces quality, but the difference is minimal and barely noticeable.</span>, hasDot: true },
+    ],
   },
   {
     question: "Are there any additional costs or hidden fees?",
     answer: [
-      "No, there are no hidden fees. The price you see for each package is the full cost for the services included."
-    ]
+      { content: "No, there are no hidden fees. The price you see for each package is the full cost for the services included.", hasDot: false }
+    ],
   },
   {
-    question: "How long does it take to deliver the videos for each package?",
+    question: "What is your turnaround time?",
     answer: [
-      "For all packages, including the 1 Video Sample, Plus Pack, and Pro Pack, delivery typically takes between 12 to 24 hours."
-    ]
+      { content: "For all packages, delivery typically takes between 8 to 24 hours. Need it faster? Contact us directly to request expedited service!", hasDot: false }
+    ],
   },
   {
-    question: "Can I purchase more minutes if I use up my allocated minutes?",
+    question: "How can I contact you?",
     answer: [
-      "Yes, you can buy any package again to add more minutes to your account. Right now, we don’t have a system on the website to store or show your minutes, but we’re planning to add a feature later that will let you track your usage and see how many minutes you have left."
-    ]
-  }
+      { content: "You can reach us through the contact form on our website, which we prioritize for faster responses. Alternatively, you can email us at contact@vidoro.agency. We’re here to assist with any questions or requests!", hasDot: false }
+    ],
+  },
+  {
+    question: "What is \"Indian Viewers Adaptation\"?",
+    answer: [
+      { content: "Indian Viewers Adaptation means we make very minor and rare changes to the content if something isn’t relevant to an Indian audience, adjusting it slightly to fit their context. Most of the time, no changes are needed as the content is already broadly suitable.", hasDot: false }
+    ],
+  },
+  {
+    question: "Why create a separate channel for India?",
+    answer: [
+      { content: "Creating a separate channel for Hindi videos allows for tailored content that resonates with Indian viewers, leading to more reach, revenue, and potential sponsors. It also helps target the right audience and optimizes for regional algorithms, ensuring your content reaches Indian viewers effectively.", hasDot: false }
+    ],
+  },
 ];
 
 export default function PricingFAQ() {

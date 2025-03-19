@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 interface FAQItemProps {
   question: string;
-  answer: string[];
+  answer: { content: React.ReactNode; hasDot: boolean }[];
 }
 
 const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
@@ -45,7 +44,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
               transition={{ duration: 0.3 }}
               className="mt-4 space-y-3"
             >
-              {answer.map((line, index) => (
+              {answer.map((item, index) => (
                 <motion.div 
                   key={index}
                   initial={{ opacity: 0, x: -10 }}
@@ -53,8 +52,10 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-start gap-3 text-gray-400"
                 >
-                  <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-red-400 to-blue-400 mt-2" />
-                  <p className="text-sm leading-relaxed">{line}</p>
+                  {item.hasDot && (
+                    <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-red-400 to-blue-400 mt-2" />
+                  )}
+                  <div className="text-sm leading-relaxed">{item.content}</div>
                 </motion.div>
               ))}
             </motion.div>
