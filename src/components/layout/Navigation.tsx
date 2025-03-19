@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import GoogleLoginButton from 'src/components/ui/GoogleLoginButton'; // CORRECTED PATH
+
 
 const Navigation = () => {
   const location = useLocation();
@@ -65,7 +67,7 @@ const Navigation = () => {
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
@@ -74,7 +76,7 @@ const Navigation = () => {
             </Link>
           </motion.div>
 
-          <motion.button 
+          <motion.button
             className="md:hidden p-2 rounded-full bg-gray-800/50 text-white"
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -95,17 +97,17 @@ const Navigation = () => {
             <nav className="flex items-center">
               <ul className="flex gap-6">
                 {links.map((item) => (
-                  <motion.li 
+                  <motion.li
                     key={item.name}
                     onHoverStart={() => setHoveredItem(item.name)}
                     onHoverEnd={() => setHoveredItem(null)}
                     className="relative"
                   >
-                    <Link 
-                      to={item.path} 
+                    <Link
+                      to={item.path}
                       className={`py-2 px-3 rounded-lg relative flex items-center gap-2 transition-all ${
-                        location.pathname === item.path 
-                          ? 'text-white' 
+                        location.pathname === item.path
+                          ? 'text-white'
                           : 'text-gray-400 hover:text-white'
                       }`}
                     >
@@ -137,8 +139,13 @@ const Navigation = () => {
             </nav>
           </div>
 
-          {/* Contact Us button on the right */}
-          <div className="hidden md:flex items-center">
+          {/* Login and Contact Us buttons on the right */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Google Login Button */}
+            <div>
+              <GoogleLoginButton />
+            </div>
+            {/* Contact Us button */}
             <div onClick={handleGetStarted}>
               <GradientButton />
             </div>
@@ -147,7 +154,7 @@ const Navigation = () => {
           {/* Mobile Menu */}
           <AnimatePresence>
             {isMobileMenuOpen && (
-              <motion.div 
+              <motion.div
                 ref={menuRef}
                 className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-t border-gray-800 p-6 rounded-b-2xl shadow-2xl md:hidden"
                 initial={{ opacity: 0, y: -20 }}
@@ -183,8 +190,12 @@ const Navigation = () => {
                     </motion.div>
                   ))}
                 </nav>
-                <div onClick={handleGetStarted}>
-                  <GradientButton />
+                {/* Mobile Login and Contact Us */}
+                 <div className="flex flex-col space-y-4">
+                    <GoogleLoginButton />
+                    <div onClick={handleGetStarted}>
+                        <GradientButton />
+                    </div>
                 </div>
               </motion.div>
             )}
