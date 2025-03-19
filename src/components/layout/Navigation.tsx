@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import GoogleLoginButton from 'src/components/ui/GoogleLoginButton'; // CORRECTED PATH
-
+import GoogleLoginButton from '../ui/GoogleLoginButton';
 
 const Navigation = () => {
   const location = useLocation();
