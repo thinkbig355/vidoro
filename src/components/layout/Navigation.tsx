@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from '../../lib/firebase';
-import { saveUserToFirestore } from '../../lib/saveUser'; // Import saveUserToFirestore
 
 const Navigation = () => {
   const location = useLocation();
@@ -24,21 +21,14 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
-    // Updated handleSignIn function
-  const handleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-      await saveUserToFirestore(user); // Save user to Firestore
-      navigate('/dashboard/home'); // Redirect to the dashboard
-    } catch (error) {
-      console.error('Sign-in error:', error);
-    }
+  const handleSignIn = () => {
+    navigate('/login'); // Redirect to the new login page
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !(menuRef.current as any).contains(event.target)) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -139,8 +129,7 @@ const Navigation = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            {/* Sign In button */}
-            <div onClick={handleSignIn}>
+            <div>
               <GradientButton text="Sign In" onClick={handleSignIn} />
             </div>
             <div onClick={handleGetStarted}>
@@ -184,8 +173,7 @@ const Navigation = () => {
                   ))}
                 </nav>
                 <div className="flex flex-col gap-4">
-                  {/* Sign In button in mobile menu */}
-                  <div onClick={handleSignIn}>
+                  <div>
                     <GradientButton text="Sign In" onClick={handleSignIn} />
                   </div>
                   <div onClick={handleGetStarted}>

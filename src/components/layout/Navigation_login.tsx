@@ -3,15 +3,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
+import { HiOutlineHome, HiOutlineChartBar, HiOutlineChatAlt, HiOutlineDocumentText } from 'react-icons/hi'; // Import icons
 
 const NavigationLogin = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const links = [
-    { name: 'Home', path: '/dashboard/home', icon: '🏠' },
-    { name: 'Chat', path: '/dashboard/chat', icon: '💬' },
-    { name: 'Analytics', path: '/dashboard/analytics', icon: '📊' },
+    { name: 'Dashboard', path: '/dashboard/home', icon: <HiOutlineHome className="w-6 h-6" /> },
+    { name: 'Chat', path: '/dashboard/chat', icon: <HiOutlineChatAlt className="w-6 h-6" /> },
+    { name: 'Analytics', path: '/dashboard/analytics', icon: <HiOutlineChartBar className="w-6 h-6" /> },
   ];
 
   const handleSignOut = async () => {
@@ -44,7 +45,7 @@ const NavigationLogin = () => {
                   location.pathname === item.path ? 'text-white bg-gray-800' : 'text-gray-400 hover:text-white'
                 }`}
               >
-                <span>{item.icon}</span>
+                {item.icon}
                 <span>{item.name}</span>
               </Link>
             </motion.li>
@@ -57,7 +58,7 @@ const NavigationLogin = () => {
         onClick={handleSignOut}
         className="flex items-center gap-3 p-3 rounded-lg text-gray-400 hover:text-white"
       >
-        <span>🚪</span>
+        <HiOutlineDocumentText className="w-6 h-6" />
         <span>Sign Out</span>
       </motion.button>
     </nav>
