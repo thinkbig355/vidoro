@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  HomeIcon, 
+  BriefcaseIcon, 
+  Cog6ToothIcon, 
+  CurrencyDollarIcon,
+  XMarkIcon,
+  Bars3Icon,
+} from '@heroicons/react/24/outline';
+import { auth } from '../../lib/firebase';
+import Profile from './Profile';
 
 const Navigation = () => {
   const location = useLocation();
@@ -8,13 +18,14 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [user, setUser] = useState<any>(null);
 
-  const links = [
-    { name: 'Home', path: '/', icon: '🏠' },
-    { name: 'Work Samples', path: '/work', icon: '🎬' },
-    { name: 'How it works', path: '/process', icon: '⚙️' },
-    { name: 'Pricing', path: '/pricing', icon: '💰' },
-  ];
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleGetStarted = () => {
     navigate('/contact');
@@ -22,7 +33,7 @@ const Navigation = () => {
   };
 
   const handleSignIn = () => {
-    navigate('/login'); // Redirect to the new login page
+    navigate('/login');
     setIsMobileMenuOpen(false);
   };
 
@@ -40,12 +51,14 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  const GradientButton = ({ text, onClick }: { text: string; onClick: () => void }) => (
+  const GradientButton = ({ text, onClick, isSignIn = false }: { text: string; onClick: () => void; isSignIn?: boolean }) => (
     <div className="relative group">
       <motion.button
         className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #60A5FA, #F87171)",
+          background: isSignIn
+            ? "linear-gradient(135deg, #60A5FA, #3B82F6)"
+            : "linear-gradient(135deg, #EF4444, #B91C1C)",
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -75,21 +88,18 @@ const Navigation = () => {
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-            )}
+            {isMobileMenuOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
           </motion.button>
 
           <div className="hidden md:flex items-center justify-center flex-1">
             <nav className="flex items-center">
               <ul className="flex gap-6">
-                {links.map((item) => (
+                {[
+                  { name: 'Home', path: '/', icon: <HomeIcon className="w-5 h-5" /> },
+                  { name: 'Work Samples', path: '/work', icon: <BriefcaseIcon className="w-5 h-5" /> },
+                  { name: 'How it works', path: '/process', icon: <Cog6ToothIcon className="w-5 h-5" /> },
+                  { name: 'Pricing', path: '/pricing', icon: <CurrencyDollarIcon className="w-5 h-5" /> },
+                ].map((item) => (
                   <motion.li
                     key={item.name}
                     onHoverStart={() => setHoveredItem(item.name)}
@@ -130,11 +140,15 @@ const Navigation = () => {
 
           <div className="hidden md:flex items-center gap-4">
             <div>
-              <GradientButton text="Sign In" onClick={handleSignIn} />
-            </div>
-            <div onClick={handleGetStarted}>
               <GradientButton text="Contact Us" onClick={handleGetStarted} />
             </div>
+            {user ? (
+              <Profile />
+            ) : (
+              <div>
+                <GradientButton text="Sign In" onClick={handleSignIn} isSignIn={true} />
+              </div>
+            )}
           </div>
 
           <AnimatePresence>
@@ -148,7 +162,12 @@ const Navigation = () => {
                 transition={{ duration: 0.2 }}
               >
                 <nav className="flex flex-col gap-4 mb-8">
-                  {links.map((item) => (
+                  {[
+                    { name: 'Home', path: '/', icon: <HomeIcon className="w-5 h-5" /> },
+                    { name: 'Work Samples', path: '/work', icon: <BriefcaseIcon className="w-5 h-5" /> },
+                    { name: 'How it works', path: '/process', icon: <Cog6ToothIcon className="w-5 h-5" /> },
+                    { name: 'Pricing', path: '/pricing', icon: <CurrencyDollarIcon className="w-5 h-5" /> },
+                  ].map((item) => (
                     <motion.div
                       key={item.name}
                       whileHover={{ x: 10 }}
@@ -173,10 +192,14 @@ const Navigation = () => {
                   ))}
                 </nav>
                 <div className="flex flex-col gap-4">
+                  {user ? (
+                    <Profile />
+                  ) : (
+                    <div>
+                      <GradientButton text="Sign In" onClick={handleSignIn} isSignIn={true} />
+                    </div>
+                  )}
                   <div>
-                    <GradientButton text="Sign In" onClick={handleSignIn} />
-                  </div>
-                  <div onClick={handleGetStarted}>
                     <GradientButton text="Contact Us" onClick={handleGetStarted} />
                   </div>
                 </div>

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './lib/firebase';
 import Layout from './components/layout/Layout';
-import LayoutLogin from './components/layout/Layout_login';
 import ScrollToTop from './components/layout/ScrollToTop';
 import Index from './pages/Index';
 import Process from './pages/Process';
@@ -14,10 +13,7 @@ import Terms from './static-pages/terms';
 import Privacy from './static-pages/privacy';
 import Feedback from './static-pages/feedback';
 import Docs from './static-pages/docs';
-import Login from './pages/Login'; // Import the new Login page
-import Home from './pages_login/Dashboard';
-import Chat from './pages_login/Chat';
-import Analytics from './pages_login/Analytics';
+import Login from './pages/Login';
 import posthog from 'posthog-js';
 
 function App() {
@@ -38,33 +34,21 @@ function App() {
     <Router>
       <ScrollToTop />
       <PageTracking />
-      {isAuthenticated ? (
-        <LayoutLogin>
-          <Routes>
-            <Route path="/dashboard/home" element={<Home />} />
-            <Route path="/dashboard/chat" element={<Chat />} />
-            <Route path="/dashboard/analytics" element={<Analytics />} />
-            <Route path="/login" element={<Navigate to="/dashboard/home" replace />} /> {/* Redirect if already logged in */}
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </LayoutLogin>
-      ) : (
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/process" element={<Process />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/docs" element={<Docs />} />
-            <Route path="/login" element={<Login />} /> {/* Add the new login route */}
-            <Route path="*" element={<Index />} />
-          </Routes>
-        </Layout>
-      )}
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/docs" element={<Docs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Index />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }
