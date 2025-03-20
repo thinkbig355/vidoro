@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import GoogleLoginButton from '../ui/GoogleLoginButton';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../../lib/firebase';
+import { saveUserToFirestore } from '../../lib/saveUser'; // Import saveUserToFirestore
 
 const Navigation = () => {
   const location = useLocation();
@@ -22,13 +24,24 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+    // Updated handleSignIn function
+  const handleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      await saveUserToFirestore(user); // Save user to Firestore
+      navigate('/dashboard/home'); // Redirect to the dashboard
+    } catch (error) {
+      console.error('Sign-in error:', error);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
@@ -37,39 +50,31 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  const GradientButton = () => {
-    return (
-      <div className="relative group">
-        <motion.button
-          className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, #60A5FA, #F87171)",
-          }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="relative z-10 block text-sm">
-            Contact Us
-          </span>
-          <motion.div
-            className="absolute inset-0 bg-blue-500/30"
-            style={{
-              mixBlendMode: "overlay",
-            }}
-          />
-        </motion.button>
-      </div>
-    );
-  };
+  const GradientButton = ({ text, onClick }: { text: string; onClick: () => void }) => (
+    <div className="relative group">
+      <motion.button
+        className="relative px-4 py-2 font-bold text-white rounded-md shadow-lg overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #60A5FA, #F87171)",
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={onClick}
+      >
+        <span className="relative z-10 block text-sm">{text}</span>
+        <motion.div
+          className="absolute inset-0 bg-blue-500/30"
+          style={{ mixBlendMode: "overlay" }}
+        />
+      </motion.button>
+    </div>
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
             <Link to="/" className="flex items-center">
               <img src="/favicon.ico" alt="Vidoro" className="w-8 h-8" />
             </Link>
@@ -91,7 +96,6 @@ const Navigation = () => {
             )}
           </motion.button>
 
-          {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center justify-center flex-1">
             <nav className="flex items-center">
               <ul className="flex gap-6">
@@ -105,9 +109,7 @@ const Navigation = () => {
                     <Link
                       to={item.path}
                       className={`py-2 px-3 rounded-lg relative flex items-center gap-2 transition-all ${
-                        location.pathname === item.path
-                          ? 'text-white'
-                          : 'text-gray-400 hover:text-white'
+                        location.pathname === item.path ? 'text-white' : 'text-gray-400 hover:text-white'
                       }`}
                     >
                       {hoveredItem === item.name && (
@@ -120,7 +122,6 @@ const Navigation = () => {
                           transition={{ duration: 0.2 }}
                         />
                       )}
-
                       {location.pathname === item.path && (
                         <motion.div
                           layoutId="activeNav"
@@ -128,7 +129,6 @@ const Navigation = () => {
                           transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         />
                       )}
-
                       <span className="hidden sm:inline">{item.icon}</span>
                       <span className={location.pathname === item.path ? 'font-medium' : ''}>{item.name}</span>
                     </Link>
@@ -138,19 +138,16 @@ const Navigation = () => {
             </nav>
           </div>
 
-          {/* Login and Contact Us buttons on the right */}
           <div className="hidden md:flex items-center gap-4">
-            {/* Google Login Button */}
-            <div>
-              <GoogleLoginButton />
+            {/* Sign In button */}
+            <div onClick={handleSignIn}>
+              <GradientButton text="Sign In" onClick={handleSignIn} />
             </div>
-            {/* Contact Us button */}
             <div onClick={handleGetStarted}>
-              <GradientButton />
+              <GradientButton text="Contact Us" onClick={handleGetStarted} />
             </div>
           </div>
 
-          {/* Mobile Menu */}
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
@@ -171,14 +168,11 @@ const Navigation = () => {
                       <Link
                         to={item.path}
                         className={`flex items-center gap-3 text-lg py-2 ${
-                          location.pathname === item.path
-                            ? 'text-white font-medium'
-                            : 'text-gray-400'
+                          location.pathname === item.path ? 'text-white font-medium' : 'text-gray-400'
                         }`}
                       >
                         <span>{item.icon}</span>
                         <span>{item.name}</span>
-
                         {location.pathname === item.path && (
                           <motion.div
                             layoutId="mobileActive"
@@ -189,12 +183,14 @@ const Navigation = () => {
                     </motion.div>
                   ))}
                 </nav>
-                {/* Mobile Login and Contact Us */}
-                 <div className="flex flex-col space-y-4">
-                    <GoogleLoginButton />
-                    <div onClick={handleGetStarted}>
-                        <GradientButton />
-                    </div>
+                <div className="flex flex-col gap-4">
+                  {/* Sign In button in mobile menu */}
+                  <div onClick={handleSignIn}>
+                    <GradientButton text="Sign In" onClick={handleSignIn} />
+                  </div>
+                  <div onClick={handleGetStarted}>
+                    <GradientButton text="Contact Us" onClick={handleGetStarted} />
+                  </div>
                 </div>
               </motion.div>
             )}

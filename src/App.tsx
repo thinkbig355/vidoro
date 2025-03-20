@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './lib/firebase';
 import Layout from './components/layout/Layout';
+import LayoutLogin from './components/layout/Layout_login';
 import ScrollToTop from './components/layout/ScrollToTop';
 import Index from './pages/Index';
 import Process from './pages/Process';
@@ -11,40 +14,68 @@ import Terms from './static-pages/terms';
 import Privacy from './static-pages/privacy';
 import Feedback from './static-pages/feedback';
 import Docs from './static-pages/docs';
+import Home from './pages_login/Home';
+import Chat from './pages_login/Chat';
+import Analytics from './pages_login/Analytics';
 import posthog from 'posthog-js';
 
 function App() {
-    return (
-        <Router>
-            <ScrollToTop />
-            <PageTracking />
-            <Layout>
-                <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/process" element={<Process />} />
-                    <Route path="/work" element={<Work />} />
-                    <Route path="/pricing" element={<Pricing />} />
-                    <Route path="/contact" element={<ContactUs />} />
-                    <Route path="/terms" element={<Terms />} />
-                    <Route path="/privacy" element={<Privacy />} />
-                    <Route path="/feedback" element={<Feedback />} />
-                    <Route path="/docs" element={<Docs />} />
-                </Routes>
-            </Layout>
-        </Router>
-    );
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Router>
+      <ScrollToTop />
+      <PageTracking />
+      {isAuthenticated ? (
+        <LayoutLogin>
+          <Routes>
+            <Route path="/dashboard/home" element={<Home />} />
+            <Route path="/dashboard/chat" element={<Chat />} />
+            <Route path="/dashboard/analytics" element={<Analytics />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </LayoutLogin>
+      ) : (
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/process" element={<Process />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/docs" element={<Docs />} />
+            <Route path="*" element={<Index />} />
+          </Routes>
+        </Layout>
+      )}
+    </Router>
+  );
 }
 
 function PageTracking() {
-    const location = useLocation();
+  const location = useLocation();
 
-    useEffect(() => {
-        posthog.capture('$pageview', {
-            current_url: location.pathname
-        });
-    }, [location]);
+  useEffect(() => {
+    posthog.capture('$pageview', {
+      current_url: location.pathname,
+    });
+  }, [location]);
 
-    return null; // This component doesn't render anything
+  return null;
 }
 
 export default App;
