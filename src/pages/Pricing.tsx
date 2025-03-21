@@ -7,7 +7,7 @@ import Particles from "react-tsparticles"
 import { loadSlim } from "tsparticles-slim"
 import type { Container, Engine } from "tsparticles-engine"
 import { motion } from "framer-motion";
-import PricingFAQ from "@/components/pricing/FAQ"; // Import the FAQ component
+import PricingFAQ from "@/components/pricing/FAQ";
 
 export default function PricingPage() {
   const [minutes, setMinutes] = useState(8)
@@ -77,25 +77,21 @@ export default function PricingPage() {
         className="absolute inset-0"
       />
       <div className="flex flex-col items-center justify-start">
-        {/* Title with increased margin-top */}
-        {/* Added margin-top to push the title down */}
         <h1 className="text-center text-3xl md:text-5xl font-bold mt-24 mb-12">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-300 to-blue-400">
             Transparent Pricing
           </span>
         </h1>
-        {/* Gap between title and pricing sections */}
         <div className="mb-16"></div>
         <div className="max-w-5xl w-full flex flex-col gap-6 relative">
           <div className="md:flex-row flex flex-col gap-4">
             {/* 1 Video Sample */}
-            <div className="bg-[#2a2a2a] rounded-xl p-6 flex-1 overflow-hidden">
+            <div className="bg-[#1a1a1a] rounded-xl p-6 flex-1 overflow-hidden">
               <h2 className="text-xl font-medium mb-2">1 Video Sample</h2>
               <div className="mb-6">
                 <div className="text-5xl font-bold">${singleVideoPrice}</div>
                 <div className="text-sm">one-time fee</div>
               </div>
-
               <div className="space-y-4">
                 <div className="flex justify-between items-start py-3 border-t border-[#3a3a3a]">
                   <div className="font-medium">Number of Minutes</div>
@@ -123,21 +119,18 @@ export default function PricingPage() {
                     </div>
                   </div>
                 </div>
-
                 <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                   <div className="font-medium">Automatic Upload On YT</div>
                   <div>
                     <X className="w-5 h-5 text-red-500" />
                   </div>
                 </div>
-
                 <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                   <div className="font-medium">HQ Voice-Overs</div>
                   <div>
                     <Check className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
-
                 <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                   <div className="font-medium">Indian Viewers Adaptation</div>
                   <div>
@@ -146,7 +139,6 @@ export default function PricingPage() {
                 </div>
               </div>
             </div>
-
             {/* Pro and Plus Pack Container */}
             <div className="flex-[2] flex flex-col md:flex-row gap-4 relative">
               {/* Pro Pack */}
@@ -154,7 +146,7 @@ export default function PricingPage() {
                 <div className="absolute top-0 left-0 right-0 -translate-y-full bg-[#5997e2] text-white py-1 text-center font-medium rounded-t-xl z-10">
                   Most Popular
                 </div>
-                <div className="bg-[#2a2a2a] rounded-b-xl p-6 border border-[#5997e2] h-full">
+                <div className="bg-[#1a1a1a] rounded-b-xl p-6 border border-[#5997e2] h-full">
                   <h2 className="text-xl font-medium mb-2">Pro pack</h2>
                   <div className="mb-6">
                     <div className="text-5xl font-bold">$378</div>
@@ -174,27 +166,23 @@ export default function PricingPage() {
                       <span className="ml-1">one-time fee</span>
                     </div>
                   </div>
-
                   <div className="space-y-4">
                     <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                       <div className="font-medium">Number of Minutes</div>
                       <div>180 Minutes</div>
                     </div>
-
                     <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                       <div className="font-medium">Automatic Upload On YT</div>
                       <div>
                         <Check className="w-5 h-5 text-green-500" />
                       </div>
                     </div>
-
                     <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                       <div className="font-medium">HQ Voice-Overs</div>
                       <div>
                         <Check className="w-5 h-5 text-green-500" />
                       </div>
                     </div>
-
                     <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                       <div className="font-medium">Indian Viewers Adaptation</div>
                       <div>
@@ -204,9 +192,8 @@ export default function PricingPage() {
                   </div>
                 </div>
               </div>
-
               {/* Plus Pack */}
-              <div className="bg-[#2a2a2a] rounded-xl p-6 flex-1 md:border-l-0 md:rounded-l-none">
+              <div className="bg-[#1a1a1a] rounded-xl p-6 flex-1 md:border-l-0 md:rounded-l-none">
                 <h2 className="text-xl font-medium mb-2">Plus pack</h2>
                 <div className="mb-6">
                   <div className="text-5xl font-bold">$147</div>
@@ -226,27 +213,23 @@ export default function PricingPage() {
                     <span className="ml-1">one-time fee</span>
                   </div>
                 </div>
-
                 <div className="space-y-4">
                   <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                     <div className="font-medium">Number of Minutes</div>
                     <div>60 Minutes</div>
                   </div>
-
                   <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                     <div className="font-medium">Automatic Upload On YT</div>
                     <div>
                       <Check className="w-5 h-5 text-green-500" />
                     </div>
                   </div>
-
                   <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                     <div className="font-medium">HQ Voice-Overs</div>
                     <div>
                       <Check className="w-5 h-5 text-green-500" />
                     </div>
                   </div>
-
                   <div className="flex justify-between py-3 border-t border-[#3a3a3a]">
                     <div className="font-medium">Indian Viewers Adaptation</div>
                     <div>
@@ -257,7 +240,6 @@ export default function PricingPage() {
               </div>
             </div>
           </div>
-
           {/* FAQ Section Below Pricing */}
           <div className="mt-20">
             <PricingFAQ />
