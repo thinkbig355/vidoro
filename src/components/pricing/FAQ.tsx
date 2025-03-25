@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import FAQItem from '@/components/process/FAQItem';
+import FAQItem from './FAQItem';
 
 const faqItems = [
   {
@@ -12,7 +12,7 @@ const faqItems = [
   {
     question: "Can I purchase more minutes anytime?",
     answer: [
-      { content: "Yes, you can buy more minutes whenever you want, whether you’ve used all your current minutes or still have plenty left. Minutes are like a credit—you can top them up by purchasing any package, and the new minutes will be added to your existing balance. They never expire. Right now, we don’t have a website system to track your minutes, but we’re planning to add a feature later to show your usage and remaining minutes.", hasDot: false }
+      { content: "Answer: Yes, you can buy more minutes whenever you want, whether you’ve used all your current minutes or still have plenty left. Minutes are like a credit—you can top them up by purchasing any package, and the new minutes will be added to your existing balance. They never expire. You can track your minute usage and remaining balance after signing in to your account on our website.", hasDot: false }
     ],
   },
   {
@@ -56,7 +56,7 @@ const faqItems = [
   {
     question: "Why create a separate channel for India?",
     answer: [
-      { content: "Creating a separate channel for Hindi videos allows for tailored content that resonates with Indian viewers, leading to more reach, revenue, and potential sponsors. It also helps target the right audience and optimizes for regional algorithms, ensuring your content reaches Indian viewers effectively.", hasDot: false }
+      { content: "Creating a separate channel for Hindi videos allows for tailored content that resonates deeply with Indian viewers. This not only boosts your reach and viewership but also opens doors to new revenue streams, including sponsorships from companies eager to connect with the Indian audience. A dedicated channel optimizes for regional algorithms, maximizing your visibility and potential for growth in this valuable market.", hasDot: false }
     ],
   },
 ];

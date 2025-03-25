@@ -5,8 +5,15 @@ import { useInView } from "react-intersection-observer";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Container, Engine } from "tsparticles-engine";
-import { ArrowRight, Play, Globe, ImportIcon as Translate, Star, ChevronRight } from 'lucide-react';
-import styles from './TrustedBy.module.css';
+import {
+  ArrowRight,
+  Play,
+  Globe,
+  ImportIcon as Translate,
+  Star,
+  ChevronRight,
+} from "lucide-react";
+import styles from "./TrustedBy.module.css";
 
 interface Video {
   originalId: string;
@@ -34,13 +41,13 @@ const Work = () => {
       originalId: "GJbUI2D3rLY",
       translatedId: "rovMJ49Ij_k",
       title: "Video Translation Example 1",
-      description: ""
+      description: "",
     },
     {
       originalId: "kVpJ6BwG8zg",
       translatedId: "qKJBlTLcBKY",
       title: "Video Translation Example 2",
-      description: ""
+      description: "",
     },
   ];
 
@@ -54,7 +61,7 @@ const Work = () => {
   ];
 
   const logos = [
-      "https://yt3.googleusercontent.com/ytc/AIdro_mVZ4AHe826kUXrFWybMD8xewxe0jxek1j2RABjppew-A=s800-c-k-c0x00ffffff-no-rj",
+    "https://yt3.googleusercontent.com/ytc/AIdro_mVZ4AHe826kUXrFWybMD8xewxe0jxek1j2RABjppew-A=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.googleusercontent.com/ytc/AIdro_nN4JNqHsIvck_6leJoMUWw3PQzNSRXL97ugjAn6_TU7mA=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.googleusercontent.com/ytc/AIdro_mDEsuYNLn6bo4gIiJEUwyu7BS6pxbyludi-60YjuCxMhY=s800-c-k-c0x00ffffff-no-rj",
     "https://yt3.googleusercontent.com/ytc/AIdro_kKGaEKaafkVObI-xJQPOipJ-B-W2vdD8fuv4oNEW7d894=s800-c-k-c0x00ffffff-no-rj",
@@ -75,9 +82,12 @@ const Work = () => {
     await loadSlim(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    console.log(container);
-  }, []);
+  const particlesLoaded = useCallback(
+    async (container: Container | undefined) => {
+      console.log(container);
+    },
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white overflow-hidden">
@@ -90,8 +100,20 @@ const Work = () => {
           fpsLimit: 120,
           particles: {
             color: { value: ["#ff0000", "#0000ff"] },
-            links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.2, width: 1 },
-            move: { enable: true, outModes: { default: "bounce" }, random: false, speed: 1, straight: false },
+            links: {
+              color: "#ffffff",
+              distance: 150,
+              enable: true,
+              opacity: 0.2,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              outModes: { default: "bounce" },
+              random: false,
+              speed: 1,
+              straight: false,
+            },
             number: { density: { enable: true, area: 800 }, value: 80 },
             opacity: { value: 0.3 },
             shape: { type: "circle" },
@@ -104,7 +126,12 @@ const Work = () => {
 
       <div className="relative">
         {/* Main Content */}
-        <div id="showcase" className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div
+          id="showcase"
+          className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-24 mt-5"
+        >
+          {" "}
+          {/* Changed mt-12 to mt-6 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,19 +143,14 @@ const Work = () => {
                 See Our Services in Action
               </span>
             </h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Compare original videos with their translated versions.
-            </p>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto"></p>
           </motion.div>
-
           <div className="space-y-32">
             {videos.map((video, index) => (
               <VideoComparisonSection key={index} video={video} index={index} />
             ))}
           </div>
-
           <HindiVideoShowcase videos={hindiVideos} />
-
           {/* Creators Section */}
           <section className="py-20 px-4">
             <div className="container mx-auto">
@@ -142,7 +164,8 @@ const Work = () => {
                     Trusted by Leading Creators
                   </h2>
                   <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                    Join thousands of content creators who use Vidoro to reach global audiences and expand their influence.
+                    Join thousands of content creators who use Vidoro to reach
+                    global audiences and expand their influence.
                   </p>
                 </motion.div>
               </div>
@@ -176,7 +199,10 @@ const Work = () => {
   );
 };
 
-const VideoComparisonSection = ({ video, index }: VideoComparisonSectionProps) => {
+const VideoComparisonSection = ({
+  video,
+  index,
+}: VideoComparisonSectionProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
@@ -205,21 +231,29 @@ const VideoComparisonSection = ({ video, index }: VideoComparisonSectionProps) =
             <Globe className="text-blue-400 mr-2" size={20} />
             <h4 className="font-semibold">Original Content</h4>
           </div>
-          <p className="text-sm text-gray-400">The original video in English.</p>
+          <p className="text-sm text-gray-400">
+            The original video in English.
+          </p>
         </div>
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-5 border border-white/10">
           <div className="flex items-center mb-3">
             <Translate className="text-red-400 mr-2" size={20} />
             <h4 className="font-semibold">Translated Version</h4>
           </div>
-          <p className="text-sm text-gray-400">The video translated in hindi.</p>
+          <p className="text-sm text-gray-400">
+            The video translated in hindi.
+          </p>
         </div>
       </div>
     </motion.div>
   );
 };
 
-const VideoComparisonWrapper = ({ originalVideoId, translatedVideoId, inView }) => {
+const VideoComparisonWrapper = ({
+  originalVideoId,
+  translatedVideoId,
+  inView,
+}) => {
   const [isOriginalLoading, setIsOriginalLoading] = useState(true);
   const [isTranslatedLoading, setIsTranslatedLoading] = useState(true);
 
@@ -290,9 +324,7 @@ const HindiVideoShowcase = ({ videos }: HindiVideoShowcaseProps) => {
     >
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-           
-          </span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"></span>
         </h2>
         <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-12">
           Examples of Hindi videos.
@@ -341,7 +373,7 @@ const YoutubeVideoWrapper = ({ videoId }: { videoId: string }) => {
         />
         {isLoading && skeletonLoader}
       </div>
-       <div className="p-4">
+      <div className="p-4">
         <div className="flex items-center mt-3 text-sm text-gray-400">
           <span>Hindi</span> {/* Changed to just "Hindi" */}
         </div>
