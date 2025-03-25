@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  HomeIcon, 
-  BriefcaseIcon, 
-  Cog6ToothIcon, 
+import {
+  HomeIcon,
+  BriefcaseIcon,
+  Cog6ToothIcon,
   CurrencyDollarIcon,
   XMarkIcon,
   Bars3Icon,
@@ -77,7 +77,11 @@ const Navigation = () => {
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            className="ml-4"
+          >
             <Link to="/" className="flex items-center">
               <img src="/favicon.ico" alt="Vidoro" className="w-8 h-8" />
             </Link>
@@ -91,7 +95,7 @@ const Navigation = () => {
             {isMobileMenuOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
           </motion.button>
 
-          <div className="hidden md:flex items-center justify-center flex-1">
+          <div className="hidden md:flex items-center justify-start flex-1 pl-12"> {/* Increased pl value */}
             <nav className="flex items-center">
               <ul className="flex gap-6">
                 {[
@@ -138,7 +142,8 @@ const Navigation = () => {
             </nav>
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
+          {/* --- CHANGES HERE: Adjusted spacing and alignment --- */}
+          <div className="hidden md:flex items-center gap-4 mr-4">  {/* Added mr-4 */}
             <div>
               <GradientButton text="Contact Us" onClick={handleGetStarted} />
             </div>
