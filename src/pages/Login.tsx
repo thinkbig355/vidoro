@@ -1,5 +1,5 @@
 // Login.tsx
-import React, { useState, useCallback, useEffect } from 'react'; // Added useEffect
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, googleProvider } from '../lib/firebase';
@@ -36,20 +36,35 @@ const Login = () => {
     // console.log(container);
   }, []);
 
+  // --- Define Allowed Agency Emails ---
+  const AGENCY_EMAILS = ['thinkbig355@gmail.com', 'internaleditors@gmail.com'];
+
   const handleSuccess = async (user: any) => {
-     setIsLoading(true);
-     try {
-        await saveUserToFirestore(user);
-        navigate('/dashboard', { replace: true }); // Redirect to dashboard
-     } catch (saveError) {
-        console.error("Error saving user:", saveError);
-        setError("Failed to save user data. Please try again.");
-        // Optionally sign the user out if saving fails critically
-        // await signOut(auth);
-     } finally {
-       setIsLoading(false);
-     }
-  }
+    // No need to set isLoading(true) here, it's already set by the caller
+    try {
+      // 1. Save/update user data in Firestore (for both agency and regular users)
+      await saveUserToFirestore(user);
+
+      // 2. Perform redirection based on email
+      if (user.email && AGENCY_EMAILS.includes(user.email)) {
+        console.log("Agency user detected, navigating to /agency-dashboard");
+        navigate('/agency-dashboard', { replace: true }); // Go to Agency Dashboard
+      } else {
+        console.log("Regular user detected, navigating to /dashboard");
+        navigate('/dashboard', { replace: true }); // Go to Regular User Dashboard
+      }
+      // setIsLoading(false) will be handled in the finally block of the caller (handleGoogleSignIn/handleEmailSignIn)
+
+    } catch (saveError) {
+      console.error("Error saving user or navigating:", saveError);
+      setError("Login succeeded, but failed to finalize session. Please try again.");
+      // Keep isLoading true or set it false depending on desired UX for this specific error
+      // Let the finally block in the calling function handle setIsLoading(false)
+      // You might want to sign the user out if saving is critical and failed
+      // await auth.signOut();
+    }
+    // NOTE: The finally block setting isLoading to false is in the functions that CALL handleSuccess
+  };
 
   const handleGoogleSignIn = async () => {
     setError(null);
