@@ -3,7 +3,7 @@ import Hero from "@/components/home/Hero";
 import ServiceBoxes from "@/components/home/ServiceBoxes";
 import Testimonials from "@/components/home/Testimonials";
 import TeamAndScenes from "@/components/home/TeamAndScenes";
-import { Footer } from '@/components/layout/Footer';
+// REMOVE: import { Footer } from '@/components/layout/Footer'; // No longer needed here
 import HomeLayout from "@/components/home/HomeLayout";
 import { motion } from "framer-motion";
 
@@ -21,7 +21,9 @@ const Index = () => {
   };
 
   return (
+    // HomeLayout provides the particle background and structure specific to the index page
     <HomeLayout>
+      {/* These sections are rendered inside HomeLayout */}
       <motion.div
         variants={componentVariants}
         initial="hidden"
@@ -54,6 +56,8 @@ const Index = () => {
       >
         <TeamAndScenes />
       </motion.div>
+      {/* REMOVE THIS motion.div containing the Footer */}
+      {/*
       <motion.div
         variants={componentVariants}
         initial="hidden"
@@ -62,7 +66,10 @@ const Index = () => {
       >
         <Footer />
       </motion.div>
+      */}
     </HomeLayout>
+    // The actual Footer component will be rendered by the parent Layout component
+    // which wraps this Index component via <Outlet /> in App.tsx
   );
 };
 

@@ -13,11 +13,12 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
   }, []);
 
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    console.log(container);
+    // console.log(container); // Keep for debugging if needed
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-[#0A0A0F]">
+    // ****** CHANGED from <main> to <div> ******
+    <div className="relative min-h-screen bg-[#0A0A0F]">
       <Particles
         id="tsparticles"
         init={particlesInit}
@@ -68,13 +69,16 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
           },
           detectRetina: true,
         }}
-        className="fixed inset-0"
+        // Ensure particles are behind the content
+        className="fixed inset-0 z-0"
       />
+      {/* This div holds the actual page content above the particles */}
       <div className="relative z-10">
         {children}
       </div>
-    </main>
+    </div>
+    // ****** END OF CHANGE ******
   );
 };
 
-export default HomeLayout; 
+export default HomeLayout;
